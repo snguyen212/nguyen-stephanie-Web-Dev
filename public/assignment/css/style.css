@@ -1,0 +1,27 @@
+/*add a margin below every input field (adds white space)
+put this page under the CSS folder*/
+
+input {
+    margin-bottom: 5px;
+
+}
+
+/*this can be used to OVERRIDE the primary button you have taken from bootstrap
+border-RADIUS makes the rounding in btn*/
+
+.btn-primary {
+    background-color: cornflowerblue;
+}
+
+/*border radius. you can see it from the INSPECT element on the browser */
+
+body {
+    padding: 60px;
+}
+/*all paragraphs that have class of navbar AND pull right*/
+
+p.navbar-text.pull-right {
+    margin-right: 50px;
+    
+
+}
