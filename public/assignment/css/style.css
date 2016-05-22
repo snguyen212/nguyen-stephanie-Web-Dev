@@ -20,6 +20,11 @@ body {
 }
 /*all paragraphs that have class of navbar AND pull right*/
 
+
+p.navbar-text.pull-right {
+    margin-right: 15px;
+}
+
 p.navbar-text.pull-right {
     margin-right: 50px;
 
