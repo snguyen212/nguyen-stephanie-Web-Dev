@@ -32,7 +32,7 @@
             
             //Website Routes -----------
 
-            .when("/User/:userID/website", {
+            .when("/User/:userId/website", {
                 templateUrl: "views/Website/website-list.view.client.html",
                 controller: "WebsiteListController",
                 controllerAs: "model"
