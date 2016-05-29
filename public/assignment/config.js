@@ -44,6 +44,9 @@
             })
         
             // PAGE Routes -------
+            .when("/User/:uid/website/:wid/page", {
+                templateUrl: "views/Pages/page-list.view.client.html"
+            })
         
         
             //Widget Routs -------
