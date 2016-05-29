@@ -51,7 +51,12 @@
             })
         
         
-            //Widget Routs -------
+            //Widget Routes -------
+            .when("/User/:uid/website/:wid/page/:pid/widget", {
+                templateUrl: "views/Widget/widget-list.view.client.html",
+                controller: "WidgetListController",
+                controllerAs: "model"
+            })
             
             //when you see this url, go to the template url
             .when("user/:uid/website/:wid/page/widget", {
