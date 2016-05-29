@@ -11,6 +11,7 @@
             var websiteId = $routeParams.websiteId;
             vm.pages = PageService.findPageByWebsiteId(websiteId);
         }
+       
         init();
     }
 })();

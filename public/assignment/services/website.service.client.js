@@ -3,7 +3,8 @@
 
 
 (function(){
-    angular.module("WebAppMaker")
+    angular
+        .module("WebAppMaker")
         .factory("WebsiteService", WebsiteService);
 
     var websites = [
@@ -44,7 +45,7 @@
             }
             return result;
         }
-    
+
     }
 })();
     
