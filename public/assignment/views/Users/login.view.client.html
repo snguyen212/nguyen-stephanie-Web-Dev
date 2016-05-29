@@ -1,0 +1,36 @@
+<!--updated -->
+
+
+<div class ="container">  <!--adds white space on each side of the page(responsive) -->
+
+
+    <!--IF user name and pw doesn't match, should have error -->
+    <!-- Should NOT come up with u try to login when field are blank -->
+
+    <div ng-if="model.error" class = "alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <h2>Login</h2>
+
+    <!--username is the variable-->
+    <input ng-model="username"
+           class = "form-control"
+           placeholder = "username"
+           type="text"/>
+
+    <input ng-model="password"
+           class = "form-control"
+           placeholder="password"
+           type="password"/>
+
+
+    <a ng-click= "model.login(username,password)"
+       class = "btn btn-primary btn-block"> Login </a>  <!--btnblock takes up whole screen-->
+
+
+    <!-- TOOK OUT Hash to profile page here because we want to ONLY go to profile page if username and pw matches-->
+
+    <a class="btn btn-success btn-block"
+       href="#/register">Register</a>  <!-- TAKE IT OUT HERE -->
+</div>

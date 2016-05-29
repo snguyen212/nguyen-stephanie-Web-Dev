@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- declare angular with ng app -->
+<html lang="en" ng-app="WebAppMaker">
 <head>
     <meta charset="UTF-8">
-    <title>Assignment Home Page</title>
+    <title>Web App Maker</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+
+
+    <!-- Load Angular Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+    <!--angular Routing module -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js"></script>
+
+    <!-- Intial Javascript file -->
+    <script src="app.js"></script>
+
+    <script src="config.js"></script>
+
+    <!-- load each individual controller -->
+    <script src="views/Users/login.controller.client.js"></script>
+    <script src="views/Users/profile.controller.client.js"></script>
+    <script src="views/Website/website-list.controller.client.js"></script>
+    <script src="views/Widget/widget-list.controller.client.js"></script>
+
+    <!-- SERVICES -->
+    <script src="services/user.service.client.js"></script>
+    <script src="services/website.service.client.js"></script>
+
+
+
 </head>
 <body>
-    <h1>Assignment Home Page</h1>
+
+    <!--ALL fragments of HTML will be displayed here -->
+    <div ng-view></div>
+
 </body>
 </html>
+

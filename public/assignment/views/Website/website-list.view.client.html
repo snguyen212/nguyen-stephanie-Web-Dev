@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web App Maker</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="website-new.html">
+                Websites
+            </a>
+            <p class="navbar-text pull-right">
+                <a href="website-new.html" class="navbar-link"> <!--FIX THIS LINNK -->
+                      <span class="glyphicon glyphicon-plus">
+                      </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+
+    <div class="container">
+        <ul class="list-group">
+            <li ng-repeat="website in model.websites" class="list-group-item">
+                <a href="../Pages/page-list.html">{{website.name}}</a>
+
+                <!--looks at user's id and goes to THEIR websites only -->2
+                <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="pull-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                    <span class="glyphicon glyphicon-play"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+
+
+    <!--
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="../views/Pages/page-list.html">Blogging App</a>
+            <a href="website-edit.html" class="pull-right">
+                <span class="glyphicon glyphicon-cog"></span>
+                <span class="glyphicon glyphicon-play"></span>
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="../Views/Pages/page-list.html">Address Book App</a>
+            <a href="website-edit.html" class="pull-right">
+                <span class="glyphicon glyphicon-cog"></span>
+                <span class="glyphicon glyphicon-play"></span>
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="../Views/Pages/page-list.html">Script Testing App</a>
+            <a href="website-edit.html" class="pull-right">
+                <span class="glyphicon glyphicon-cog"></span>
+                <span class="glyphicon glyphicon-play"></span>
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="../Views/Pages/page-list.html">Blogger</a>
+            <a href="website-edit.html" class="pull-right">
+                <span class="glyphicon glyphicon-cog"></span>
+                <span class="glyphicon glyphicon-play"></span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+-->
+
+<!-------------- FOOTER ----------------------------->
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <p class="navbar-text pull-right">
+                    <a href="../Views/Users/profile.html" class="navbar-link">
+                        <span class="glyphicon glyphicon-user" ></span>
+                    </a>
+            </a>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>

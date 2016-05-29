@@ -1,0 +1,238 @@
+<!-- took out body and html tags-->
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+
+            <p class="navbar-text pull-left">
+                <a href="../Views/Pages/page-list.html" class="navbar-link">
+                      <span class="glyphicon glyphicon-chevron-left">
+                      </span>
+                </a>
+            </p>
+
+            <a class="navbar-brand"
+               href="widget-list.html">
+                Widgets
+            </a>
+            <p class="navbar-text pull-right">
+
+
+                <!--- need to REPLACE uid and wid and pid -->
+
+                <a href="#/user/:uid/website/:wid/page/:pid/widget/new"
+                   class="navbar-link">
+                      <span class="glyphicon glyphicon-plus">
+                      </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<!--- this here helps REPEAT widgets -->
+<div ng-repeat="widget in widgets" ng-switch="widgetType" >
+    <a href="widget-heading.html">
+        <span class="glyphicon glyphicon-cog"></span>
+    </a>
+    <span class="glyphicon glyphicon-align-justify"></span>
+
+   <!-- if widget is HEADING ---------------------------------------->
+
+    <div ng-switch-when="HEADER" class ="jga widget">
+        <div class="jga-widget-tool">
+
+    </div>
+
+        <!-- if SIZE is.....-->
+        <div ng-switch="widget.size">
+            <h1 ng-switch-when= "1"> {{widget.text}}</h1>
+            <h1 ng-switch-when= "2"> {{widget.text}}</h1>
+            <h1 ng-switch-when= "3"> {{widget.text}}</h1>
+            <h1 ng-switch-when= "4"> {{widget.text}}</h1>
+            <h1 ng-switch-when= "5"> {{widget.text}}</h1>
+        </div>
+
+    </div>
+
+    <!-- if widget is IMAGE --------------------------------------->
+
+    <div ng-switch-when = "IMAGE" class= "jga-widget">
+
+        <!--when browser gets to this image tag, it WON'T download the image url.
+        Angular will look at the url source and then trigger downloading of image -->
+
+        <img ng-src = "{{widget.url}}" width = "{{widget.with}}"/>
+        </div>
+
+    <!-- if widget is HTML
+         if html just want to show the text ----------------------------------->
+    <div ng-switch-when = "HTML" class= "jga-widget" ng-bind-html="..................">
+        {{model.getTrustedHTML(widget)}        <!-- pass widget to controller to see if they trust it -->
+    </div>
+
+
+        <!-- if widget is YOUTUBE --------------------------------->
+    <div ng-switch-when = "YouTube"
+         class= "jga-widget">
+
+        <iframe ng-width= {{widget.width}}
+                height="5"
+                ng-src= {{model.getTurstedURL(widget)}
+                frameborder ="0" allowfullscreen>
+        </iframe>
+
+    </div>
+
+
+   <!-- right now we have no template for image or youtube, etc
+   So by DEFAULT, just render whatever the object is ----------------------->
+
+    <div ng-switch-default>
+        {{widget}}
+    </div>
+</div>
+
+
+<a href="widget-heading.html">
+    <span class="glyphicon glyphicon-cog"></span>
+    <span class="glyphicon glyphicon-align-justify"></span>
+</a>
+
+<!-- HARD CODED widgets from PAST assignment
+
+
+
+<!--<div class=jga-widget">-->
+    <!--<div class ="jga-widget-tool">-->
+        <!--<a href="widget-heading.html">-->
+            <!--<span class="glyphicon glyphicon-cog"></span>-->
+            <!--<span class="glyphicon glyphicon-align-justify"></span>-->
+        <!--</a>-->
+        <!--</div>-->
+
+
+    <!--<h1> GIZMODO </h1>-->
+
+
+<!--</div>-->
+
+
+
+<!--&lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; HEADER 2-&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--<div class=jga-widget">-->
+    <!--<div class ="jga-widget-tool">-->
+        <!--<a href="#">-->
+            <!--<span class="glyphicon glyphicon-cog"></span>-->
+            <!--<span class="glyphicon glyphicon-align-justify"></span>-->
+        <!--</a>-->
+    <!--</div>-->
+
+        <!--<h4> Procrastinate with Cute Puppy Pictures! </h4>-->
+
+<!--</div>-->
+
+<!--&lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; PICTURE 3 -&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+
+<!--<div class=jga-widget">-->
+    <!--<div class ="jga-widget-tool">-->
+        <!--<a href="widget-image.html">-->
+            <!--<span class="glyphicon glyphicon-cog"></span>-->
+            <!--<span class="glyphicon glyphicon-align-justify"></span>-->
+        <!--</a>-->
+        <!--</div>-->
+
+
+    <!--<img width="100%"-->
+         <!--src="https://3milliondogs.com/blog-assets-two/2014/11/cute-corgi.jpg">-->
+
+<!--</div>-->
+
+<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; HEADING 4 -&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+
+<!--<div class=jga-widget">-->
+    <!--<div class ="jga-widget-tool">-->
+        <!--<a href="widget-heading.html">-->
+            <!--<span class="glyphicon glyphicon-cog"></span>-->
+            <!--<span class="glyphicon glyphicon-align-justify"></span>-->
+        <!--</a>-->
+
+        <!--</div>-->
+
+
+    <!--<p class="first-text">Tesla’s flagship Fremont factory is the only non-unionized American-owned assembly factory in the U.S., and the United Auto Workers want to change that. With Tesla <a href="http://jalopnik.com/tesla-is-now-gunning-to-produce-half-a-million-cars-ann-1774805496">considerably upping the manufacturing expectations</a> for its electric fleet, their motives just got stronger.<span class=" read-more-placeholder"></span><span class="readmore-core-decorated"></span></p>-->
+
+
+<!--</div>-->
+
+<!--&lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; HEADING 5 -&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+
+<!--<div class=jga-widget">-->
+    <!--<div class ="jga-widget-tool">-->
+        <!--<a href="widget-heading.html">-->
+            <!--<span class="glyphicon glyphicon-cog"></span>-->
+            <!--<span class="glyphicon glyphicon-align-justify"></span>-->
+        <!--</a>-->
+    <!--</div>-->
+
+        <!--<h4> Top 10 Cutest Kitties </h4>-->
+
+<!--</div>-->
+
+
+<!--&lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; YOUTUBE 6 &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+
+<!--<div class=jga-widget">-->
+    <!--<div class ="jga-widget-tool">-->
+        <!--<a href="widget-youtube.html">-->
+            <!--<span class="glyphicon glyphicon-cog"></span>-->
+            <!--<span class="glyphicon glyphicon-align-justify"></span>-->
+        <!--</a>-->
+    <!--</div>-->
+<!--<iframe width="100%"-->
+        <!--src="https://www.youtube.com/embed/cbP2N1BQdYc"-->
+        <!--frameborder="0"-->
+        <!--allowfullscreen></iframe>-->
+
+<!--</div>-->
+
+<!--&lt;!&ndash;-&#45;&#45;&#45;&#45; HEADING 7 -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--<div class=jga-widget">-->
+    <!--<div class ="jga-widget-tool">-->
+        <!--<a href="widget-heading.html">-->
+            <!--<span class="glyphicon glyphicon-cog"></span>-->
+            <!--<span class="glyphicon glyphicon-align-justify"></span>-->
+        <!--</a>-->
+        <!--</div>-->
+
+        <!--<p class="first-text">We've scoured the internet and found the cutest and funniest cat videos of all time. Any we missed? Let us know! What should we count down next?</p>-->
+<!--</div>-->
+
+
+
+
+<!-------------- FOOTER ----------------------------->
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+
+                <span class="glyphicon glyphicon-play"></span>
+                </a>
+
+                <a class="navbar-brand" href="#">
+                <span class="glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+
+                <p class="navbar-text pull-right">
+                    <a href="../Views/Users/profile.html" class="navbar-link">
+                        <span class="glyphicon glyphicon-user" ></span>
+                    </a>
+            </a>
+        </div>
+    </div>
+</nav>
+
