@@ -12,7 +12,7 @@
             </p>
 
             <a class="navbar-brand"
-               href="widget-list.html">
+               href="widget-list.view.client.html">
                 Widgets
             </a>
             <p class="navbar-text pull-right">
@@ -30,12 +30,18 @@
     </div>
 </nav>
 
+
+{{model.widget}}
 <!--- this here helps REPEAT widgets -->
-<div ng-repeat="widget in widgets" ng-switch="widgetType" >
-    <a href="widget-heading.html">
-        <span class="glyphicon glyphicon-cog"></span>
-    </a>
-    <span class="glyphicon glyphicon-align-justify"></span>
+<div ng-repeat="widget in model.widgets"
+     ng-switch="widget.widgetType">
+    <div class="jga-widget-tool">
+        <a href="widget-heading.html">
+            <span class="glyphicon glyphicon-cog"></span>
+        </a>
+        <span class="glyphicon glyphicon-align-justify"></span>
+    </div>
+
 
    <!-- if widget is HEADING ---------------------------------------->
 
@@ -47,10 +53,11 @@
         <!-- if SIZE is.....-->
         <div ng-switch="widget.size">
             <h1 ng-switch-when= "1"> {{widget.text}}</h1>
-            <h1 ng-switch-when= "2"> {{widget.text}}</h1>
-            <h1 ng-switch-when= "3"> {{widget.text}}</h1>
-            <h1 ng-switch-when= "4"> {{widget.text}}</h1>
-            <h1 ng-switch-when= "5"> {{widget.text}}</h1>
+            <h2 ng-switch-when= "2"> {{widget.text}}</h2>
+            <h3 ng-switch-when= "3"> {{widget.text}}</h3>
+            <h4 ng-switch-when= "4"> {{widget.text}}</h4>
+            <h5 ng-switch-when= "5"> {{widget.text}}</h5>
+            <h6 ng-switch-when= "6"> {{widget.text}}</h6>
         </div>
 
     </div>
@@ -66,8 +73,8 @@
         </div>
 
     <!-- if widget is HTML
-         if html just want to show the text ----------------------------------->
-    <div ng-switch-when = "HTML" class= "jga-widget" ng-bind-html="..................">
+         if html, just want to show the text ----------------------------------->
+    <div ng-switch-when = "HTML" class= "jga-widget" ng-bind-html="model.userHtml">
         {{model.getTrustedHTML(widget)}        <!-- pass widget to controller to see if they trust it -->
     </div>
 
