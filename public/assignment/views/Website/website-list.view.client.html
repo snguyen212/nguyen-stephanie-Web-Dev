@@ -22,7 +22,7 @@
         <ul class="list-group">
             <li ng-repeat="website in model.websites" class="list-group-item">
 
-                <a href="#/User/:uid/website/:wid/page">{{website.name}}</a>
+                <a href="#/User/{{website.developerId}}/website/{{website._id}}/page">{{website.name}}</a>
 
                 <!--looks at user's id and goes to THEIR websites only -->
                 <a href="#/User/{{model.website.developerId}}/Website/{{model.website._id}}" class="pull-right">
@@ -79,7 +79,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
                 <p class="navbar-text pull-right">
-                    <a href="#/profile/:userId" class="navbar-link">
+                    <a href="#/profile/model.user._id" class="navbar-link">
                         <span class="glyphicon glyphicon-user" ></span>
                     </a>
             </a>

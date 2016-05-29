@@ -44,7 +44,7 @@
             })
         
             // PAGE Routes -------
-            .when("/User/:uid/website/:wid/page", {
+            .when("/User/:userId/website/:websiteId/page", {
                 templateUrl: "views/Pages/page-list.view.client.html",
                 controller: "PageListController",
                 controllerAs: "model"

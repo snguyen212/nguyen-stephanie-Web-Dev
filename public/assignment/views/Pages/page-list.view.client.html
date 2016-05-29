@@ -24,10 +24,11 @@
 
 
 <div class="container">
+    {{model.pages}}
     <ul class="list-group">
         <li ng-repeat="page in model.pages" class="list-group-item">
 
-            <a href="#/User/:uid/website/:wid/page">{{website.name}}</a>
+            <a href="#/User/{{model.website.developerId}}/website/{{model.pages.websiteId}}/page">{{website.name}}</a>
 
             <!--looks at user's id and goes to THEIR websites only -->
             <a href="#/User/{{model.website.developerId}}/Website/{{model.website._id}}" class="pull-right">
