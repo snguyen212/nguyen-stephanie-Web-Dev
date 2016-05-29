@@ -11,14 +11,14 @@
             //user routs
 
             .when("/login", {
-                templateUrl: "views/Users/login.view.client.html",  //if you see #/login, go to here
+                templateUrl: "views/User/login.view.client.html",  //if you see #/login, go to here
                 controller: "LoginController",
                 controllerAs: "model" //our controller is the model
 
 
             })
             .when("/profile/:id", {
-                templateUrl: "views/Users/profile.view.client.html",
+                templateUrl: "views/User/profile.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model" //our controller is the model
 
@@ -26,20 +26,20 @@
 
 
             .when("/register", {
-                templateUrl: "views/Users/register.view.client.html"
+                templateUrl: "views/User/register.view.client.html"
             })
             
             
             //Website Routes -----------
 
-            .when("/user/:userID/website", {
+            .when("/User/:userID/website", {
                 templateUrl: "views/Website/website-list.view.client.html",
                 controller: "WebsiteListController",
                 controllerAs: "model"
 
             })
             
-            .when("/user/:userId/website/:websiteId", {
+            .when("/User/:userId/website/:websiteId", {
                 templateUrl: "views/Website/website-edit.view.client.html"
             })
         

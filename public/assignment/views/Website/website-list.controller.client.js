@@ -1,3 +1,4 @@
+//UPDATED   
 
 (function(){
     angular
@@ -9,8 +10,6 @@
 
         function init() {
             var userId = $routeParams.userId;
-
-            //send websites to view for rendering
             vm.websites = WebsiteService.findWebsitesForUser(userId);
         }
         init();
