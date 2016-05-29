@@ -1,7 +1,7 @@
+//UPDATED
 
-
-// //factory allows you to create services
-// //service is where you find, update, remove any data
+//factory allows you to create services
+//service is where you find, update, remove any data
 
 (function () {
     angular

@@ -20,7 +20,7 @@
 
         var api = {
             findWebsitesForUser: findWebsitesForUser,
-            findWebsiteById: findWebsitesById
+            findWebsiteById: findWebsiteById
         };
 
         return api;
