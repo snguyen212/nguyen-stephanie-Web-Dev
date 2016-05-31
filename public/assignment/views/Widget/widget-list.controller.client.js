@@ -4,11 +4,16 @@
         .controller("WidgetListController", WidgetListController);
 
 
-    function WidgetListController($sce) {
+    function WidgetListController($sce, $routeParams, WidgetService) {
         var vm = this;
-        vm.getTrustedHTML = getTrustedHTML;
+        vm.getTrustedHtml = getTrustedHtml;
         vm.getTrustedUrl = getTrustedUrl;
-        
+
+        function init() {
+            var pageId = $routeParams.pageId;
+            vm.widgets = WidgetService.findWidgetsByPageId(pageId);
+        }
+        init();
         // trust HTML ---------------------------------------------------------
 
         function getTrustedHtml(widget) {
@@ -24,11 +29,11 @@
             var urlParts = widget.url.split("/");   
             
             //get last element in array
-            var id = urlParts[urlParts.length-1];
+            var id = urlParts[urlParts.length - 1];
             var url = "https://www.youtube.com/embed/" + id;
             
             //bypass everything and say that we trust this url
-           return $sce.trustAsResource(url);
+            return $sce.trustAsResource(url);
             
             
 

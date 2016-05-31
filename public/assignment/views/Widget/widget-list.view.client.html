@@ -69,7 +69,7 @@
         <!--when browser gets to this image tag, it WON'T download the image url.
         Angular will look at the url source and then trigger downloading of image -->
 
-        <img ng-src = "{{widget.url}}" width = "{{widget.with}}"/>
+        <img ng-src = "{{widget.url}}" width = "{{widget.width}}"/>
         </div>
 
     <!-- if widget is HTML
@@ -80,7 +80,7 @@
 
 
         <!-- if widget is YOUTUBE --------------------------------->
-    <div ng-switch-when = "YouTube"
+    <div ng-switch-when = "YOUTUBE"
          class= "jga-widget">
 
         <iframe ng-width= {{widget.width}}
