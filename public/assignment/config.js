@@ -58,14 +58,8 @@
                 controllerAs: "model"
             })
             
-            //when you see this url, go to the template url
-            .when("user/:uid/website/:wid/page/widget", {
-                templateUrl: "views/Widget/widget-list-view-client.html",
-                controller: "WidgetListController",
-                controllerAs: "model"    //means in the html, you access by saying {{model/widgets}} something like this....
-            })
                 
-            .when("#/user/:uid/website/:wid/page/:pid/widget/new", {
+            .when("/User/:uid/website/:wid/page/:pid/widget/new", {
                 templateUrl: "views/Widget/widget-chooser.view.client.html"
                 
             })
