@@ -7,8 +7,12 @@
 
     function ProfileController($routeParams, UserService) {
         var vm = this;
+       
+       // EVENT HANDLERS -----------------------------
         vm.updateUser = updateUser;
+        vm.unregister = unregister;
 
+        // --
         var id = $routeParams["id"];
         var index = -1;
         function init() {
@@ -20,15 +24,36 @@
         }
         init();
 
+        //use UserService to delete user ------------------
+        function unregister() {
+            UserService
+                .deleteUser(id)  //id is in $routeParams
+                .then(
+                    //success will log you out and delete user
+                    function(response) {
+                        $location.url("/login");
+                    },
+                    
+                    //user not found to even delete
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
+        }
 
         //function for updating User Profile page
         function updateUser() {
-            UserService.updateUser(vm.user._id, vm.user);
-            if(result === true) {
-                vm.success = "User successfully updated";
-            } else {
-                vm.error = "User not found";
-            }
+            UserService
+                .updateUser(vm.user._id, vm.user)
+                .then(
+                function(response) {
+                    vm.success = "User successfully updated";
+                    
+                },
+                function(error) {
+                    vm.error = "User not found";
+                }
+                )
         }
     }
 })();

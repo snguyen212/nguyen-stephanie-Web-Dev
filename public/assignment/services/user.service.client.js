@@ -20,28 +20,26 @@
         //     {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
         //     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
         // ];
-        
+
         //server asks for requests and client sends response
         //if you don't ask for a specific user, we will assume u want all
-        app.get("/allusers", function(request, response){
+        app.get("/allusers", function (request, response) {
             request.send(users)
         });
 
         //if you ask for JUST alice in URL, server will come back with
         //just alice
         //example:     local:3000/allusers/bob
-        app.get("/allusers/:username", function(request, response){
+        app.get("/allusers/:username", function (request, response) {
             var username = request.params['username'];
-            for(var i in users){
-                if(users[i].username === username) {
+            for (var i in users) {
+                if (users[i].username === username) {
                     reseponse.send(users[i]);
                 }
             }
-       //     request.send(users)
+            //     request.send(users)
         });
-            
-            
-            
+
 
         var api = {
             createUser: createUser,
@@ -54,43 +52,59 @@
         return api;
 
         function updateUser(id, newUser) {
-            for(var i in users) {
-                if(users[i]._id === id) {
-                    users[i].firstName = newUser.firstName;
-                    users[i].lastName = newUser.lastName;
-                    return true;
-                }
+            // /api/user/:userId is the URL we want from the assignment
+            var url = "/api/user/" + id;
+            //generate PUT
+            //newUser contains info (name, user, pw) of new user
+            $http.put(url, newUser);
+
+            //move all this logic to SERVER side
+            /*
+             for(var i in users) {
+             if(users[i]._id === id) {
+             users[i].firstName = newUser.firstName;
+             users[i].lastName = newUser.lastName;
+             return true;
+             }
+             }
+             return false;
+             }
+             */
+
+            //IMPLEMENT CREATE USEr ----------------------- !!!!!!!!!!!!!!!!!!
+
+            function createUser(user) {
             }
-            return false;
-        }
 
-        //IMPLEMENT CREATE USEr ----------------------- !!!!!!!!!!!!!!!!!!
-
-        function createUser(user) {}
-
-        // IMPLEMENT DELETE USERR -------------------!!!!!!!!!!!!!!!!!!
+            //  -----------DELETE USER -------------DELETE USER -----------
+            
 //         //will iterate over the id,find the id and delete it
-        function deleteUser(id) {}
+            function deleteUser(id) {
+                var url = "/api/user" + id;
+                return $http.delete(url);
+            }
 
 
-        //find user by username and password function -------------------------
-        function findUserByUsernameAndPassword(username, password) {
-            var url = "/api/user?username=" + username & "password=" + password;
-            return $http.get(url);
+            //find user by username and password function -------------------------
+            function findUserByUsernameAndPassword(username, password) {
+                var url = "/api/user?username=" + username & "password=" + password;
+                return $http.get(url);
+            }
+
+            function findUserById(id) {
+                var url = "api/user/" + id;
+                $http.get(url);
+
+            }
+
+            //     for(var i in users) {
+            //         if(users[i]._id === id) {
+            //             return users[i];
+            //         }
+            //     }
+            //     return null;
+            // }
+
         }
-
-        function findUserById(id) {
-            var url = "api/user/" + id;
-            $http.get(url);
-
-        }
-        //     for(var i in users) {
-        //         if(users[i]._id === id) {
-        //             return users[i];
-        //         }
-        //     }
-        //     return null;
-        // }
-
     }
 })();

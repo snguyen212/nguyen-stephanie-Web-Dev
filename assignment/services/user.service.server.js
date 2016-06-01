@@ -1,3 +1,5 @@
+//UPDATED before class
+
 module.exports = function(app) {
 
     var users = [
@@ -7,62 +9,105 @@ module.exports = function(app) {
         {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
     ];
 
-
-    //if you see a user, respond with users
     app.get("/api/user", getUsers);
     app.get("/api/user/:userId", findUserById);
+    app.put("/api/user/:userId", updateUser);
+    app.delete("/api/user/:userId", deleteUser);
+
+    //extract ID from URL and look for the user in array. and take it out
+    function deleteUser(req, res) {
+        var id = req.params.userId;  //userId is from the params in the put URL
+        for(var i in users) {
+            if(users[i]._id === id) {
+                users.splice(i, 1);   //splice means to delete
+                res.send(200);   //200 means it was a success
+                return;
+            }
+        }
+        //if something went wrong, status is 400 error and send an error message
+        res.status(404).send("Unable to delete user with ID:" + id);
+
+
+
+    }
+
+    //this code was taken from user.service.client
+    //look at ID given to you from URL
+
+    function updateUser(req, res) {
+        var id = req.params.userId;  //userId is from the params in the put URL
+        var newUser = req.body;  //parse the newUser from body of this func
+        
+        for(var i in users) {
+            if(users[i]._id === id) {
+                users[i].firstName = newUser.firstName;
+                users[i].lastName = newUser.lastName;
+                res.send(200);   //200 means it's ok
+                return;
+            }
+        }
+        //if something went wrong, status is 400 error and send an error message
+        res.status(400).send("Unable to update");
+
+    }
+
+
+    function findUserById(req, res) {
+        var userId = req.params.userId;
+        for(var i in users) {
+            if(userId === users[i]._id) {
+                res.send(users[i]);
+                return;
+            }
+        }
+        //if you don't find a user, send back empty json object
+        res.send({});
+    }
 
     //respond with all users
-    function getUsers(request, response) {
-        var username = request.query["username"];
-        var password = request.query["password"];
+    function getUsers(req, res) {
+        var username = req.query["username"];
+        var password = req.query["password"];
+
         //if you have BOTH username and pw
         if (username && password) {
-            findUserByCredentials(username, password, response);
+            findUserByCredentials(username, password, res);
         }
-        if (username) {
+        else if(username) {
             findUserByUsername(username, res);
-        } else {
-            response.send(users);
-
+        }
+        else {
+            res.send(users);
         }
     }
-    
+
+
+
     // if you are given BOTH username AND pw ----------------------------
     function findUserByCredentials(username, password, res) {
         for(var u in users) {
             if(users[u].username === username && users[u].password === password) {
-                
                 res.send(users[u]);
             }
-            }
         }
-    
+        res.send(403); //if you DON"T find credentials, send error to Login.Controller
+    }
+
+
+
     //if you are given ONLY username --------------------------------------
-    function findUserByUsername(username , res) {
+    function findUserByUsername(username, res) {
         for(var u in users) {
             if(users[u].username === username) {
+
+                //if you ask for alice in URL, server will print her username and pw in console
+                console.log(username);
+                console.log(password);
                 res.send(users[u]);
+                response.send(users);   //this sends ALLLLL users
+                return;
             }
         }
-
-
-        //if you ask for alice in URL, server will print her username and pw in console
-        console.log(username);
-        console.log(password);
-        response.send(users);   //this sends ALLLLL users
+        res.send({});
     }
-
-    function findUserById(request, response) {
-        var userId = request.params.userId;
-        for(var i in users) {
-            if(userId === users[i]._id) {
-                response.send(users[i]);
-            }
-
-        }
-        //if you don't find a user, send back empty json object
-        response.send({});
-    }
-
 };

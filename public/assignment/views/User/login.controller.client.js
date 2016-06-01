@@ -23,14 +23,19 @@
                     if (user) {
                         var id = user._id;
                         $location.url("/profile/" + id);
-                    } else {
-                        vm.error = "User not found";
+                       
                     }
-                })
+                }, 
+                    //if login error
+                    function (error) {
+                        vm.error = "User not found";
+                    })
+        
+            
         }
                     
                 
           //  var user = UserService.findUserByUsernameAndPassword(username, password);
            
-    }
+    };
 })();
