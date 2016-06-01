@@ -10,9 +10,29 @@ module.exports = function(app) {
     ];
 
     app.get("/api/user", getUsers);
+    app.post("/api/user", createUser);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
+    
+    function createUser(req, res) {
+        var newUser = req.body;      //get user from body of HTTP request
+        
+        for(var i in users) {
+            if(users[i].username === newUser.username) { //username already exists so ERROR
+                res.status(400).send("Username" + newUser.username + "already exists");
+                return;
+            }
+            
+        }
+        
+        newUser._id = (new Date()).getTime() + "";  //the empty string converts time to string
+        users.push(newUser);
+        res.json(newUser);  //send newUser to CLIENT
+    }
+    
+    
+    
 
     //extract ID from URL and look for the user in array. and take it out
     function deleteUser(req, res) {

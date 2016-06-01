@@ -13,18 +13,19 @@
 
 
     <h2>Register</h2>
-    <input class = "form-control"
+    <input ng-model = "form-control"
            placeholder = "username"
            type="text"/>
-    <input class = "form-control"
+    <input ng-model  = "form-control"
            placeholder="password"
            type="password"/>
-    <input class = "form-control"
+    <input ng-model  = "form-control"
            placeholder = "verify password"
            type="password"/>
 
-    <a class = "btn btn-primary btn-block"
-       href = "#/profile"> Register </a>  <!--btnblock takes up whole screen -->
+    <a ng-click = "model.register(username, password, password2)"
+       class ="btn btn-primary btn-block"> Register </a>
+        <!--btnblock takes up whole screen -->
 
     <a class = "btn btn-danger btn-block"
        href = "#/login"> Cancel </a>

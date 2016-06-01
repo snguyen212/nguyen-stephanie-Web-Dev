@@ -13,32 +13,29 @@ module.exports = function(app) {
 
     //server asks for requests and client sends response
     //if you don't ask for a specific user, we will assume u want all
-    app.get("/allusers", function(request, response){
+    app.get("/allusers", function(req, res){
         request.send(users)
     });
 
     //if you ask for JUST alice in URL, server will come back with
     //just alice
     //example:     local:3000/allusers/bob
-    app.get("/allusers/:username", function(request, response){
-        var username = request.params['username'];
-        for(var i in users){
+    app.get("/allusers/:username", function(req, res){
+        var username = req.params['username'];
+        for(var i in users) {
             if(users[i].username === username) {
-                reseponse.send(users[i]);
+                res.send(users[i]);
             }
         }
-        //     request.send(users)
+//        res.send(users);
     });
     
     //when URL matches, node.js will parse request
     //it will see the path of say/message
-    app.get("/say/:message", function(request, response) {
-        var msg = request.params["message"];
-       
+    app.get("/say/:message", function(req, res) {
+        var msg = req.params["message"];
+
         //send back response
-        response.send({message: msg});
-        
+        res.send({message: msg});
     });
-
-
 };

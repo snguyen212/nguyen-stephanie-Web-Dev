@@ -26,8 +26,11 @@
 
 
             .when("/register", {
-                templateUrl: "views/User/register.view.client.html"
+                templateUrl: "views/User/register.view.client.html",
+                controller: "RegisterController",
+                controllerAs: "model"
             })
+
             
             
             //Website Routes -----------
@@ -62,6 +65,12 @@
             .when("/User/:uid/website/:wid/page/:pid/widget/new", {
                 templateUrl: "views/Widget/widget-chooser.view.client.html"
                 
+            })
+
+            .when("/flickr", {
+                templateUrl: "views/Widget/widget-flickr-search.view.client.html",
+                controller: "FlickrImageSearchController",
+                controllerAs: "model"
             })
 
             //if NONE of the routes above, go to login page

@@ -18,8 +18,9 @@
         function init() {
           UserService
               .findUserById(id)
-              .then(function(response) {
-                  vm.user=response.data   //the user will popular
+              .then(
+                  function(response) {
+                  vm.user=response.data;  //the user will popular
               })
         }
         init();
@@ -52,8 +53,7 @@
                 },
                 function(error) {
                     vm.error = "User not found";
-                }
-                )
+                })
         }
     }
 })();
