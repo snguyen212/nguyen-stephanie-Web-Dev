@@ -12,14 +12,18 @@
         var id = $routeParams["id"];
         var index = -1;
         function init() {
-            vm.user = UserService.findUserById(id);
+          UserService
+              .findUserById(id)
+              .then(function(response) {
+                  vm.user=response.data   //the user will popular
+              })
         }
         init();
 
 
         //function for updating User Profile page
         function updateUser() {
-            var result = UserService.updateUser(vm.user._id, vm.user);
+            UserService.updateUser(vm.user._id, vm.user);
             if(result === true) {
                 vm.success = "User successfully updated";
             } else {

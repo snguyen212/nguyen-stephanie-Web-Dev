@@ -22,7 +22,8 @@
 
         var api = {
             findWidgetsByPageId: findWidgetsByPageId,
-            findWidgetById: findWidgetById
+            findWidgetById: findWidgetById,
+            createWidget: createWidget
         };
         return api;
 
@@ -48,6 +49,18 @@
             return result;
         }
 
+        function createWidget(widgetType) {
+            var newWidget = {
+                _id: (new Date()).getTime(),
+                widgetType: widgetType
+            };
+
+            widgets.push(newWidget);
+        }
+
+
     }
+
+
 })();
 
