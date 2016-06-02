@@ -70,6 +70,7 @@
                 return $http.delete(url);
             }
 
+        
 
             //find user by username and password function -------------------------
             function findUserByUsernameAndPassword(username, password) {

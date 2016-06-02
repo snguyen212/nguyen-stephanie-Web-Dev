@@ -67,6 +67,15 @@
                 
             })
 
+            //widget-edit controller can get :widgetId because of the var... = $routeParams...
+            .when("/User/:uid/website/:wid/page/:pid/widget/:widgetId", {
+                templateUrl: "views/Widget/widget-edit.view.client.html",
+                controller: "WidgetEditController",
+                controllerAs: "model"
+
+            })
+            
+
             .when("/flickr", {
                 templateUrl: "views/Widget/widget-flickr-search.view.client.html",
                 controller: "FlickrImageSearchController",

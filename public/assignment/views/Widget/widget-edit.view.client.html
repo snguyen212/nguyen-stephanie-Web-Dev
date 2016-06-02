@@ -1,0 +1,66 @@
+
+<!--need controller for this -->
+<!-- QUICK code, not right
+<a href ="" ng-click = "model.createWidget( 'HEADING ' )"> Heading widget</a>
+<a href ="" ng-click = "model.createWidget( 'YouTube ' )"> YouTube widget</a>
+--->git
+<!-- controller will create NEW instant of widget.
+set TYPE of widget and push into array of widgets that i have
+and then navigate to edit page with the widget id i just created
+
+when i click on url, needs to call event handdler
+
+--->
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="../Website/website-list.view.client.html" class="navbar-link">
+                      <span class="glyphicon glyphicon-chevron-left">
+                      </span>
+                </a>
+            </p>
+            <a class="navbar-brand" href="widget-chooser.view.client.html">
+                Widget Edit
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+
+
+<!-- URL field that should get populated once you upload a file
+server gets the data to put it in this field-->
+
+<input ng-model = "model.widget.url"
+       class ="form-control"/>
+
+<!-- UPLOAD FILE -->
+
+<form action="/api/upload" method="post" enctype="multipart/form-data">
+    <input  name="myFile"   type="file" class="form-control"/>
+    <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
+    <input  name="widgetId" value="{{model.widget._id}}"     style="display: none"/>
+    <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
+</form>
+
+<!-------------- FOOTER ----------------------------->
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <p class="navbar-text pull-right">
+                    <a href="../Views/Users/profile.html" class="navbar-link">
+                        <span class="glyphicon glyphicon-user" ></span>
+                    </a>
+            </a>
+        </div>
+    </div>
+</nav>
+

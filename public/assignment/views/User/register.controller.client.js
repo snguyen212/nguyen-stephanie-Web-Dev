@@ -12,7 +12,9 @@
         //ptr to instance of current object i'm in
         var vm = this;
 
-        vm.login = login;
+        vm.register = register;
+
+
 
         function register(username, password, password2) {
             UserService
@@ -20,7 +22,6 @@
                 .then(
                     function (response) {
                         var user = response.data;
-
                         $location.url("/profile/" + user._id);
 
 

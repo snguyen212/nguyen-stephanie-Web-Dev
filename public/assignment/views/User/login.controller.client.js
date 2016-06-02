@@ -15,10 +15,11 @@
 
         vm.login = login;
 
-        function login (username, password) {
+        function login(username, password) {
             UserService
                 .findUserByUsernameAndPassword(username, password)
-                .then(function(response) {
+                .then(
+                    function(response) {
                     var user = response.data;
                     if(user) {
                         var id = user._id;
@@ -36,5 +37,6 @@
                 
           //  var user = UserService.findUserByUsernameAndPassword(username, password);
            
-    };
+    }
+
 })();

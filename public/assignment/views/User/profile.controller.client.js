@@ -12,21 +12,23 @@
         vm.updateUser = updateUser;
         vm.unregister = unregister;
 
-        // --
+        
         var id = $routeParams["id"];
         var index = -1;
+        
+        
         function init() {
-          UserService
+            UserService
               .findUserById(id)
               .then(
                   function(response) {
-                  vm.user=response.data;  //the user will popular
+                  vm.user = response.data;  //the user will populate profile here
               })
         }
         init();
 
         //use UserService to delete user ------------------
-        function unregister() {
+        function unregister(id) {
             UserService
                 .deleteUser(id)  //id is in $routeParams
                 .then(
@@ -38,9 +40,10 @@
                     //user not found to even delete
                     function(error) {
                         vm.error = error.data;
-                    }
-                )
+                    })
         }
+        
+        
 
         //function for updating User Profile page
         function updateUser() {

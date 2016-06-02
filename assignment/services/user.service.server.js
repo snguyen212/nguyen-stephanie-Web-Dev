@@ -9,8 +9,12 @@ module.exports = function(app) {
         {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
     ];
 
+
+
     app.get("/api/user", getUsers);
     app.post("/api/user", createUser);
+    app.get("api/user?username=username&password=password", findUserByCredentials);
+    app.get("api/user?username=username", findUserByUsername);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
@@ -84,7 +88,7 @@ module.exports = function(app) {
         res.send({});
     }
 
-    //respond with all users
+    //respond with all users ---------------------------------
     function getUsers(req, res) {
         var username = req.query["username"];
         var password = req.query["password"];
@@ -122,7 +126,6 @@ module.exports = function(app) {
 
                 //if you ask for alice in URL, server will print her username and pw in console
                 console.log(username);
-                console.log(password);
                 res.send(users[u]);
                 response.send(users);   //this sends ALLLLL users
                 return;
