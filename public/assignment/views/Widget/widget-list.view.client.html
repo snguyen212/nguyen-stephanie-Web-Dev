@@ -32,80 +32,84 @@
 
 
 {{model.widget}}
-<!--- this here helps REPEAT widgets -->
-<div ng-repeat="widget in model.widgets"
-     ng-switch="widget.widgetType">
-    <div class="jga-widget-tool">
-        <a href="widget-heading.html">
-            <span class="glyphicon glyphicon-cog"></span>
-        </a>
-        <span class="glyphicon glyphicon-align-justify"></span>
-    </div>
+<!--- this here helps REPEAT widgets
+the repeat copy and pastes it over and over again-->
 
-
-   <!-- if widget is HEADING ---------------------------------------->
-
-    <div ng-switch-when="HEADER" class ="jga widget">
+<div class="widget-container">
+    <div ng-repeat="widget in model.widgets"
+         ng-switch="widget.widgetType">
         <div class="jga-widget-tool">
-
-    </div>
-
-        <!-- if SIZE is.....-->
-        <div ng-switch="widget.size">
-            <h1 ng-switch-when= "1"> {{widget.text}}</h1>
-            <h2 ng-switch-when= "2"> {{widget.text}}</h2>
-            <h3 ng-switch-when= "3"> {{widget.text}}</h3>
-            <h4 ng-switch-when= "4"> {{widget.text}}</h4>
-            <h5 ng-switch-when= "5"> {{widget.text}}</h5>
-            <h6 ng-switch-when= "6"> {{widget.text}}</h6>
+            <a href="widget-heading.html">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+            <span class="glyphicon glyphicon-align-justify"></span>
         </div>
 
-    </div>
 
-    <!-- if widget is IMAGE --------------------------------------->
+       <!-- if widget is HEADING ---------------------------------------->
 
-    <div ng-switch-when = "IMAGE" class= "jga-widget">
+        <div ng-switch-when="HEADER" class ="jga widget">
+            <div class="jga-widget-tool">
 
-        <!--when browser gets to this image tag, it WON'T download the image url.
-        Angular will look at the url source and then trigger downloading of image -->
-
-        <img ng-src = "{{widget.url}}" width = "{{widget.width}}"/>
         </div>
 
-    <!-- if widget is HTML
-         if html, just want to show the text ----------------------------------->
-    <div ng-switch-when = "HTML" class= "jga-widget" ng-bind-html="model.userHtml">
-        {{model.getTrustedHTML(widget)}        <!-- pass widget to controller to see if they trust it -->
+            <!-- if SIZE is.....-->
+            <div ng-switch="widget.size">
+                <h1 ng-switch-when= "1"> {{widget.text}}</h1>
+                <h2 ng-switch-when= "2"> {{widget.text}}</h2>
+                <h3 ng-switch-when= "3"> {{widget.text}}</h3>
+                <h4 ng-switch-when= "4"> {{widget.text}}</h4>
+                <h5 ng-switch-when= "5"> {{widget.text}}</h5>
+                <h6 ng-switch-when= "6"> {{widget.text}}</h6>
+            </div>
+
+        </div>
+
+        <!-- if widget is IMAGE --------------------------------------->
+
+        <div ng-switch-when = "IMAGE" class= "jga-widget">
+
+            <!--when browser gets to this image tag, it WON'T download the image url.
+            Angular will look at the url source and then trigger downloading of image -->
+
+            <img ng-src = "{{widget.url}}" width = "{{widget.width}}"/>
+            </div>
+
+        <!-- if widget is HTML
+             if html, just want to show the text ----------------------------------->
+        <div ng-switch-when = "HTML" class= "jga-widget" ng-bind-html="model.userHtml">
+            {{model.getTrustedHTML(widget)}        <!-- pass widget to controller to see if they trust it -->
+        </div>
+
+
+            <!-- if widget is YOUTUBE --------------------------------->
+        <div ng-switch-when = "YOUTUBE"
+             class= "jga-widget">
+
+            <iframe ng-width= {{widget.width}}
+                    height="5"
+                    ng-src= {{model.getTurstedURL(widget)}
+                    frameborder ="0" allowfullscreen>
+            </iframe>
+
+        </div>
+
+
+       <!-- right now we have no template for image or youtube, etc
+       So by DEFAULT, just render whatever the object is ----------------------->
+
+        <div ng-switch-default>
+            {{widget}}
+        </div>
     </div>
 
 
-        <!-- if widget is YOUTUBE --------------------------------->
-    <div ng-switch-when = "YOUTUBE"
-         class= "jga-widget">
+    <a href="widget-heading.html">
+        <span class="glyphicon glyphicon-cog"></span>
+        <span class="glyphicon glyphicon-align-justify"></span>
+    </a>
 
-        <iframe ng-width= {{widget.width}}
-                height="5"
-                ng-src= {{model.getTurstedURL(widget)}
-                frameborder ="0" allowfullscreen>
-        </iframe>
-
-    </div>
-
-
-   <!-- right now we have no template for image or youtube, etc
-   So by DEFAULT, just render whatever the object is ----------------------->
-
-    <div ng-switch-default>
-        {{widget}}
-    </div>
 </div>
-
-
-<a href="widget-heading.html">
-    <span class="glyphicon glyphicon-cog"></span>
-    <span class="glyphicon glyphicon-align-justify"></span>
-</a>
-
 <!-- HARD CODED widgets from PAST assignment
 
 

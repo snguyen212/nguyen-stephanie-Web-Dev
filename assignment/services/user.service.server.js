@@ -13,30 +13,30 @@ module.exports = function(app) {
 
     app.get("/api/user", getUsers);
     app.post("/api/user", createUser);
-    app.get("api/user?username=username&password=password", findUserByCredentials);
-    app.get("api/user?username=username", findUserByUsername);
+    app.get("/api/user?username=username&password=password", findUserByCredentials);
+    app.get("/api/user?username=username", findUserByUsername);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
-    
+
     function createUser(req, res) {
         var newUser = req.body;      //get user from body of HTTP request
-        
+
         for(var i in users) {
             if(users[i].username === newUser.username) { //username already exists so ERROR
                 res.status(400).send("Username" + newUser.username + "already exists");
                 return;
             }
-            
+
         }
-        
+
         newUser._id = (new Date()).getTime() + "";  //the empty string converts time to string
         users.push(newUser);
         res.json(newUser);  //send newUser to CLIENT
     }
-    
-    
-    
+
+
+
 
     //extract ID from URL and look for the user in array. and take it out
     function deleteUser(req, res) {
@@ -61,7 +61,7 @@ module.exports = function(app) {
     function updateUser(req, res) {
         var id = req.params.userId;  //userId is from the params in the put URL
         var newUser = req.body;  //parse the newUser from body of this func
-        
+
         for(var i in users) {
             if(users[i]._id === id) {
                 users[i].firstName = newUser.firstName;
@@ -101,6 +101,7 @@ module.exports = function(app) {
             findUserByUsername(username, res);
         }
         else {
+            //this is where it usually checks if you're an admin so that u can view all users
             res.send(users);
         }
     }
@@ -112,6 +113,7 @@ module.exports = function(app) {
         for(var u in users) {
             if(users[u].username === username && users[u].password === password) {
                 res.send(users[u]);
+                return;
             }
         }
         res.send(403); //if you DON"T find credentials, send error to Login.Controller

@@ -5,9 +5,9 @@
 
 //this is taken from the assignment
 module.exports = function (app, model) {
-    var multer = require('multer');
-    var upload = multer({ dest: __dirname+'/../../public/uploads' });
-
+    var multer = require('multer'); // npm install multer --save
+    var upload = multer({ dest:__dirname +'/../../public/uploads' });
+    
     widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
     { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},

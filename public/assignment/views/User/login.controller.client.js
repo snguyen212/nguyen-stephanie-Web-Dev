@@ -20,8 +20,10 @@
                 .findUserByUsernameAndPassword(username, password)
                 .then(
                     function(response) {
-                    var user = response.data;
-                    if(user) {
+                        console.log(response);
+                        var user = response.data;
+
+                        if(user) {
                         var id = user._id;
                         $location.url("/profile/" + id);
                     }

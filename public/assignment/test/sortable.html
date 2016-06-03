@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <!-- load jquery once you download it -->
+    <link href="../assignment/css/jquery-ui.css" rel="stylesheet">
+    <script src="../assignment/js/jquery.js"></script>
+    <script src="../assignment/js/jquery-ui.js"></script>
+
+
+    <!-- JQuery below is the SAME as doing this
+    <style>
+        ul {
+            background-color: green;
+        }
+    </style>
+
+    -->
+
+</head>
+<body>
+
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+    </ul>
+
+
+    <script>
+
+        //this allows you to refer to things in the Dom
+        jQuery("ul")
+                .sortable({axis:'y'});  //this allows you to reorder items ONLY up and down (on the Y axis)
+
+    </script>
+
+</body>
+</html>

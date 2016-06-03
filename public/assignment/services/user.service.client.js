@@ -30,7 +30,7 @@
             var url = "/api/user/" + id;
             //generate PUT
             //newUser contains info (name, user, pw) of new user
-            $http.put(url, newUser);
+            return $http.put(url, newUser);
         }
 
 
@@ -74,13 +74,13 @@
 
             //find user by username and password function -------------------------
             function findUserByUsernameAndPassword(username, password) {
-                var url = "/api/user?username=" + username & "password=" + password;
+                var url = "/api/user?username=" + username + "&password=" + password;
                 return $http.get(url);
             }
 
             function findUserById(id) {
-                var url = "api/user/" + id;
-                $http.get(url);
+                var url = "/api/user/" + id;
+                return $http.get(url);
 
             }
 
