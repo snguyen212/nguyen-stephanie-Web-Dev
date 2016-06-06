@@ -60,6 +60,19 @@
                 controller: "PageListController",
                 controllerAs: "model"
             })
+
+            .when("/User/:userId/website/:websiteId/page/new", {
+                templateUrl: "views/Pages/page-new.view.client.html",
+                controller: "NewPageController",
+                controllerAs: "model"
+            })
+            
+            .when("/User/:userId/website/:websiteId/page/:pageId", {
+                templateUrl: "views/Pages/page-edit.view.client.html",
+                controller: "EditPageController",
+                controllerAs: "model"
+            })
+                
         
         
             //Widget Routes -------
