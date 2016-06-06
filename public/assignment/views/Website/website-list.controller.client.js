@@ -19,17 +19,5 @@
         }
         init();
 
-        function deleteWebsite(websiteId) {
-            WebsiteService
-                .deleteWebsite(websiteId)  //id is in $routeParams
-                .then(
-                    function(response) {
-                        $location.url("/User/{{website.developerId}}/website");
-                    },
-
-                    function(error) {
-                        vm.error = error.data;
-                    });
-        }
     }
 })();

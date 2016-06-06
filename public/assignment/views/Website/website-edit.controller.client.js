@@ -1,23 +1,52 @@
-
-(function(){
+(function () {
     angular
         .module("WebAppMaker")
         .controller("EditWebsiteController", EditWebsiteController);
 
-    //fetch userid and website id with routeParams
-    //use website service to fetch website id
-    function EditWebsiteController($routeParams, WebsiteService) {
+    function EditWebsiteController($location, $routeParams, WebsiteService) {
         var vm = this;
-
-        //you can see userId in Config file (right inside the urls
+        vm.deleteWebsite = deleteWebsite;
+        vm.updateWebsite = updateWebsite;
         vm.userId = $routeParams.userId;
         vm.websiteId = $routeParams.websiteId;
+     
 
-        //function is defined in website service
         function init() {
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
+            WebsiteService
+                .findWebsiteById(vm.websiteId)
+                .then(
+                    function (response) {
+                    vm.website = response.data;
+                });
         }
         init();
 
+        function updateWebsite(website) {
+            WebsiteService
+                .updateWebsite(vm.websiteId, website)
+                .then(
+                    function(response) {
+                        $location.url("/user/" + vm.userId + "/website");
+                    },
+                    function(error) {
+                        vm.error = "Error updating website";
+                    }
+                );
+        }
+        
+        function deleteWebsite(websiteId) {
+            WebsiteService
+                .deleteWebsite(websiteId)
+                .then(
+                    function(response) {
+                        $location.url("/user/" + vm.userId + "/website");
+                    },
+                    function(error) {
+                        vm.error = "Error deleting website";
+                    }
+                );
+        }
+
+       
     }
 })();

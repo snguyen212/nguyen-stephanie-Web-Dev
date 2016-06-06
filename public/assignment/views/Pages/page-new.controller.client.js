@@ -20,7 +20,7 @@
                 .then(
                     function (response) {
                         var newPage = response.data;
-                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                        $location.url("/User/" + vm.userId + "/website/" + vm.websiteId + "/page");
 
                     },
 

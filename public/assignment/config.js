@@ -54,14 +54,14 @@
             })
                 
         
-            // PAGE Routes -------
+            // PAGE Routes -------------------------------------------
             .when("/User/:userId/website/:websiteId/page", {
                 templateUrl: "views/Pages/page-list.view.client.html",
                 controller: "PageListController",
                 controllerAs: "model"
             })
 
-            .when("/User/:userId/website/:websiteId/page/new", {
+            .when("/user/:userId/website/:websiteId/page/new", {
                 templateUrl: "views/Pages/page-new.view.client.html",
                 controller: "NewPageController",
                 controllerAs: "model"
@@ -75,7 +75,7 @@
                 
         
         
-            //Widget Routes -------
+            //Widget Routes ------------------------------------------
             .when("/User/:uid/website/:wid/page/:pid/widget", {
                 templateUrl: "views/Widget/widget-list.view.client.html",
                 controller: "WidgetListController",

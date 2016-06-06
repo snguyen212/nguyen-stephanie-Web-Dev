@@ -16,7 +16,7 @@
         };
         return api;
         
-        function createPage(websiteId, pageId) {
+        function createPage(websiteId, page) {
             var newPage = {
                 name: page.name,
                 title: page.title,
@@ -39,7 +39,7 @@
         }
 
         function updatePage(pageId, page) {
-            var url = "/api/page/"+pageId;
+            var url = "/api/page/" + pageId;
             return $http.put(url, page);
 
         }
