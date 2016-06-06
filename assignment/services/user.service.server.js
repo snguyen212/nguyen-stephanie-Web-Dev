@@ -19,6 +19,31 @@ module.exports = function(app) {
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
 
+
+
+    //GET USERS---------------------------------GET USERS -----------------
+    function getUsers(req, res) {
+        var username = req.query["username"];
+        var password = req.query["password"];
+
+        //if you have BOTH username and pw
+        if (username && password) {
+            findUserByCredentials(username, password, res);
+        }
+        else if(username) {
+            findUserByUsername(username, res);
+        }
+        else {
+            //this is where it usually checks if you're an admin so that u can view all users
+            res.send(users);
+        }
+    }
+
+
+
+
+    //CREATE USERS---------------------------------CREATE USERS -----------------
+
     function createUser(req, res) {
         var newUser = req.body;      //get user from body of HTTP request
 
@@ -38,23 +63,55 @@ module.exports = function(app) {
 
 
 
-    //extract ID from URL and look for the user in array. and take it out
-    function deleteUser(req, res) {
-        var id = req.params.userId;  //userId is from the params in the put URL
-        for(var i in users) {
-            if(users[i]._id === id) {
-                users.splice(i, 1);   //splice means to delete
-                res.send(200);   //200 means it was a success
+    //FIND BY CREDENTIALS -----------------------------FIND BY CREDENTIALS-------
+    // if you are given BOTH username AND pw
+
+    function findUserByCredentials(username, password, res) {
+        for(var u in users) {
+            if(users[u].username === username && users[u].password === password) {
+                res.send(users[u]);
                 return;
             }
         }
-        //if something went wrong, status is 400 error and send an error message
-        res.status(404).send("Unable to delete user with ID:" + id);
-
-
-
+        res.send(403); //if you DON"T find credentials, send error to Login.Controller
     }
 
+
+
+    //FIND BY USERNAME -----------------------------FIND BY USERNAME-------
+
+    //if you are given ONLY username
+    function findUserByUsername(username, res) {
+        for(var u in users) {
+            if(users[u].username === username) {
+
+                //if you ask for alice in URL, server will print her username and pw in console
+                console.log(username);
+                res.send(users[u]);
+                response.send(users);   //this sends ALLLLL users
+                return;
+            }
+        }
+        res.send({});
+    }
+
+
+    //FIND BY ID -----------------------------FIND BY ID----------------------
+
+    function findUserById(req, res) {
+        var userId = req.params.userId;
+        for(var i in users) {
+            if(userId === users[i]._id) {
+                res.send(users[i]);
+                return;
+            }
+        }
+        //if you don't find a user, send back empty json object
+        res.send({});
+    }
+
+
+    //UPDATE USER ----------------------------- UPDATE USER ------------
     //this code was taken from user.service.client
     //look at ID given to you from URL
 
@@ -76,63 +133,26 @@ module.exports = function(app) {
     }
 
 
-    function findUserById(req, res) {
-        var userId = req.params.userId;
+    //DELETE USER ----------------------------- DELETE USER -------
+
+
+    //extract ID from URL and look for the user in array. and take it out
+    function deleteUser(req, res) {
+        var id = req.params.userId;  //userId is from the params in the put URL
         for(var i in users) {
-            if(userId === users[i]._id) {
-                res.send(users[i]);
+            if(users[i]._id === id) {
+                users.splice(i, 1);   //splice means to delete
+                res.send(200);   //200 means it was a success
                 return;
             }
         }
-        //if you don't find a user, send back empty json object
-        res.send({});
-    }
+        //can't find user to delete
+        res.status(404).send("Unable to delete user with ID:" + id);
 
-    //respond with all users ---------------------------------
-    function getUsers(req, res) {
-        var username = req.query["username"];
-        var password = req.query["password"];
 
-        //if you have BOTH username and pw
-        if (username && password) {
-            findUserByCredentials(username, password, res);
-        }
-        else if(username) {
-            findUserByUsername(username, res);
-        }
-        else {
-            //this is where it usually checks if you're an admin so that u can view all users
-            res.send(users);
-        }
+
     }
 
 
 
-    // if you are given BOTH username AND pw ----------------------------
-    function findUserByCredentials(username, password, res) {
-        for(var u in users) {
-            if(users[u].username === username && users[u].password === password) {
-                res.send(users[u]);
-                return;
-            }
-        }
-        res.send(403); //if you DON"T find credentials, send error to Login.Controller
-    }
-
-
-
-    //if you are given ONLY username --------------------------------------
-    function findUserByUsername(username, res) {
-        for(var u in users) {
-            if(users[u].username === username) {
-
-                //if you ask for alice in URL, server will print her username and pw in console
-                console.log(username);
-                res.send(users[u]);
-                response.send(users);   //this sends ALLLLL users
-                return;
-            }
-        }
-        res.send({});
-    }
 };

@@ -4,7 +4,13 @@ module.exports = function(app) {
 
     var userService = require("./services/user.service.server.js")(app);
     var widgetService = require("./services/widget.service.server.js")(app);
-    
+
+  /* TODO: implement these
+    var websiteService = require("services/website.service.server.js")(app);
+    var pageService = require("services/page.service.server.js")(app);
+
+    */
+
 
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
@@ -31,7 +37,7 @@ module.exports = function(app) {
         }
 //        res.send(users);
     });
-    
+
     //when URL matches, node.js will parse request
     //it will see the path of say/message
     app.get("/say/:message", function(req, res) {

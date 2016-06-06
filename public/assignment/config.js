@@ -41,10 +41,17 @@
                 controllerAs: "model"
 
             })
-            
+
             .when("/User/:userId/website/:websiteId", {
                 templateUrl: "views/Website/website-edit.view.client.html"
             })
+
+            .when("/User/:uid/website/new", {
+                templateURL: "views/Website/website-new.view.client.html",
+                controller: "NewWebsiteController",
+                controllerAs: "model"
+            })
+                
         
             // PAGE Routes -------
             .when("/User/:userId/website/:websiteId/page", {
@@ -63,7 +70,9 @@
             
                 
             .when("/User/:uid/website/:wid/page/:pid/widget/new", {
-                templateUrl: "views/Widget/widget-chooser.view.client.html"
+                templateUrl: "views/Widget/widget-chooser.view.client.html",
+                controller: "NewWidgetController",
+                controllerAs: "model"
                 
             })
 

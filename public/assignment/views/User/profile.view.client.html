@@ -18,13 +18,7 @@
 
 <div class="container">
 
-    <div ng-show="model.success" class="alert alert-success">
-        {{model.success}}
-    </div>
 
-    <div ng-show="model.error" class="alert alert-danger">
-        {{model.error}}
-    </div>
 
     <form>
         <div class="form-group">
@@ -63,11 +57,14 @@
 
     <!-- UPDATE WEBSITE LINK --------------------------------->
     <a class="btn btn-primary btn-block"
-       href="#/User/{{model.user._id}}/website">Websites</a>  <!-- when you click to view website, we need to view the USER's website-->
+       href="#/User/{{model.user._id}}/website"> Websites </a>
+    <!-- when you click to view website, we need to view the USER's website-->
 
     <a class="btn btn-danger btn-block"
        href="#/login">Logout</a>
 
+    <a ng-click="model.unregister(234)"
+       class="btn btn-danger btn-block"> Unregister </a>
 
 </div>
 

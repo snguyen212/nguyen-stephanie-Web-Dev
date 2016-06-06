@@ -2,11 +2,13 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="website-new.html">
+            <a class="navbar-brand" href="website-new.view.client.html">
                 Websites
             </a>
             <p class="navbar-text pull-right">
-                <a href="website-new.html" class="navbar-link"> <!--FIX THIS LINNK -->
+
+                <a href="#/User/{{model.userId}}/website/new"
+                   class="navbar-link">
                       <span class="glyphicon glyphicon-plus">
                       </span>
                 </a>
@@ -14,6 +16,8 @@
         </div>
     </div>
 </nav>
+
+{{model.websites.developerId}}
 
 
     <div class="container">
@@ -25,7 +29,8 @@
                 <a href="#/User/{{website.developerId}}/website/{{website._id}}/page">{{website.name}}</a>
 
                 <!--looks at user's id and goes to THEIR websites only -->
-                <a href="#/User/{{model.website.developerId}}/Website/{{model.website._id}}" class="pull-right">
+                <a href="#/User/{{model.website.developerId}}/Website/{{model.website._id}}"
+                   class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
                     <span class="glyphicon glyphicon-play"></span>
                 </a>
@@ -79,7 +84,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
                 <p class="navbar-text pull-right">
-                    <a href="#/profile/model.user._id" class="navbar-link">
+                    <a href="#/profile/{{model.userId}}" class="navbar-link">
                         <span class="glyphicon glyphicon-user" ></span>
                     </a>
             </a>

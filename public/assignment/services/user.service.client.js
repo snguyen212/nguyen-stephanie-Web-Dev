@@ -50,15 +50,15 @@
              */
 
 
-            //IMPLEMENT CREATE USEr ----------------------- !!!!!!!!!!!!!!!!!!
 
-        function createUser(username, password) {
+
+        function createUser(user) {
             var url = "/api/user";
-            var user = {
-                username: username,
-                password: password
+            var newUser = {
+                username: user.username,
+                password: user.password
             };
-            return $http.post(url, user);
+            return $http.post("/api/User", newUser);
 
         }
 
@@ -84,12 +84,6 @@
 
             }
 
-            //     for(var i in users) {
-            //         if(users[i]._id === id) {
-            //             return users[i];
-            //         }
-            //     }
-            //     return null;
-            // }
+            
         }
 })();

@@ -3,23 +3,28 @@
 
 <div class ="container">  <!--adds white space on each side of the page(responsive) -->
 
-    <div class = "alert alert-success"> <!-- hard coded right now-->
-        Successfully updated profile
+
+
+    <div ng-show="model.success" class="alert alert-success">
+        {{model.success}}
     </div>
 
-    <div class = "alert alert-danger">
-        Unable to update your profile
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
     </div>
 
 
     <h2>Register</h2>
-    <input ng-model = "form-control"
+    <input ng-model = "username"
+           class ="form-control"
            placeholder = "username"
            type="text"/>
-    <input ng-model  = "form-control"
+    <input ng-model  = "password"
+           class = "form-control"
            placeholder="password"
            type="password"/>
-    <input ng-model  = "form-control"
+    <input ng-model  = "password2"
+           class = "form-control"
            placeholder = "verify password"
            type="password"/>
 

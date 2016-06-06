@@ -50,6 +50,7 @@
                 .updateUser(vm.user._id, vm.user)
                 .then(
                 function(response) {
+
                     vm.success = "User successfully updated";
                     
                 },

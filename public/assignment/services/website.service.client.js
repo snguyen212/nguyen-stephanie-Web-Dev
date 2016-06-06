@@ -19,31 +19,55 @@
     function WebsiteService() {
 
         var api = {
+
             findWebsitesForUser: findWebsitesForUser,
-            findWebsiteById: findWebsiteById
+            findWebsiteById: findWebsiteById,
+            createWebsite: createWebsite,
+            updateWebsite: updateWebsite,
+            deleteWebsite: deleteWebsite
+
         };
         return api;
 
-        function findWebsiteById(websiteId) {
-            for(var i in websites) {
-                if(websites[i]._id === websiteId) {
-                    return websites[i];
-                }
-            }
-            return null;
-        }
-
+        
         // FIND WEBSITE FOR USER ----------------------
         // iterate over array above and fine the user's websites
 
         function findWebsitesForUser(userId) {
-            var result = [];
-            for(var i in websites) {
-                if(websites[i].developerId === userId) {
-                    result.push(websites[i]);
-                }
-            }
-            return result;
+            var url = "/api/user/" + userId + "/website";
+            return $http.get(url);
+            
+        }
+        
+        function findWebsiteById(websiteId) {
+            var url = "/api/website/" + websiteId;
+            return $http.get.(url);
+        }
+        
+
+        //CREATE WEBSITE ----------------------------
+        function createWebsite(userId, website){
+            var newWebsite = {
+                name: website.name,
+                description: website.description,
+                developerId : userId
+            };
+            
+            return $http.post("/api/User/" + userId + "/website", newWebsite);
+        }
+        
+        
+        //UPDATE WEBSITE ----------------------------
+        function updateWebsite(websiteId, website){
+            var url = "/api/website/" + websiteId;
+            return $http.put(url);
+        }
+
+
+        //DELETE WEBSITE ----------------------------
+        function deleteWebsite(websiteId){
+            var url = "/api/website/" + websiteId;
+            return $http.delete(url);
         }
 
     }
