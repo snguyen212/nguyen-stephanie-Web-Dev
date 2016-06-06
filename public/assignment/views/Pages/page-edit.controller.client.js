@@ -27,10 +27,10 @@
             PageService
                 .updatePage(vm.pageId, page)
                 .then(
-                    function (response) {
-                        $location.url("/user/" + vm.userId + "/website" + vm.websiteId + "/page");
+                    function(response) {
+                        $location.url("/User/" + vm.userId + "/website/" + vm.websiteId + "/page");
                     },
-                    function (error) {
+                    function(error) {
                         vm.error = "Error updating page";
                     }
                 );
@@ -40,10 +40,10 @@
             PageService
                 .deletePage(pageId)
                 .then(
-                    function (response) {
-                        $location.url("/user/"+ vm.userId + "/website/" + vm.websiteId + "/page");
+                    function(response) {
+                        $location.url("/User/"+ vm.userId + "/website/" + vm.websiteId + "/page");
                     },
-                    function (error) {
+                    function(error) {
                         vm.error = error.data;
                     }
                 );

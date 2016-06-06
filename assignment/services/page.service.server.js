@@ -84,8 +84,8 @@ module.exports = function(app) {
 
     //DELETE PAGE ------------------------------
     function deletePage(req, res) {
-        var websiteId = req.params.websiteId;
-        for (var i in pages) {
+        var pageId = req.params.pageId;
+        for(var i in pages) {
             if (pages[i]._id === pageId) {
                 pages.splice(i, 1);
                 res.send(200);

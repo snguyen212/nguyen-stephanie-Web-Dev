@@ -47,6 +47,10 @@
             widgets.push(newWidget);
         }
 
+        function updateWidget() {}
+        function deleteWidget() {}
+
+
 
     }
 
