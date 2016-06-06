@@ -31,7 +31,7 @@
                         $location.url("/user/" + vm.userId + "/website" + vm.websiteId + "/page");
                     },
                     function (error) {
-                        vm.error = error.data;
+                        vm.error = "Error updating page";
                     }
                 );
         }

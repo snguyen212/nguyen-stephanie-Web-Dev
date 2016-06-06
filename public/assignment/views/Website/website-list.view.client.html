@@ -24,12 +24,12 @@
         <ul class="list-group">
             <li ng-repeat="website in model.websites" class="list-group-item">
 
-                <a href="#/User/{{website.developerId}}/Website/{{website._id}}/page">
+                <a href="#/User/{{website.developerId}}/website/{{website._id}}/page">
                     {{website.name}}
                 </a>
 
                 <!--looks at user's id and goes to THEIR websites only -->
-                <a href="#/User/{{website.developerId}}/Website/{{model.website._id}}"
+                <a href="#/User/{{website.developerId}}/website/{{model.website._id}}"
                    class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
                     <span class="glyphicon glyphicon-play"></span>

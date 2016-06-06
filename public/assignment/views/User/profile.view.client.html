@@ -3,11 +3,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="#/profile/{{model.user._id}}">
                 Profile
             </a>
             <p class="navbar-text pull-right">
-                <a ng-click="model.updateUser()" class="navbar-link">
+                <a ng-click="model.updateUser(model.user)"
+                   class="navbar-link">
                   <span class="glyphicon glyphicon-ok">
                   </span>
                 </a>
@@ -17,7 +18,13 @@
 </nav>
 
 <div class="container">
+    <div ng-show="model.success" class="alert alert-success">
+        {{model.success}}
+    </div>
 
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
 
 
     <form>
@@ -75,7 +82,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
                 <p class="navbar-text pull-right">
-                <a href="profile.view.client.html" class="navbar-link">
+                <a href="#/profile/{{model.user._id}}" class="navbar-link">
                     <span class="glyphicon glyphicon-user" ></span>
                 </a>
             </a>
