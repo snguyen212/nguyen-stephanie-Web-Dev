@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="../Website/website-list.view.client.html" class="navbar-link">
+                <a href="#/User/{{model.userId}}/website" class="navbar-link">
                       <span class="glyphicon glyphicon-chevron-left">
                       </span>
                 </a>
@@ -12,7 +12,8 @@
                 Pages
             </a>
             <p class="navbar-text pull-right">
-                <a href="page-new.html" class="navbar-link">   <!--FIX THIS LINK -->
+                <a href= "#/user/{{model.userId}}/website/{{model.websiteId}}/page/new"
+                class="navbar-link">
                       <span class="glyphicon glyphicon-plus">
                       </span>
                 </a>
@@ -32,8 +33,9 @@
                 {{page.name}}
             </a>
 
-            <!--looks at user's id and goes to THEIR websites only -->
-            <a href="#/User/{{websi.developerId}}/Website/{{website._id}}" class="pull-right">
+            <!--looks at user's id and goes to THEIR pages only -->
+            <a href="#/User/{{model.userId}}/website/{{page.websiteId}}/page/{{page._id}}"
+               class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
                 <span class="glyphicon glyphicon-play"></span>
             </a>
@@ -88,7 +90,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
                 <p class="navbar-text pull-right">
-                    <a href="../User/profile.view.client.html" class="navbar-link">
+                    <a href="#/profile/{{model.userId}}" class="navbar-link">
                         <span class="glyphicon glyphicon-user" ></span>
                     </a>
             </a>

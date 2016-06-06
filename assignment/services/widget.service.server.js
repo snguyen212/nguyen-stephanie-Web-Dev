@@ -95,8 +95,16 @@ module.exports = function (app, model) {
                 widgets[i].name = newWidget.name;
                 widgets[i].text = newWidget.text;
 
-                //update url and width if image or youtube
-                if(widgets[i].widgetType === 'IMAGE' || widgets[i].widgetType === 'YOUTUBE') {
+                //update url and width if image
+                if(widgets[i].widgetType === 'IMAGE') {
+                    widgets[i].url = newWidget.url;
+                    widgets[i].width = newWidget.width;
+                    res.send(200);
+                    return;
+                }
+
+                //if youtube
+                if(widgets[i].widgetType === 'YOUTUBE') {
                     widgets[i].url = newWidget.url;
                     widgets[i].width = newWidget.width;
                     res.send(200);
@@ -104,7 +112,7 @@ module.exports = function (app, model) {
                 }
 
                 //edit size of header if header
-                if(widgets[i].widgetType === 'HEADER') {
+                else if(widgets[i].widgetType === 'HEADER') {
                     widgets[i].size = newWidget.size;
                     res.send(200);
                     return;

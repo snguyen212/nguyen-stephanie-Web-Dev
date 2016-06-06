@@ -42,7 +42,7 @@
         //$ is the same as jQuery
         // widget-container is the class in widget-list
         //telling jquery you want to manipulate elements in the DOM
-        //TODO: download Jquery
+        
 
         $(".widget-container")
             .sortable({axis:'y'});
