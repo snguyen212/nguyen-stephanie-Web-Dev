@@ -17,7 +17,7 @@ module.exports = function(app) {
     app.post("/api/user/:userId/website", createWebsite);
     app.get("/api/user/:userId/website", findAllWebsitesForUser);
     app.get("/api/website/websiteId", findWebsiteById);
-    app.put("/api/website/websiteId", updateWebsite);
+    app.put("/api/website/:websiteId", updateWebsite);
     app.delete("/api/website/websiteId", deleteWebsite);
 
 
@@ -60,8 +60,8 @@ module.exports = function(app) {
         var websiteId = req.params.websiteId;
         for(var i in websites) {
             if(websites[i]._id === websiteId) {
-                res.send(websites[i])
-                return ;
+                res.send(websites[i]);
+                return;
             }
         }
         res.send({});

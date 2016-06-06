@@ -26,7 +26,8 @@ module.exports = function (app, model) {
     app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
-    // TODO: still more functions MORE FROM THE ASSIGNMENT
+    app.delete("/api/widget/:widgetId", deleteWidget);
+
 
 
 
@@ -45,10 +46,9 @@ module.exports = function (app, model) {
         //redirect user back to Widget Edit Page after they upload a file
         res.redirect("/assignment/#/user/:uid/website/:wid/page/:pid/widget/:widgetId");  
     }
-    ///....
 
-    function createWidget(){}
-    function findAllWidgetsForPage(){}
+
+
     
     
     function findWidgetById(req, res){
@@ -62,7 +62,71 @@ module.exports = function (app, model) {
         }
         res.status(404).send("Widget not found");
     }
-    function updateWidget() {}
+
+
+    function createWidget(req, res) {
+        var newWidget = req.body;
+        newWidget._id = (new Date()).getTime()+"";
+        widgets.push(newWidget);
+        res.send(newWidget);
+    }
+
+
+    function findAllWidgetsForPage(req, res) {
+        var pageId = req.params.pageId;
+        var result = [];
+        for(var i in widgets) {
+            if(widgets[i].pageId === pageId) {
+                result.push(widgets[i]);
+            }
+        }
+        res.json(result);
+
+    }
+    
+    
+    
+    function updateWidget(req, res) {
+        var widgetId = req.params.widgetId;
+        var newWidget = req.body;
+
+        for(var i in widgets) {
+            if(widgets[i]._id === widgetId) {
+                widgets[i].name = newWidget.name;
+                widgets[i].text = newWidget.text;
+
+                //update url and width if image or youtube
+                if(widgets[i].widgetType === 'IMAGE' || widgets[i].widgetType === 'YOUTUBE') {
+                    widgets[i].url = newWidget.url;
+                    widgets[i].width = newWidget.width;
+                    res.send(200);
+                    return;
+                }
+
+                //edit size of header if header
+                if(widgets[i].widgetType === 'HEADER') {
+                    widgets[i].size = newWidget.size;
+                    res.send(200);
+                    return;
+                }
+            }
+        }
+        res.status(400).send("Unable to update widget");
+    }
+    
+    
+
+    function deleteWidget(req, res) {
+        var widgetId = req.params.widgetId;
+        for(var i in widgets) {
+            if(widgets[i]._id === widgetId) {
+                widgets.splice(i, 1);
+                res.send(200);
+                return;
+            }
+        }
+        res.send(400);
+    }
 
 
 

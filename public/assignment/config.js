@@ -8,7 +8,7 @@
     function Config($routeProvider) {   //helps to configure the routes
         $routeProvider
             
-            //user routs
+            //user routes
 
             .when("/login", {
                 templateUrl: "views/User/login.view.client.html",  //if you see #/login, go to here

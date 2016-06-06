@@ -5,25 +5,24 @@
 
 
 
-      
-
+    
     function WidgetService($http) {
 
 
         var api = {
             findWidgetsByPageId: findWidgetsByPageId,
             findWidgetById: findWidgetById,
-            createWidget: createWidget
+            createWidget: createWidget,
+            updateWidget: updateWidget,
+            deleteWidget: deleteWidget
         };
         return api;
 
+        
+        //FIND WIDGET BY ID -----------------------------
         function findWidgetById(widgetId) {
-            for(var i in widgets) {
-                if(widgets[i]._id === widgetId) {
-                    return widgets[i];
-                }
-            }
-            return null;
+            var url = "/api/widget" + widgetId;
+            return $http.get(url);
         }
 
         // FIND widget FOR page ----------------------

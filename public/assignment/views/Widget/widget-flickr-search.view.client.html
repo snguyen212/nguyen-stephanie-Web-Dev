@@ -3,7 +3,7 @@
 <!-- QUICK code, not right
 <a href ="" ng-click = "model.createWidget( 'HEADING ' )"> Heading widget</a>
 <a href ="" ng-click = "model.createWidget( 'YouTube ' )"> YouTube widget</a>
---->git
+--->
 <!-- controller will create NEW instant of widget.
 set TYPE of widget and push into array of widgets that i have
 and then navigate to edit page with the widget id i just created
@@ -20,7 +20,8 @@ when i click on url, needs to call event handdler
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="../Website/website-list.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}"
+                   class="navbar-link">
                       <span class="glyphicon glyphicon-chevron-left">
                       </span>
                 </a>
@@ -38,13 +39,24 @@ when i click on url, needs to call event handdler
 <div class="input-group">
     <input ng-model="searchText" type="text" class="form-control">
     <span class="input-group-btn">
-        <a ng-click="model.searchPhotos(searchText)" class="btn btn-default" type="button">
+        <a ng-click="model.searchPhotos(searchText)"
+           class="btn btn-default"
+           type="button">
             <span class="glyphicon glyphicon-search"></span>
         </a>
     </span>
 </div>
 
 {{model.photos}}
+
+<div class="row">
+    <div ng-repeat="photo in model.photos.photo" class="col-xs-4">
+        <img width="100%"
+             ng-click="model.selectPhoto(photo)"
+             ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"/>
+    </div>
+</div>
+
 
 <!-------------- FOOTER ----------------------------->
 
@@ -53,13 +65,10 @@ when i click on url, needs to call event handdler
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
                 <p class="navbar-text pull-right">
-                    <a href="../Views/Users/profile.html" class="navbar-link">
+                    <a href="#/profile/{{model.userId}}" class="navbar-link">
                         <span class="glyphicon glyphicon-user" ></span>
                     </a>
             </a>
         </div>
     </div>
 </nav>
-
-</body>
-</html>
