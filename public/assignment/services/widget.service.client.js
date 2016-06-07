@@ -47,9 +47,16 @@
             widgets.push(newWidget);
         }
 
-        function updateWidget() {}
-        function deleteWidget() {}
+        function updateWidget(widgetId, widget) {
+            var url = "/api/widget/" + widgetId;
+            return $http.put(url, widget);
+        }
 
+
+        function deleteWidget(widgetId) {
+            var url = "/api/widget/" + widgetId;
+            return $http.delete(url);
+        }
 
 
     }

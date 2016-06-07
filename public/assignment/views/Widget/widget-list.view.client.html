@@ -5,7 +5,8 @@
         <div class="navbar-header">
 
             <p class="navbar-text pull-left">
-                <a href="../Views/Pages/page-list.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page"
+                   class="navbar-link">
                       <span class="glyphicon glyphicon-chevron-left">
                       </span>
                 </a>
@@ -13,14 +14,14 @@
 
             <a class="navbar-brand"
                href="widget-list.view.client.html">
+
                 Widgets
             </a>
             <p class="navbar-text pull-right">
 
 
-                <!--- need to REPLACE uid and wid and pid -->
 
-                <a href="#/User/:uid/website/:wid/page/:pid/widget/new"
+                <a href="#/User/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new"
                    class="navbar-link">
                       <span class="glyphicon glyphicon-plus">
                       </span>
@@ -31,7 +32,7 @@
 </nav>
 
 
-{{model.widget}}
+{{widgets}}
 <!--- this here helps REPEAT widgets
 the repeat copy and pastes it over and over again-->
 

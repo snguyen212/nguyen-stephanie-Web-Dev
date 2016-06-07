@@ -1,6 +1,8 @@
 //UPDATED before class
 
-module.exports = function(app) {
+module.exports = function(app, models) {
+    
+   
 
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
@@ -45,20 +47,36 @@ module.exports = function(app) {
     //CREATE USERS---------------------------------CREATE USERS -----------------
 
     function createUser(req, res) {
-        var newUser = req.body;      //get user from body of HTTP request
+        // var newUser = req.body;      //get user from body of HTTP request
+        // userModel
+        //     .createUser(newUser)
+        //     .then(
+        //         function(user) {
+        //             res.json(user);
+        //
+        //         },
+        //         function(error) {
+        //             res.status(400).send("Username" + newUser.username + "is already in use");
+        //
+        //         }
+        //     )
 
-        for(var i in users) {
-            if(users[i].username === newUser.username) { //username already exists so ERROR
-                res.status(400).send("Username" + newUser.username + "already exists");
-                return;
-            }
 
-        }
-
-        newUser._id = (new Date()).getTime() + "";  //the empty string converts time to string
-        users.push(newUser);
-        res.json(newUser);  //send newUser to CLIENT
     }
+
+    //
+    //     for(var i in users) {
+    //         if(users[i].username === newUser.username) { //username already exists so ERROR
+    //             res.status(400).send("Username" + newUser.username + "already exists");
+    //             return;
+    //         }
+    //
+    //     }
+    //
+    //     newUser._id = (new Date()).getTime() + "";  //the empty string converts time to string
+    //     users.push(newUser);
+    //     res.json(newUser);  //send newUser to CLIENT
+    // }
 
 
 
@@ -67,13 +85,24 @@ module.exports = function(app) {
     // if you are given BOTH username AND pw
 
     function findUserByCredentials(username, password, res) {
-        for(var u in users) {
-            if(users[u].username === username && users[u].password === password) {
-                res.send(users[u]);
-                return;
-            }
-        }
-        res.send(403); //if you DON"T find credentials, send error to Login.Controller
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function(user)
+                {
+                    res.json(user);
+                },  
+            function(error) {
+                res.status(403).send("Unable to Login");
+            });
+        
+        // for(var u in users) {
+        //     if(users[u].username === username && users[u].password === password) {
+        //         res.send(users[u]);
+        //         return;
+        //     }
+        // }
+        // res.send(403); //if you DON"T find credentials, send error to Login.Controller
     }
 
 
@@ -100,14 +129,25 @@ module.exports = function(app) {
 
     function findUserById(req, res) {
         var userId = req.params.userId;
-        for(var i in users) {
-            if(userId === users[i]._id) {
-                res.send(users[i]);
-                return;
-            }
-        }
-        //if you don't find a user, send back empty json object
-        res.send({});
+        userModel
+            .findUserById(userId)
+            .then(
+                function(user) {
+                   res.send(user); 
+                },
+                function(error){
+                    res.status(400).send(error);
+                }
+            );
+        
+        // for(var i in users) {
+        //     if(userId === users[i]._id) {
+        //         res.send(users[i]);
+        //         return;
+        //     }
+        // }
+        // //if you don't find a user, send back empty json object
+        // res.send({});
     }
 
 
@@ -119,16 +159,26 @@ module.exports = function(app) {
         var id = req.params.userId;  //userId is from the params in the put URL
         var newUser = req.body;  //parse the newUser from body of this func
 
-        for(var i in users) {
-            if(users[i]._id === id) {
-                users[i].firstName = newUser.firstName;
-                users[i].lastName = newUser.lastName;
-                res.send(200);   //200 means it's ok
-                return;
-            }
-        }
-        //if something went wrong, status is 400 error and send an error message
-        res.status(400).send("Unable to update");
+        userModel
+            .updateUser(id, newUser)
+            .then(
+                function(user) {
+                    res.send(200);
+                },
+                function(error){
+                   res.status(404).send("Unable to update user with ID: + id");
+                });
+
+        // for(var i in users) {
+        //     if(users[i]._id === id) {
+        //         users[i].firstName = newUser.firstName;
+        //         users[i].lastName = newUser.lastName;
+        //         res.send(200);   //200 means it's ok
+        //         return;
+        //     }
+        // }
+        // //if something went wrong, status is 400 error and send an error message
+        // res.status(400).send("Unable to update");
 
     }
 
@@ -139,16 +189,27 @@ module.exports = function(app) {
     //extract ID from URL and look for the user in array. and take it out
     function deleteUser(req, res) {
         var id = req.params.userId;  //userId is from the params in the put URL
-        for(var i in users) {
-            if(users[i]._id === id) {
-                users.splice(i, 1);   //splice means to delete
-                res.send(200);   //200 means it was a success
-                return;
-            }
-        }
-        //can't find user to delete
-        res.status(404).send("Unable to delete user with ID:" + id);
-
+        userModel
+            .deleteUser(id)
+            .then(
+                function(status) {
+                    res.send(200);  //successfully removed user
+                    
+                }, 
+                function(error) {
+                    res.status(404).send("Unable to remove user with ID: " + id);
+                
+            });
+        // for(var i in users) {
+        //     if(users[i]._id === id) {
+        //         users.splice(i, 1);   //splice means to delete
+        //         res.send(200);   //200 means it was a success
+        //         return;
+        //     }
+        // }
+        // //can't find user to delete
+        // res.status(404).send("Unable to delete user with ID:" + id);
+        //
 
 
     }
