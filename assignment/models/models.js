@@ -2,10 +2,12 @@ module.exports = function() {
    //each model will create an API that will allow us to interact with users
     // ex: find users, update, remove, etc.
     //allows you to store/retrieve from database
-    
-    
+
+    var mongoose = require('mongoose');
+    mongoose.connect('mongodb://localhost/cs4550summer1');
+
     var userModel = require("./user/user.model.server.js")();
-    var websiteModel;
+    var websiteModel = require("./website/website.model.server")();
     var pageModel;
     var widgetModel;
     

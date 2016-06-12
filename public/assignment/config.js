@@ -97,6 +97,13 @@
                 controllerAs: "model"
 
             })
+
+            .when("/User/:uid/website/:wid/page/:pid/widget/:widgetId/html", {
+                templateUrl: "views/Widget/widget-html-edit.view.client.html",
+                controller: "WidgetHtmlEditController",
+                controllerAs: "model"
+
+            })
             
 
             .when("/flickr", {

@@ -15,7 +15,12 @@
                 .then(
                     function(response) {
                     vm.websites = response.data;
-                });
+
+                },
+                    function(error) {
+                        vm.error = error.data;
+
+                    });
         }
         init();
 

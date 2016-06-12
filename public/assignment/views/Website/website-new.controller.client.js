@@ -12,6 +12,21 @@
         //you can see userId in Config file (right inside the urls
         vm.userId = $routeParams.userId;
         vm.websiteId = $routeParams.websiteId;
+        
+       vm.createWebsite = createWebsite;
+        
+        function createWebsite(website) {
+            WebsiteService
+                .createWebsite(vm.userId, website)
+                .then(
+                    function(response) {
+                        var newWebsite = response.data;
+                    },
+                    function(error) {
+                        vm.error = error;
+                    });
+                
+        }
 
         //function is defined in website service
         

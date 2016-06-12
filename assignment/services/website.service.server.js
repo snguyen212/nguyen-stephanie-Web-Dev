@@ -1,6 +1,9 @@
 //UPDATED before class
 
-module.exports = function(app) {
+module.exports = function(app, models) {
+
+    var websiteModel = models.websiteModel;
+
 
     var websites = [
         { "_id": "123", "name": "Facebook",    "developerId": "456" },
@@ -27,33 +30,60 @@ module.exports = function(app) {
 
     function createWebsite(req, res) {
         var newWebsite = req.body;      //get site from body of HTTP request
+        var userId = req.params.userId;
 
-        for(var i in websites) {
-            if(websites[i].name === newWebsite.name) { //username already exists so ERROR
-                res.status(400).send("Website" + newWebsite.name + "already exists");
-                return;
-            }
+        websiteModel
+            .createWebsite(userId, website)
+            .then(
+                function (website) {
+                    res.json(website);
+                },
+                function (error) {
+                    res.status(400).send(error);
+                }
+            )
+        //return $http.post("/api/user/" + userId + "/website", website)
+;
+        // for(var i in websites) {
+        //     if(websites[i].name === newWebsite.name) { //username already exists so ERROR
+        //         res.status(400).send("Website" + newWebsite.name + "already exists");
+        //         return;
+        //     }
 
         }
 
-        newWebsite._id = (new Date()).getTime() + "";  //the empty string converts time to string
-        websites.push(newWebsite);
-        res.json(newWebsite);  //send newUser to CLIENT
-    }
+        // newWebsite._id = (new Date()).getTime() + "";  //the empty string converts time to string
+        // websites.push(newWebsite);
+        // res.json(newWebsite);  //send newUser to CLIENT
+
     
     
     
     //FIND ALL WEBSITES FOR USER --------------------
     function findAllWebsitesForUser(req, res) {
-        var result = [];
+        //var result = [];
         var userId = req.params.userId;
-        for(var i in websites) {
-            if(websites[i].developerId === userId) {
-                result.push(websites[i]);
-            }
-        }
-        res.json(result);
+
+        websiteModel
+            .findAllWebsitesForUser(userId)
+            .then(
+                function(websites) {
+                    res.json(websites);
+                },
+                function(error) {
+                    res.status(404).send("error");
+                }
+            );
+        // for(var i in websites) {
+        //     if(websites[i].developerId === userId) {
+        //         result.push(websites[i]);
+        //     }
+        // }
+        // res.json(result);
     }
+
+
+    //TODO: ALL THIS SHIT ----------------------------------
 
     //FIND WEBSITE BY ID --------------------------
     function findWebsiteById(req, res) {
@@ -102,6 +132,8 @@ module.exports = function(app) {
 
 
     }
+
+
 
 
 };

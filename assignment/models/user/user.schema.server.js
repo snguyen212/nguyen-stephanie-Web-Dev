@@ -6,7 +6,7 @@ module.exports = function() {
     
     //load mongoose
     var mongoose = require("mongoose");
-    mongoose.connect('mongodb://localhost/cs4550summer1');
+    mongoose.createConnection('mongodb://localhost/cs4550summer1');
     
     
     //give example object of what a user is

@@ -14,6 +14,6 @@
 //have to make our top level module depend on the other module
 
 (function(){
-    angular.module("WebAppMaker", ["ngRoute"]);
+    angular.module("WebAppMaker", ["ngRoute", "textAngular"]);
 })();
 

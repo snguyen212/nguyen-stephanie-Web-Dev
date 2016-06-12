@@ -1,0 +1,72 @@
+
+<!--need controller for this -->
+<!-- QUICK code, not right
+<a href ="" ng-click = "model.createWidget( 'HEADING ' )"> Heading widget</a>
+<a href ="" ng-click = "model.createWidget( 'YouTube ' )"> YouTube widget</a>
+--->
+<!-- controller will create NEW instant of widget.
+set TYPE of widget and push into array of widgets that i have
+and then navigate to edit page with the widget id i just created
+
+when i click on url, needs to call event handdler
+
+--->
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="../Website/website-list.view.client.html" class="navbar-link">
+                      <span class="glyphicon glyphicon-chevron-left">
+                      </span>
+                </a>
+            </p>
+            <a class="navbar-brand" href="widget-chooser.view.client.html">
+                HTML Widget
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+<!--bootstrap button--->
+
+<div class="input-group">
+      <span class="input-group-addon">
+        <input type="checkbox" aria-label="...">
+      </span>
+    <input type="text" class="form-control" aria-label="...">
+</div>
+
+
+
+
+<div text-angular ng-model="model.html"
+     ta-toolbar="[['h1', 'h2', 'h3,],
+              ['bold', italics', 'underline', strikeThrough'],
+              ['ol', 'ul'],
+              ['justifyLeft', 'justifyCenter', 'justifyRight']
+              ['redo', 'undo']]"> </div>
+
+{{model.html}}
+
+<div ng-bind-html="model.html"></div>
+
+<!-------------- FOOTER ----------------------------->
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <p class="navbar-text pull-right">
+                    <a href="#/profile/{{model.userId}}" class="navbar-link">
+                        <span class="glyphicon glyphicon-user" ></span>
+                    </a>
+            </a>
+        </div>
+    </div>
+</nav>
+
