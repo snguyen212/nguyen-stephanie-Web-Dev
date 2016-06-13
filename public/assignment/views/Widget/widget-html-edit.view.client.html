@@ -8,7 +8,7 @@
 set TYPE of widget and push into array of widgets that i have
 and then navigate to edit page with the widget id i just created
 
-when i click on url, needs to call event handdler
+when i click on url, needs to call event handler
 
 --->
 
@@ -19,7 +19,8 @@ when i click on url, needs to call event handdler
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="../Website/website-list.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+                   class="navbar-link">
                       <span class="glyphicon glyphicon-chevron-left">
                       </span>
                 </a>
@@ -65,6 +66,7 @@ when i click on url, needs to call event handdler
                     <a href="#/profile/{{model.userId}}" class="navbar-link">
                         <span class="glyphicon glyphicon-user" ></span>
                     </a>
+                </p>
             </a>
         </div>
     </div>

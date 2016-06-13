@@ -32,22 +32,45 @@ when i click on url, needs to call event handdler
     </div>
 </nav>
 
+<div ng-show="model.success" class="alert alert-success">
+    {{model.success}}
+</div>
+<div ng-show="model.error" class="alert alert-danger">
+    {{model.error}}
+</div>
 
 
-<!-- URL field that should get populated once you upload a file
-server gets the data to put it in this field-->
+<div ng-switch="model.widget.type">
+    <div ng-switch-when="HEADER">
+        <div ng-include src="views/widget/widget-heading.view.client.html"></div>
+    </div>
 
-<input ng-model = "model.widget.url"
-       class ="form-control"/>
+    <div ng-switch-when="IMAGE">
+        <div ng-include src="views/widget/widget-image.view.client.html"></div>
+    </div>
 
-<!-- UPLOAD FILE -->
+    <div ng-switch-when="YOUTUBE">
+        <div ng-include src="views/widget/widget-youtube.view.client.html"></div>
+    </div>
 
-<form action="/api/upload" method="post" enctype="multipart/form-data">
-    <input  name="myFile"   type="file" class="form-control"/>
-    <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
-    <input  name="widgetId" value="{{model.widget._id}}"     style="display: none"/>
-    <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
-</form>
+    <div ng-switch-when="HTML">
+        <div ng-include src="views/widget/widget-html.view.client.html"></div>
+
+
+    <div ng-switch-when="TEXT">
+            Text
+            <input ng-model="model.widget.text" class="form-control"/>
+            Rows
+            <input ng-model="model.widget.rows" class="form-control" type="number"/>
+            Placeholder
+            <input ng-model="model.widget.placeholder" class="form-control"/>
+            Formatted
+            <input ng-model="model.widget.formatted" type="checkbox"/>
+        </div>
+        <div ng-include src="views/widget/widget-text.view.client.html"></div>
+    </div>
+</div>
+
 
 <!-------------- FOOTER ----------------------------->
 

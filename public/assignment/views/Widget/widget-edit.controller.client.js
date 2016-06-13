@@ -5,7 +5,7 @@
         .controller("WidgetEditController", WidgetEditController);
 
 
-    function WidgetEditController($routeParams, WidgetEditController) {
+    function WidgetEditController($routeParams, WidgetService) {
         var vm = this;
         
         //extract widgetId from URL
@@ -13,7 +13,6 @@
         
         function init() {
             console.log(widgetId);
-
 
             WidgetService
                 .findWidgetById(widgetId)
@@ -30,10 +29,36 @@
 
         init();
 
-
+        function updateWidget(widget) {
+            if (widget.name) {
+                WidgetService
+                    .updateWidget(vm.widgetId, widget)
+                    .then(
+                        function (response) {
+                            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                        },
+                        function (response) {
+                            vm.error = "Unable to update Widget";
+                        });
+            } else {
+                vm.error("Please enter a widget name")
+            }
+        }
+        
     }
 
+    function deleteWidget(){
+        WidgetService
+            .deleteWidget(vm.widgetId)
+            .then(
+                function(response) {
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                },
+                function(response){
+                    vm.error = err.data;
+                });
+    }
 
-
+    
 })();
 

@@ -49,7 +49,7 @@ the repeat copy and pastes it over and over again-->
     <div ng-repeat="widget in model.widgets"
          ng-switch="widget.widgetType">
         <div class="jga-widget-tool">
-            <a href="widget-heading.html">
+            <a href="widget-heading.view.client.html">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
             <span class="glyphicon glyphicon-align-justify"></span>
@@ -76,18 +76,20 @@ the repeat copy and pastes it over and over again-->
         </div>
 
         <!-- if widget is IMAGE --------------------------------------->
+        <!--when browser gets to this image tag, it WON'T download the image url.
+           Angular will look at the url source and then trigger downloading of image -->
 
-        <div ng-switch-when = "IMAGE" class= "jga-widget">
+       <div ng-switch-when = "IMAGE" class= "jga-widget">
+           <img ng-src = "{{widget.url}}"
+                width = "{{widget.width}}"/>
+       </div>
 
-            <!--when browser gets to this image tag, it WON'T download the image url.
-            Angular will look at the url source and then trigger downloading of image -->
 
-            <img ng-src = "{{widget.url}}" width = "{{widget.width}}"/>
-            </div>
-
-        <!-- if widget is HTML
-             if html, just want to show the text ----------------------------------->
-        <div ng-switch-when = "HTML" class= "jga-widget" ng-bind-html="model.userHtml">
+       <!-- if widget is HTML
+            if html, just want to show the text ----------------------------------->
+        <div ng-switch-when = "HTML"
+             class= "jga-widget"
+             ng-bind-html="model.userHtml">
             {{model.getTrustedHTML(widget)}        <!-- pass widget to controller to see if they trust it -->
         </div>
 
@@ -104,6 +106,20 @@ the repeat copy and pastes it over and over again-->
 
         </div>
 
+        <div ng-switch-when="TEXT">
+            <div ng-if="widget.formatted"
+                 text-angular
+                 ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+                                    ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull],
+                                    ['indent','outdent'],['html']]"></div>
+            <input ng-if="!widget.formatted && (!widget.rows || widget.rows===1)"
+                   placeholder="{{widget.textInput.placeholder}}" class="form-control"/>
+                    <textarea ng-if="!widget.formatted && (widget.rows > 1)"
+                              rows="{{widget.rows}}"
+                              placeholder="{{widget.placeholder}}"
+                              class="form-control">{{widget.text}}</textarea>
+        </div>
+
 
        <!-- right now we have no template for image or youtube, etc
        So by DEFAULT, just render whatever the object is ----------------------->
@@ -114,122 +130,12 @@ the repeat copy and pastes it over and over again-->
     </div>
 
 
-    <a href="widget-heading.html">
+    <a href="widget-heading.view.client.html">
         <span class="glyphicon glyphicon-cog"></span>
         <span class="glyphicon glyphicon-align-justify"></span>
     </a>
 
 </div>
-<!-- HARD CODED widgets from PAST assignment
-
-
-
-<!--<div class=jga-widget">-->
-    <!--<div class ="jga-widget-tool">-->
-        <!--<a href="widget-heading.html">-->
-            <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-        <!--</a>-->
-        <!--</div>-->
-
-
-    <!--<h1> GIZMODO </h1>-->
-
-
-<!--</div>-->
-
-
-
-<!--&lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; HEADER 2-&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-<!--<div class=jga-widget">-->
-    <!--<div class ="jga-widget-tool">-->
-        <!--<a href="#">-->
-            <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-        <!--</a>-->
-    <!--</div>-->
-
-        <!--<h4> Procrastinate with Cute Puppy Pictures! </h4>-->
-
-<!--</div>-->
-
-<!--&lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; PICTURE 3 -&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-
-<!--<div class=jga-widget">-->
-    <!--<div class ="jga-widget-tool">-->
-        <!--<a href="widget-image.html">-->
-            <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-        <!--</a>-->
-        <!--</div>-->
-
-
-    <!--<img width="100%"-->
-         <!--src="https://3milliondogs.com/blog-assets-two/2014/11/cute-corgi.jpg">-->
-
-<!--</div>-->
-
-<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; HEADING 4 -&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-
-<!--<div class=jga-widget">-->
-    <!--<div class ="jga-widget-tool">-->
-        <!--<a href="widget-heading.html">-->
-            <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-        <!--</a>-->
-
-        <!--</div>-->
-
-
-    <!--<p class="first-text">Tesla’s flagship Fremont factory is the only non-unionized American-owned assembly factory in the U.S., and the United Auto Workers want to change that. With Tesla <a href="http://jalopnik.com/tesla-is-now-gunning-to-produce-half-a-million-cars-ann-1774805496">considerably upping the manufacturing expectations</a> for its electric fleet, their motives just got stronger.<span class=" read-more-placeholder"></span><span class="readmore-core-decorated"></span></p>-->
-
-
-<!--</div>-->
-
-<!--&lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; HEADING 5 -&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-
-<!--<div class=jga-widget">-->
-    <!--<div class ="jga-widget-tool">-->
-        <!--<a href="widget-heading.html">-->
-            <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-        <!--</a>-->
-    <!--</div>-->
-
-        <!--<h4> Top 10 Cutest Kitties </h4>-->
-
-<!--</div>-->
-
-
-<!--&lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; YOUTUBE 6 &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-
-<!--<div class=jga-widget">-->
-    <!--<div class ="jga-widget-tool">-->
-        <!--<a href="widget-youtube.html">-->
-            <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-        <!--</a>-->
-    <!--</div>-->
-<!--<iframe width="100%"-->
-        <!--src="https://www.youtube.com/embed/cbP2N1BQdYc"-->
-        <!--frameborder="0"-->
-        <!--allowfullscreen></iframe>-->
-
-<!--</div>-->
-
-<!--&lt;!&ndash;-&#45;&#45;&#45;&#45; HEADING 7 -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-<!--<div class=jga-widget">-->
-    <!--<div class ="jga-widget-tool">-->
-        <!--<a href="widget-heading.html">-->
-            <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-        <!--</a>-->
-        <!--</div>-->
-
-        <!--<p class="first-text">We've scoured the internet and found the cutest and funniest cat videos of all time. Any we missed? Let us know! What should we count down next?</p>-->
-<!--</div>-->
-
-
 
 
 <!-------------- FOOTER ----------------------------->
@@ -249,10 +155,10 @@ the repeat copy and pastes it over and over again-->
 
 
                 <p class="navbar-text pull-right">
-                    <a href="../Views/Users/profile.html" class="navbar-link">
+                    <a href="#/profile/{{model.userId}}" class="navbar-link">
                         <span class="glyphicon glyphicon-user" ></span>
                     </a>
-            </a>
+                </p>
         </div>
     </div>
 </nav>

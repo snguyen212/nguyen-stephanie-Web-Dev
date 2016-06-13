@@ -10,14 +10,13 @@
         vm.createPage = createPage;
 
         function createPage(name, title) {
-            var page = {
-                name: name,
-                title: title
+            if(name) {
+                var page = {
+                    name: name,
+                    title: title
             };
-
-            PageService
-            if (name) {
-                createPage(vm.websiteId, page)
+                PageService
+                    .createPage(vm.websiteId, page)
                     .then(
                         function (response) {
                             var newPage = response.data;
@@ -30,8 +29,7 @@
 
                         });
 
-            }
-            else {
+            } else {
                 vm.error = "Please enter a name for your page";
 
             }

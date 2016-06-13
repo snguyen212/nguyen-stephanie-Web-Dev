@@ -16,6 +16,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
+
             <p class="navbar-text pull-left">
                 <a href="widget-list.view.client.html" class="navbar-link">
                       <span class="glyphicon glyphicon-chevron-left">
@@ -24,7 +25,7 @@
             </p>
 
 
-            <a class="navbar-brand" href="widget-youtube.html">
+            <a class="navbar-brand" href="widget-image.view.client.html">
                 Widget Edit
             </a>
 
@@ -50,7 +51,7 @@
             <input type="text"
                    class="form-control"
                    id="widgetname"
-                   placeholder="Widget Name"/>
+                   placeholder="Name"/>
         </div>
 
         <div class="form-group">
@@ -67,9 +68,9 @@
             <label for="widgeturl">  URL </label>
             <input type="text"
                    id="widgeturl"
+                   value="https://3milliondogs.com/blog-assets-two/2014/11/cute-corgi.jpg"
                    class="form-control"
-                   value="https://www.youtube.com/embed/cbP2N1BQdYc"
-                   placeholder="URL">
+                   placeholder="Text">
             </input>
 
         </div>
@@ -88,15 +89,33 @@
             </select>
         </div>
 
+        <!-- URL field that should get populated once you upload a file
+ server gets the data to put it in this field-->
 
+    <input ng-model = "model.widget.url"
+           class ="form-control"/>
 
+    <!-- UPLOAD FILE -->
+
+    <form action="/api/upload" method="post" enctype="multipart/form-data">
+        <input  name="myFile"   type="file" class="form-control"/>
+        <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
+        <input  name="widgetId" value="{{model.widget._id}}"     style="display: none"/>
+        <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
     </form>
 
 
 
-    <a class="btn btn-danger btn-block"
-       href="widget-list.view.client.html">Delete</a>
-</div>
+    <div class="custom-btn-group">
+        <a class="btn btn-primary btn-block"
+           href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/flickr">
+            Flickr Image Search
+        </a>
+
+        <a ng-click="model.deleteWidget()"
+           class="btn btn-danger btn-block">Delete</a>
+    </div>
+
 
 <!-------------- FOOTER ----------------------------->
 
@@ -105,7 +124,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
                 <p class="navbar-text pull-right">
-                    <a href="../Views/Users/profile.html" class="navbar-link">
+                    <a href="#/profile/{{model.userId}}" class="navbar-link">
                         <span class="glyphicon glyphicon-user" ></span>
                     </a>
             </a>
@@ -113,5 +132,3 @@
     </div>
 </nav>
 
-</body>
-</html>
