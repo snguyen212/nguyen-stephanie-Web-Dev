@@ -16,18 +16,25 @@
             };
 
             PageService
-                .createPage(vm.websiteId, page)
-                .then(
-                    function (response) {
-                        var newPage = response.data;
-                        $location.url("/User/" + vm.userId + "/website/" + vm.websiteId + "/page");
+            if (name) {
+                createPage(vm.websiteId, page)
+                    .then(
+                        function (response) {
+                            var newPage = response.data;
+                            $location.url("/User/" + vm.userId + "/website/" + vm.websiteId + "/page");
 
-                    },
+                        },
 
-                    function (error) {
-                        vm.error = error.data;
+                        function (error) {
+                            vm.error = error.data;
 
-                    });
+                        });
+
+            }
+            else {
+                vm.error = "Please enter a name for your page";
+
+            }
         }
     }
 

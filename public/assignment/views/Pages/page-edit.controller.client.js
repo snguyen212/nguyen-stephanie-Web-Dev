@@ -24,16 +24,21 @@
 
 
         function updatePage(page) {
-            PageService
-                .updatePage(vm.pageId, page)
-                .then(
-                    function(response) {
-                        $location.url("/User/" + vm.userId + "/website/" + vm.websiteId + "/page");
-                    },
-                    function(error) {
-                        vm.error = "Error updating page";
-                    }
-                );
+            if(page.name) {
+                PageService
+                    .updatePage(vm.pageId, page)
+                    .then(
+                        function (response) {
+                            $location.url("/User/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                        },
+                        function (error) {
+                            vm.error = "Error updating page";
+                        }
+                    );
+            }
+            else {
+                vm.error = "Please enter a page name";
+            }
         }
 
         function deletePage(pageId) {

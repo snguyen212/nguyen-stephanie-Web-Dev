@@ -16,16 +16,21 @@
        vm.createWebsite = createWebsite;
         
         function createWebsite(website) {
-            WebsiteService
-                .createWebsite(vm.userId, website)
-                .then(
-                    function(response) {
-                        var newWebsite = response.data;
-                    },
-                    function(error) {
-                        vm.error = error;
-                    });
-                
+            if (name) {
+                WebsiteService
+                    .createWebsite(vm.userId, website)
+                    .then(
+                        function(response) {
+                            var newWebsite = response.data;
+                        },
+                        function(error) {
+                            vm.error = error;
+                        });
+            } 
+            else {
+                vm.error = "Please enter a name for your website";
+
+            }
         }
 
         //function is defined in website service

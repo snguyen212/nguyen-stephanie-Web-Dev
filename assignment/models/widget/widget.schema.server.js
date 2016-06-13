@@ -15,7 +15,7 @@ module.exports = function() {
         order: Number,
         _page: {type:mongoose.Schema.ObjectId,ref:"Page"},
         widgetType: {type: String, enum: ['HEADING', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT']},
-        name: String,
+        name: {type: String, required: true},
         text: String,
         placeholder: String,
         description: String,

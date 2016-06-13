@@ -12,7 +12,7 @@ module.exports = function() {
     //give example object of what a user is
     //String = type of schema
     var UserSchema = mongoose.Schema({
-        username: String,
+        username: {type: String, required: true},
         password: String,
         firstName: String,
         lastName: String,

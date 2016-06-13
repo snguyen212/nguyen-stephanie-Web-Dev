@@ -24,6 +24,9 @@
 </nav>
 
 <div class="container">
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
 
     <label for="websiteName">Name</label>
     <input ng-model = "websiteName"

@@ -16,6 +16,8 @@
         vm.login = login;
 
         function login(username, password) {
+            if (username === undefined && password === undefined)
+                vm.error = "Please enter both username and password";
             UserService
                 .findUserByUsernameAndPassword(username, password)
                 .then(
