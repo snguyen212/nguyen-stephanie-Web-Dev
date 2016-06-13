@@ -17,7 +17,8 @@ module.exports = function() {
         firstName: String,
         lastName: String,
         email: String,
-        
+        phone: String,
+        websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Website'}],
         //if you don't provide a date, it'll put in current timestamp
         dateCreated: {type: Date, default: Date.now},
         

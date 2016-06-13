@@ -5,7 +5,7 @@
         .module("WebAppMaker")
         .controller("WebsiteListController", WebsiteListController);
 
-    function WebsiteListController($routeParams, WebsiteService) {
+    function WebsiteListController($location, $routeParams, WebsiteService) {
         var vm = this;
         vm.userId = $routeParams.userId;
 
@@ -24,5 +24,6 @@
         }
         init();
 
+        
     }
 })();
