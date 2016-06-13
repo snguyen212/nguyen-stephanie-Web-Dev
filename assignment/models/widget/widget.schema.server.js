@@ -12,7 +12,7 @@ module.exports = function() {
     };
 
     var WidgetSchema = mongoose.Schema({
-       // order: Number,
+        order: Number,
         _page: {type:mongoose.Schema.ObjectId,ref:"Page"},
         widgetType: {type: String, enum: ['HEADING', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT']},
         name: String,

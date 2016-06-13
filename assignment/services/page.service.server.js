@@ -23,44 +23,79 @@ module.exports = function(app) {
 
     function createPage(req, res) {
         var newPage = req.body;
+        
+        pageModel
+            .createPage(id, newPage)
+            .then(
+                function(newPage) {
+                    res.json(newPage);
+                },
+                function(error) {
+                    res.status(400).send("Unable to create page");
+                }
+            );
 
-        for(var i in pages) {
-            if(pages[i].name === newPage.name) {
-                res.status(400).send("Page" + newPage.name + "already exists");
-                return;
-            }
-
-        }
-
-        newPage._id = (new Date()).getTime() + "";
-        pages.push(newPage);
-        res.send(newPage);
+        // for(var i in pages) {
+        //     if(pages[i].name === newPage.name) {
+        //         res.status(400).send("Page" + newPage.name + "already exists");
+        //         return;
+        //     }
+        //
+        // }
+        //
+        // newPage._id = (new Date()).getTime() + "";
+        // pages.push(newPage);
+        // res.send(newPage);
     }
     
 
     //FIND ALL PAGES FOR WEBSITE --------------------
     function findAllPagesForWebsite(req, res) {
-        var result = [];
         var websiteId = req.params.websiteId;
-        for(var i in pages) {
-            if(pages[i].websiteId === websiteId) {
-                result.push(pages[i]);
-            }
-        }
-        res.json(result);
+        pageModel
+            .findAllPagesForWebsite(websiteId)
+            .then(
+                function(pages) {
+                    res.json(pages);
+                },
+                function(error){
+                    res.status(404).send("Error finding pages");
+                }
+            );
     }
+    //     var websiteId = req.params.websiteId;
+    //     for(var i in pages) {
+    //         if(pages[i].websiteId === websiteId) {
+    //             result.push(pages[i]);
+    //         }
+    //     }
+    //     res.json(result);
+    // }
 
     //FIND PAGES BY ID --------------------------
     function findPageById(req, res) {
         var pageId = req.params.pageId;
-        for(var i in pages) {
-            if(pages[i]._id === pageId) {
-                res.send(pages[i]);
-                return;
-            }
-        }
-        res.send({});
+
+        pageModel
+            .findPageById(pageId)
+            .then(
+                function(page){
+                    res.json(page);
+                },
+                function(error){
+                    res.status(404).send("Error finding page");
+                }
+            );
     }
+
+    //     for(var i in pages) {
+    //         if(pages[i]._id === pageId) {
+    //             res.send(pages[i]);
+    //             return;
+    //         }
+    //     }
+    //     res.send({});
+    // }
     
     
     
@@ -69,34 +104,57 @@ module.exports = function(app) {
         var pageId = req.params.pageId;
         var newPage = req.body;
 
-        for(var i in pages) {
-            if(pages[i]._id === pageId) {
-                pages[i].name = newPage.name;
-                pages[i].title = newPage.title;
-                res.send(200);   //200 means it's ok
-                return;
-            }
-        }
-        
-        res.status(400).send("Unable to update page");
+        pageModel
+            .updatePage(pageId, page)
+            .then(
+                function(page) {
+                    res.json(page);
+                },
+                function(error) {
+                    res.status(400).send("Unable to update page");
+                }
+            );
     }
+
+    //     for(var i in pages) {
+    //         if(pages[i]._id === pageId) {
+    //             pages[i].name = newPage.name;
+    //             pages[i].title = newPage.title;
+    //             res.send(200);   //200 means it's ok
+    //             return;
+    //         }
+    //     }
+    //
+    //     res.status(400).send("Unable to update page");
+    // }
 
 
     //DELETE PAGE ------------------------------
     function deletePage(req, res) {
         var pageId = req.params.pageId;
-        for(var i in pages) {
-            if (pages[i]._id === pageId) {
-                pages.splice(i, 1);
-                res.send(200);
-                return;
-            }
-        }
-
-        res.status(404).send("Unable to delete page with ID:" + id);
-
-
+        pageModel
+            .deletePage(pageId)
+            .then(
+                function(page) {
+                    res.json(200);
+                },
+                function(error){
+                    res.status(404).send("Unable to delete page with ID:" + id);
+                }
+            );
     }
+    //     for(var i in pages) {
+    //         if (pages[i]._id === pageId) {
+    //             pages.splice(i, 1);
+    //             res.send(200);
+    //             return;
+    //         }
+    //     }
+    //
+    //     res.status(404).send("Unable to delete page with ID:" + id);
+    //
+    //
+    // }
 
 
 };

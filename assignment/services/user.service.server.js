@@ -30,8 +30,8 @@ module.exports = function(app, models) {
         userModel
             .createUser(newUser)
             .then(
-                function(user) {
-                    res.json(user);
+                function(newUser) {
+                    res.json(newUser);
                 },
                 function(error) {
                     res.status(400).send("Username " + newUser.username + " is already in use");

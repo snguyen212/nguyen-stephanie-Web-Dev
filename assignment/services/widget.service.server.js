@@ -27,7 +27,7 @@ module.exports = function (app, model) {
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
-
+    app.put("/page/:pageId/widget", reorderWidget);
 
 
 
@@ -49,91 +49,173 @@ module.exports = function (app, model) {
 
 
 
-    
-    
-    function findWidgetById(req, res){
-        var widget = req.params.widgetId;   //this is the widgetId you get from the URL (from $params up top)
-       
-       //need to iterate thru array
-        for(var i in widgets) {
-            if(widgets[i]._id === widgetId) {
-                res.json(widgets[i]);       //change the URL so that it is accessible publically for browser
-            }
-        }
-        res.status(404).send("Widget not found");
-    }
-
-
+    //CREATE WIDGET -------------------------
     function createWidget(req, res) {
         var newWidget = req.body;
-        newWidget._id = (new Date()).getTime()+"";
-        widgets.push(newWidget);
-        res.send(newWidget);
+        var pageId = req.params.pageId;
+        widgetModel
+            .createWidget(pageId, newWidget)
+            .then(
+                function(newWidget) {
+                    res.send(newWidget);
+
+                },
+                function(error) {
+                    res.status(400).send("Unable to create widget");
+                }
+            )
+    }
+    //     newWidget._id = (new Date()).getTime()+"";
+    //     widgets.push(newWidget);
+    //     res.send(newWidget);
+    // }
+
+
+    // FIND WIDGET BY ID ------------------------
+    
+    function findWidgetById(req, res) {
+        var widgetId = req.params.widgetId;   //this is the widgetId you get from the URL (from $params up top)
+
+        widgetModel
+            .findWidgetById(widgetId)
+            .then(
+                function (widget) {
+                    res.json(widget);
+            },
+                function(error){
+                    res.status(404).send("Widget not found");
+            });
     }
 
+    //    //need to iterate thru array
+    //     for(var i in widgets) {
+    //         if(widgets[i]._id === widgetId) {
+    //             res.json(widgets[i]);       //change the URL so that it is accessible publically for browser
+    //         }
+    //     }
+    //     res.status(404).send("Widget not found");
+    // }
 
+
+
+
+    // FIND ALL WIDGETS FOR PAGE -------------------------
     function findAllWidgetsForPage(req, res) {
         var pageId = req.params.pageId;
-        var result = [];
-        for(var i in widgets) {
-            if(widgets[i].pageId === pageId) {
-                result.push(widgets[i]);
-            }
-        }
-        res.json(result);
+
+        widgetModel
+            .findAllWidgetsForPage(pageId)
+            .then(
+                function(widgets) {
+                    res.json(widgets);
+            },
+                function(error) {
+                    res.status(404).send("Unable to find widgets");
+            });
 
     }
+
+    //     var pageId = req.params.pageId;
+    //     var result = [];
+    //     for(var i in widgets) {
+    //         if(widgets[i].pageId === pageId) {
+    //             result.push(widgets[i]);
+    //         }
+    //     }
+    //     res.json(result);
+    //
+    // }
     
     
-    
+    // UPDATE WIDGET ----------------
     function updateWidget(req, res) {
         var widgetId = req.params.widgetId;
         var newWidget = req.body;
 
-        for(var i in widgets) {
-            if(widgets[i]._id === widgetId) {
-                widgets[i].name = newWidget.name;
-                widgets[i].text = newWidget.text;
+        widgetModel
+            .updateWidget(widgetId, newWidget)
+            .then(
+                function(newWidget) {
+                    res.send(newWidget);
+            },
+                function (err) {
+                    res.status(400).send("Unable to update widget");
+            });
 
-                //update url and width if image
-                if(widgets[i].widgetType === 'IMAGE') {
-                    widgets[i].url = newWidget.url;
-                    widgets[i].width = newWidget.width;
-                    res.send(200);
-                    return;
-                }
-
-                //if youtube
-                if(widgets[i].widgetType === 'YOUTUBE') {
-                    widgets[i].url = newWidget.url;
-                    widgets[i].width = newWidget.width;
-                    res.send(200);
-                    return;
-                }
-
-                //edit size of header if header
-                else if(widgets[i].widgetType === 'HEADER') {
-                    widgets[i].size = newWidget.size;
-                    res.send(200);
-                    return;
-                }
-            }
-        }
-        res.status(400).send("Unable to update widget");
     }
+    //     for(var i in widgets) {
+    //         if(widgets[i]._id === widgetId) {
+    //             widgets[i].name = newWidget.name;
+    //             widgets[i].text = newWidget.text;
+    //
+    //             //update url and width if image
+    //             if(widgets[i].widgetType === 'IMAGE') {
+    //                 widgets[i].url = newWidget.url;
+    //                 widgets[i].width = newWidget.width;
+    //                 res.send(200);
+    //                 return;
+    //             }
+    //
+    //             //if youtube
+    //             if(widgets[i].widgetType === 'YOUTUBE') {
+    //                 widgets[i].url = newWidget.url;
+    //                 widgets[i].width = newWidget.width;
+    //                 res.send(200);
+    //                 return;
+    //             }
+    //
+    //             //edit size of header if header
+    //             else if(widgets[i].widgetType === 'HEADER') {
+    //                 widgets[i].size = newWidget.size;
+    //                 res.send(200);
+    //                 return;
+    //             }
+    //         }
+    //     }
+    //     res.status(400).send("Unable to update widget");
+    // }
     
     
 
     function deleteWidget(req, res) {
         var widgetId = req.params.widgetId;
-        for(var i in widgets) {
-            if(widgets[i]._id === widgetId) {
-                widgets.splice(i, 1);
-                res.send(200);
-                return;
-            }
-        }
-        res.send(400);
+        widgetModel
+            .deleteWidget(widgetId)
+            .then(
+                function(widget) {
+                    res.send(widget);
+                },
+                function(error) {
+                    res.status(400).send("Unable to delete widget");
+                }
+            );
+    }
+    //     for(var i in widgets) {
+    //         if(widgets[i]._id === widgetId) {
+    //             widgets.splice(i, 1);
+    //             res.send(200);
+    //             return;
+    //         }
+    //     }
+    //     res.send(400);
+    // }
+
+    //REORDER WIDGET ------------------
+    function reorderWidget(req, res) {
+        var pageID = req.params.pageId;
+        var start = req.query["start"];
+        var end = req.query["end"];
+
+        widgetModel
+            .reorderWidget(pageID, start, end)
+            .then(
+                function(widget) {
+                    res.send(widget);
+                },
+                function(error) {
+                    res.status(400).send("Error reordering");
+                }
+            )
     }
 
 

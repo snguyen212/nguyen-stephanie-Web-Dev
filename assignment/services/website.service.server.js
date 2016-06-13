@@ -33,10 +33,10 @@ module.exports = function(app, models) {
         var userId = req.params.userId;
 
         websiteModel
-            .createWebsite(userId, website)
+            .createWebsite(userId, newWebsite)
             .then(
-                function (website) {
-                    res.json(website);
+                function (newWebsite) {
+                    res.json(newWebsite);
                 },
                 function (error) {
                     res.status(400).send(error);
@@ -88,13 +88,25 @@ module.exports = function(app, models) {
     //FIND WEBSITE BY ID --------------------------
     function findWebsiteById(req, res) {
         var websiteId = req.params.websiteId;
-        for(var i in websites) {
-            if(websites[i]._id === websiteId) {
-                res.send(websites[i]);
-                return;
-            }
-        }
-        res.send({});
+
+        websiteModel
+            .findWebsiteById(websiteId)
+            .then(
+                function(website) {
+                    res.json(website);
+                },
+                function(error) {
+                    res.status(404).send("error");
+                }
+            );
+
+        // for(var i in websites) {
+        //     if(websites[i]._id === websiteId) {
+        //         res.send(websites[i]);
+        //         return;
+        //     }
+        // }
+        // res.send({});
     }
     
     
@@ -102,36 +114,60 @@ module.exports = function(app, models) {
     //UPDATE WEBSITE ------------------------------
     function updateWebsite(req, res) {
         var id = req.params.websiteId; 
-        var newWebsite = req.body;  
+        var newWebsite = req.body;
 
-        for(var i in websites) {
-            if(websites[i]._id === id) {
-                websites[i].name = newWebsite.name;
-                websites[i].description = newWebsite.description;
-                res.send(200);   //200 means it's ok
-                return;
-            }
-        }
+        websiteModel
+            .updateWebsite(websiteId, website)
+            .then(
+                function(website) {
+                    res.json(website);
+                },
+                function(error) {
+                    res.status(400).send("Unable to update website");
+                }
+            );
+
+        // for(var i in websites) {
+        //     if(websites[i]._id === id) {
+        //         websites[i].name = newWebsite.name;
+        //         websites[i].description = newWebsite.description;
+        //         res.send(200);   //200 means it's ok
+        //         return;
+        //     }
+        // }
         
-        res.status(400).send("Unable to update website");
+
     }
 
 
     //DELETE WEBSITE ------------------------------
     function deleteWebsite(req, res) {
         var id = req.params.websiteId;
-        for (var i in websites) {
-            if (websites[i]._id === id) {
-                websites.splice(i, 1);
-                res.send(200);   //200 means it's ok
-                return;
-            }
-        }
 
-        res.status(404).send("Unable to delete website with ID:" + id);
-
-
+        websiteModel
+            .deleteWebsite(websiteId)
+            .then(
+                function(success){
+                    res.json(200);
+                },
+                function(error){
+                    res.status(404).send("Unable to delete website with ID:" + id);
+                }
+            );
     }
+        // for (var i in websites) {
+        //     if (websites[i]._id === id) {
+        //         websites.splice(i, 1);
+        //         res.send(200);   //200 means it's ok
+        //         return;
+        //     }
+        // }
+
+
+
+
+
+
 
 
 
