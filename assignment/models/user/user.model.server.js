@@ -47,7 +47,8 @@ module.exports = function() {
 
 
     //---------- FIND USER BY USERNAME -----------------------------------
-    function findUserByUsername() {
+    function findUserByUsername(username) {
+        return User.findOne({username: username});
 
     }
 

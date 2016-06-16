@@ -15,15 +15,59 @@
     function UserService($http) {
 
         var api = {
+            login: login,
             createUser: createUser,
+            checkLoggedIn: checkLoggedIn,
+            register: register, //registers creates user AND logs you in
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
+            findUserByUsername: findUserByUsername,
             findUserById: findUserById,
             updateUser: updateUser,
             deleteUser: deleteUser
         };
         return api;
+        
+        //LOGIN -------------------------------------
+        function login(username, password) {
+            var url = "/api/login";
+            var user = {
+                username: username,
+                password: password
+            };
+            return $http.post(url, user);
+            
+        }
+        
+        function checkLoggedIn() {
+            return $http.get("/api/loggedin");
+        }
+        
+        function register(username, password) {
+            var url = "api/register";
+            var user = {
+                username: username,
+                password: password
+            };
+            return $http.post(url, user);
+            
+        }
+        
+        function logout() {
+           return $http.post("/api/logout");
+        }
 
-        // UPDATE USER -------------- UPDATE USER ---------------
+        // CREATE USER ----------------------------------------
+        function createUser(username, password) {
+            var url = "/api/user";
+            var newUser = {
+                username: username,
+                password: password
+            };
+            return $http.post(url, newUser);
+
+        }
+
+        // UPDATE USER --------------------------------------
 
         function updateUser(id, newUser) {
             // /api/user/:userId is the URL we want from the assignment
@@ -33,36 +77,9 @@
             return $http.put(url, newUser);
         }
 
+       
 
-
-
-            //move all this logic to SERVER side
-            /*
-             for(var i in users) {
-             if(users[i]._id === id) {
-             users[i].firstName = newUser.firstName;
-             users[i].lastName = newUser.lastName;
-             return true;
-             }
-             }
-             return false;
-             }
-             */
-
-
-
-
-        function createUser(user) {
-            var url = "/api/user";
-            var newUser = {
-                username: user.username,
-                password: user.password
-            };
-            return $http.post("/api/User", newUser);
-
-        }
-
-            //  -----------DELETE USER -------------DELETE USER -----------
+        //DELETE USER -----------------------------------
             
 //         //will iterate over the id,find the id and delete it
             function deleteUser(id) {
@@ -77,6 +94,12 @@
                 var url = "/api/user?username=" + username + "&password=" + password;
                 return $http.get(url);
             }
+
+            function findUserByUsername(username) {
+                var url = "/api/user?username=" + username;
+                return $http.get(url);
+            }
+        
 
             function findUserById(id) {
                 var url = "/api/user/" + id;

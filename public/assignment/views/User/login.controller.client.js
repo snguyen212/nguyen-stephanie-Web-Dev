@@ -6,7 +6,8 @@
         .controller("LoginController", LoginController);
 
     //location allows you to change hash and navigation
-    function LoginController($location, UserService) {
+    //rootscope is global variable that is available for entire angular app
+    function LoginController($location, $rootScope, UserService) {
 
         //view model design pattern
         // create variable
@@ -16,26 +17,28 @@
         vm.login = login;
 
         function login(username, password) {
-            if (username === undefined && password === undefined)
+            if(username === undefined && password === undefined) {
                 vm.error = "Please enter both username and password";
-            UserService
-                .findUserByUsernameAndPassword(username, password)
-                .then(
-                    function(response) {
-                        console.log(response);
-                        var user = response.data;
+            } else {
+                UserService
+                    .login(username, password)
+                    .then(
+                        function (response) {   //the user is in this response object
+                            console.log(response);
+                            var user = response.data;
+                            $rootScope.currentUser = user;
 
-                        if(user) {
-                        var id = user._id;
-                        $location.url("/profile/" + id);
-                    }
-                }, 
-                    //if login error
-                    function (error) {
-                        vm.error = "User not found";
-                    })
-        
-            
+                            if (user) {
+                                var id = user._id;
+                                $location.url("/profile/" + id);
+                            }
+                        },
+                        //if login error
+                        function (error) {
+                            vm.error = "User not found";
+                        })
+
+            }
         }
                     
                 
