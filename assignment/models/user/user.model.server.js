@@ -15,15 +15,24 @@ module.exports = function() {
         findUserByUsername: findUserByUsername,
         findUserById: findUserById,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        findFacebookUser: findFacebookUser
     };
     return api;
 
+    // FIND FACEBOOK USER -------------------------------------
+    
+    function findFacebookUser(id) {
+        return User.findOne({'facebook.id': id});   //if facebook id matches id i'm giving you, then return it
+    }
+    
+    
     //---------- CREATE USER -----------------------------------
     //pass user instance as json and we want to pass to db
     function createUser(user) {
         return User.create(user);   //this inserts user in db
 
+        
     }
 
     //---------- FIND USER BY ID -----------------------------------

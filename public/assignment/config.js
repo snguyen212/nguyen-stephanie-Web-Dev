@@ -17,6 +17,17 @@
 
 
             })
+            //if no id, then this is my own profile
+            .when("/profile", {
+                templateUrl: "views/User/profile.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model", //our controller is the model
+                //resolve allows you to set conditions that allow u to go to this page
+                resolve: { loggedin: checkLoggedIn }
+
+            })
+
+            //id of someone elses profile
             .when("/profile/:id", {
                 templateUrl: "views/User/profile.view.client.html",
                 controller: "ProfileController",
@@ -32,6 +43,10 @@
                 controller: "RegisterController",
                 controllerAs: "model"
 
+            })
+
+            .when("/logout", {
+                
             })
 
             
@@ -130,7 +145,7 @@
                 .then(
                     function(response) {
                         var user = response.data;
-                        console.log(user);
+                        //console.log(user);
                         //0 means no one is logged in
                         if(user === '0') {
                             deferred.reject(); //not allowed to continue

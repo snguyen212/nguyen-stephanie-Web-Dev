@@ -3,6 +3,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require("bcrypt-nodejs");
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 module.exports = function(app, models) {
 
@@ -16,26 +17,79 @@ module.exports = function(app, models) {
     ];
 
 
+
+
     //want PASSPORT to handle authentication with login
     //after authenticated, it will call login function
+
+    app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.post("/api/login", passport.authenticate('wam'), login);
     app.get("/api/user", getUsers);
     app.get("/api/loggedin", loggedin);
-    app.post("/api/user", createUser);
-    app.post("api/register", register);
-    app.post("api/logout", logout);
     app.get("/api/user?username=username&password=password", findUserByCredentials);
     app.get("/api/user?username=username", findUserByUsername);
     app.get("/api/user/:userId", findUserById);
+    app.post("/api/user", createUser);
+    app.post("api/register", register);
+    app.post('/api/logout', logout);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", authenticate, deleteUser);
-    app.post('/api/logout', logout);
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/assignment/#/user',
+            failureRedirect: '/api/login'
+        }));
+
+
 
 
 
     passport.use('wam', new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
+
+    var facebookConfig = {
+        clientID     : process.env.FACEBOOK_CLIENT_ID,
+        clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+
+    };
+
+    console.log(facebookConfig.callbackURL);
+
+
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
+    function facebookStrategy(token, refreshToken, profile, done) {
+        var id = profile.id;
+        userModel
+            .findFacebookUser(id)   //check if this user exists already or not
+            .then(
+                function(user) {
+                    //if there is a user, make this current user
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        //if doesn't exist, create a new user object
+                        var user = {
+                            username: profile.displayName.replace(/ /g, ''), //replace all spaces with empty string
+                            facebook: {
+                                id: profile.id,
+                                displayName: profile.displayName
+                            }
+
+                        }
+                    }
+                        return userModel
+                        .createUser(user);
+                    })
+
+                    .then(
+                        function(user) {
+                            done(null, user);
+        });
+
+    }
 
 
 
@@ -69,7 +123,7 @@ module.exports = function(app, models) {
     function authenticate(req, res) {
         console.log(req, user);
         console.log(req, isAuthenticated());
-        if(req.isAuthenticated()) {
+        if (req.isAuthenticated()) {
             //if authenticated, it's ok so look at next requests
             next();
 
@@ -77,6 +131,9 @@ module.exports = function(app, models) {
             res.send(403);
         }
     }
+
+
+
 
 
     //SERIALIZE --------------------------------------
@@ -126,7 +183,6 @@ module.exports = function(app, models) {
     //             }
     //         );
     // }
-
 
 
     // CREATE USER --------------------------------------

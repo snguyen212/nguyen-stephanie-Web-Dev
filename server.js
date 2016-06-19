@@ -25,8 +25,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //allows you to configure session so taht it's encrypted
 //secret is session enviroment variable  and need to install this?
 
-app.use(session({secret: "secretkey", resave :true, saveUninitialized :true}));
-//app.use(session({secret: process.env.SESSION_SECRET}));
+//app.use(session({secret: "secretkey", resave :true, saveUninitialized :true}));
+app.use(session({
+    //secret: process.env.SESSION_SECRET,
+    secret: 'secretkey',
+    resave :true,
+    saveUninitialized :true
+}));
+
 app.use(passport.initialize());
 app.use(passport.session());
 

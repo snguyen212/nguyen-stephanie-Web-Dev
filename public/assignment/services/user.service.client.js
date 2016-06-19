@@ -17,6 +17,7 @@
         var api = {
             login: login,
             createUser: createUser,
+            logout: logout,
             checkLoggedIn: checkLoggedIn,
             register: register, //registers creates user AND logs you in
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,

@@ -40,6 +40,18 @@
 
             }
         }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function(response) {
+                    $rootScope.currentUser = null;
+                    $location.url("/login");
+                });
+        }
+        
+
                     
                 
           //  var user = UserService.findUserByUsernameAndPassword(username, password);
