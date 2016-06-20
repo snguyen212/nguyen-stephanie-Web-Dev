@@ -22,6 +22,11 @@ module.exports = function(app, models) {
     //after authenticated, it will call login function
 
     app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get("/auth/facebook/callback",
+        passport.authenticate('facebook',{
+            successRedirect:'/assignment/#/user',
+            failureRedirect: '/assignment/#/login'
+        }));
     app.post("/api/login", passport.authenticate('wam'), login);
     app.get("/api/user", getUsers);
     app.get("/api/loggedin", loggedin);
@@ -33,11 +38,6 @@ module.exports = function(app, models) {
     app.post('/api/logout', logout);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", authenticate, deleteUser);
-    app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect: '/assignment/#/user',
-            failureRedirect: '/api/login'
-        }));
 
 
 
