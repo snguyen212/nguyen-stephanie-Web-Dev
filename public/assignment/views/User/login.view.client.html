@@ -13,17 +13,30 @@
 
     <h2>Login</h2>
 
+    <form name="login" ng-app>
     <!--username is the variable-->
-    <input ng-model="username"
+    <input required ng-model="username"
            class = "form-control"
+           name="username"
            placeholder = "username"
-           type="text"/>
+           type="text"
+           autocomplete="off"
+           autocorrect="off"
+           autocapitalize="off"/>
+    <span ng-show="login.username.$error.required"
+          class="err">
+        Username Required</span>
 
-    <input ng-model="password"
+    <input required ng-model="password"
            class = "form-control"
+           name = "password"
            placeholder="password"
            type="password"/>
+         <span ng-show="login.password.$error.required"
+               class="err">
+            Password Required</span>
 
+    </form>
 
     <a ng-click= "model.login(username, password)"
        class = "btn btn-primary btn-block"> Login </a>  <!--btnblock takes up whole screen-->
@@ -40,3 +53,6 @@
     <a class="btn btn-success btn-block"
        href="#/register">Register</a>
 </div>
+
+
+

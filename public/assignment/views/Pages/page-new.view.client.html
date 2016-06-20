@@ -31,14 +31,18 @@
         {{model.error}}
     </div>
 
-    <form>
+    <form name="pagenew">
         <div class="form-group">
             <label for="pageName">Name</label>
-            <input ng-model="name"
+            <input required ng-model="name"
                    type="text"
                    class="form-control"
                    id="pageName"
+                   name="name"
                    placeholder="Page Name"/>
+            <span ng-show="pagenew.name.$error.required"
+                  class="err">
+        Name Required</span>
         </div>
         <div class="form-group">
             <label for="pageTitle">Title</label>

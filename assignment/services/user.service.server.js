@@ -18,7 +18,6 @@ module.exports = function(app, models) {
 
 
 
-
     //want PASSPORT to handle authentication with login
     //after authenticated, it will call login function
 
@@ -60,36 +59,40 @@ module.exports = function(app, models) {
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
+
     function facebookStrategy(token, refreshToken, profile, done) {
         var id = profile.id;
         userModel
-            .findFacebookUser(id)   //check if this user exists already or not
+            .findFacebookUser(id)
             .then(
                 function(user) {
-                    //if there is a user, make this current user
                     if(user) {
                         return done(null, user);
                     } else {
-                        //if doesn't exist, create a new user object
                         var user = {
-                            username: profile.displayName.replace(/ /g, ''), //replace all spaces with empty string
+                            username: profile.displayName.replace(/ /g, ''),
                             facebook: {
                                 id: profile.id,
-                                displayName: profile.displayName
+                                displayName: profile.displayName,
+                                token: token
                             }
-
-                        }
-                    }
+                        };
                         return userModel
-                        .createUser(user);
-                    })
+                            .createUser(user);
+                    }
+                }
+            )
+            .then(
+                function (user) {
+                    return done(null, user);
+                },
 
-                    .then(
-                        function(user) {
-                            done(null, user);
-        });
-
+                function(error) {
+                    return done(null);
+                }
+            );
     }
+
 
 
 
@@ -97,7 +100,7 @@ module.exports = function(app, models) {
     function localStrategy(username, password, done) {
         console.log("Inside local strategy");
         userModel
-            .findUserbyUsername(username)
+            .findUserByUsername(username)
             .then(
                 function(user) {
                     console.log(user);

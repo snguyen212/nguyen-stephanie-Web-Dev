@@ -8,8 +8,8 @@ module.exports = function() {
 
     var userModel = require("./user/user.model.server.js")();
     var websiteModel = require("./website/website.model.server")();
-    var pageModel;
-    var widgetModel;
+    var pageModel = require("./page/page.model.server")();
+    var widgetModel = require("./widget/widget.model.server")();
     
     //store ALL models in this ap
     var models = {

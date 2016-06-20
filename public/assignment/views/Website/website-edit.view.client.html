@@ -28,14 +28,18 @@
 
 
 
-    <form>
+    <form name="webedit">
         <div class="form-group">
             <label for="websiteName">Website Name</label>
-            <input ng-model="model.website.name"
+            <input required ng-model="model.website.name"
                    type="text"
                    class="form-control"
                    id="websiteName"
+                   name="name"
                    placeholder="Facebook"/>
+            <span ng-show="webedit.name.$error.required"
+                  class="err">
+        Name Required</span>
 
         </div>
         <div class="form-group">

@@ -28,12 +28,18 @@
         {{model.error}}
     </div>
 
+    <form name="website">
+
     <label for="websiteName">Name</label>
-    <input ng-model = "websiteName"
+    <input required ng-model = "websiteName"
            class ="form-control"
            placeholder = "Name"
+           name="name"
            id="websiteName"
            type="text"/>
+        <span ng-show="website.name.$error.required"
+              class="err">
+        Name Required</span>
 
     <label for="description">Description</label>
     <input ng-model = "description"
@@ -42,6 +48,7 @@
            placeholder = "Description"
            id="description"
            type="text"/>
+        </form>
 <!--
     <form>
         <div class="form-group">
