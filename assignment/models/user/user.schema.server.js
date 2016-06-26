@@ -25,7 +25,7 @@ module.exports = function() {
             token: String
         },
         // google: {
-        //     id: String
+        //     id:  String
         // },
         websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Website'}],
         //if you don't provide a date, it'll put in current timestamp
