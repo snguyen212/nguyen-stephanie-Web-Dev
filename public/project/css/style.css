@@ -1,0 +1,45 @@
+
+/*add a margin below every input field (adds white space) */
+
+
+input {
+    margin-bottom: 5px;
+}
+
+/*this can be used to OVERRIDE the primary button you have taken from bootstrap
+border-RADIUS makes the rounding in btn*/
+.btn-primary {
+    background-color: cornflowerblue;
+}
+
+.btn {
+    border-radius: 18px;
+}
+
+body {
+    padding-top: 60px;
+}
+
+/*all paragraphs that have class of navbar AND pull right*/
+p.navbar-text.pull-right {
+    margin-right: 15px;
+}
+
+p.navbar-text.pull-left {
+    margin-left: 15px;
+}
+
+.jga-widget-tool {
+    position: absolute;
+    right: 0px;
+    background-color: white;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 8px;
+}
+
+input.ng-invalid {
+    border: 2px red solid;
+}
+
+

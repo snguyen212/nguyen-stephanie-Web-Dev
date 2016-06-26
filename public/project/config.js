@@ -1,5 +1,4 @@
 
-
 (function() {
     angular
         .module("jamn")
@@ -9,15 +8,17 @@
         $routeProvider
 
             .when("/login", {
-                templateUrl: "views/login.view.client.html"  //if you see #/login, go to her
+                templateUrl: "views/login.view.client.html",  //if you see #/login, go to her
+                controller: "LoginController",
+                controllerAs: "model" //our controller is the model
 
 
             })
 
             .otherwise({
-                redirectTo: "/"
+                redirectTo: "frontpage.html"
 
-            });;
+            });
     }
 
     

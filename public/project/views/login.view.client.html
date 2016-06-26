@@ -1,58 +1,31 @@
 <!--updated -->
 
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/login.css" rel="stylesheet">
 
-<div class ="container">  <!--adds white space on each side of the page(responsive) -->
+<!--<div class ="container">-->
 
 
     <!--IF user name and pw doesn't match, should have error -->
     <!-- Should NOT come up with u try to login when field are blank -->
 
-    <div ng-if="model.error" class = "alert alert-danger">
-        {{model.error}}
+
+
+<div class="login-page">
+    <div class="form">
+        <form class="login-form">
+            <input type="text" placeholder="username"/>
+            <input type="password" placeholder="password"/>
+            <button>login</button>
+            <p class="message">Not registered? <a href="register.view.client.html">Create an account</a></p>
+        </form>
     </div>
-
-    <h2>Login</h2>
-
-    <form name="login" ng-app>
-    <!--username is the variable-->
-    <input required ng-model="username"
-           class = "form-control"
-           name="username"
-           placeholder = "username"
-           type="text"
-           autocomplete="off"
-           autocorrect="off"
-           autocapitalize="off"/>
-    <span ng-show="login.username.$error.required"
-          class="err">
-        Username Required</span>
-
-    <input required ng-model="password"
-           class = "form-control"
-           name = "password"
-           placeholder="password"
-           type="password"/>
-         <span ng-show="login.password.$error.required"
-               class="err">
-            Password Required</span>
-
-    </form>
-
-    <a ng-click= "model.login(username, password)"
-       class = "btn btn-primary btn-block"> Login </a>  <!--btnblock takes up whole screen-->
-
-
-    <a href="/auth/facebook" class="btn btn-primary btn-block">
-        <span class="fa fa-facebook"></span>
-        Facebook
-    </a>
-
-
-    <!-- TOOK OUT Hash to profile page here because we want to ONLY go to profile page if username and pw matches-->
-
-    <a class="btn btn-success btn-block"
-       href="#/register">Register</a>
 </div>
+
+</div>
+
+
+
 
 
 
