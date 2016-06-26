@@ -2,14 +2,33 @@
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/login.css" rel="stylesheet">
 
+<style>
+    .scroll {
+        overflow:scroll
+    }
+</style>
+<div class="scroll">
 <div class="login-page">
     <div class="form">
+        <div class="register">
         <h1>Register</h1>
-            <input type="text" placeholder="name"/>
+            <input type="text" placeholder="firstname"/>
+            <input type="text" placeholder="lastname"/>
             <input type="password" placeholder="password"/>
             <input type="text" placeholder="email address"/>
-            <button>create</button>
+            <h4>I am a...</h4>
+            <select style="width:265px;
+                    margin-bottom:25px"
+                name="membertype">
+            <option value="volvo">Drummer</option>
+            <option value="saab">Guitarist</option>
+            <option value="mercedes">Pianist</option>
+            <option value="audi">Singer</option>
+            </select>
+        <br>
+            <button>Create Account</button>
             <p class="message">Already registered? <a href="login.view.client.html">Sign In</a></p>
 
         </div>
     </div>
+</div>
