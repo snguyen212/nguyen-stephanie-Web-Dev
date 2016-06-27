@@ -79,7 +79,7 @@
 
             })
 
-            .when("/user/:userId/search/:type", {
+            .when("/user/:userId/search/:type/results", {
                 templateUrl: "views/results.view.client.html",
                 controller: "ResultsController",
                 controllerAs: "model"
@@ -88,7 +88,7 @@
 
             })
 
-            .when("/user/:userId/search/:type/:userId", {
+            .when("/user/:userId/search/:type/results/:userId", {
                 templateUrl: "views/details.view.client.html",
                 controller: "DetailsController",
                 controllerAs: "model"

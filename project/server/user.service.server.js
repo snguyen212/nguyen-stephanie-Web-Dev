@@ -17,7 +17,7 @@ module.exports = function (app, models) {
             firstName: "Alice",
             lastName: "Wonder",
             email: 'alice@wonderland.com',
-            type: "Guitarist"
+            type: "guitarist"
         },
         {
             _id: "234",
@@ -26,7 +26,7 @@ module.exports = function (app, models) {
             firstName: "Bob",
             lastName: "Marley",
             email: 'bob@marley.com',
-            type: "Pianist"
+            type: "pianist"
         },
         {
             _id: "345",
@@ -35,7 +35,7 @@ module.exports = function (app, models) {
             firstName: "Charly",
             lastName: "Garcia",
             email: 'charly@garcia.com',
-            type: "Singer"
+            type: "singer"
         },
         {
             _id: "456",
@@ -44,7 +44,7 @@ module.exports = function (app, models) {
             firstName: "Jose",
             lastName: "Annunzi",
             email: 'jose@annunzi.com',
-            type: "Drummer"
+            type: "drummer"
         }
     ];
 

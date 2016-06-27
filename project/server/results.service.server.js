@@ -4,7 +4,7 @@ module.exports = function (app, models) {
 
     var resultsModel = models.resultsModel;
 
-    app.get("/api/search/:type/", findAllResultsForType);
+    app.get("/api/search/:type/results", findAllResultsForType);
 
 
     //FIND ALL RESULTS FOR TYPE --------------------
