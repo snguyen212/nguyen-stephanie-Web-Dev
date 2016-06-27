@@ -88,7 +88,7 @@
 
             })
 
-            .when("/user/:userId/search/:type/:fId", {
+            .when("/user/:userId/search/:type/:userId", {
                 templateUrl: "views/details.view.client.html",
                 controller: "DetailsController",
                 controllerAs: "model"
