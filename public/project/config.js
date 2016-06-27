@@ -105,6 +105,36 @@
                 redirectTo: "/home"
 
             });
+        
+        //CHECK IF LOGGED IN -------------------------
+        function checkLoggedIn(UserService, $q, $location, $rootScope) {
+            var deferred = $q.defer();
+
+            UserService
+                .checkLoggedIn()
+                .then(
+                    function(response) {
+                        var user = response.data;
+                        //console.log(user);
+                        //0 means no one is logged in
+                        if(user === '0') {
+                            deferred.reject(); //not allowed to continue
+                            $rootScope.currentUser = null;
+                            $location.url("/login");
+                        } else {
+                            $rootScope.currentUser = user;
+                            deferred.resolve(); //allow you to login
+                        }
+                    },
+                    //if user is null, then goes to this error
+                    function(error) {
+                        deffered.reject();
+                        $rootScope.currentUser = null;
+
+                    }
+                );
+            return deferred.promise;
+        }
     }
 
     

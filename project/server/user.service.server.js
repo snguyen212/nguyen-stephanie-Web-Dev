@@ -3,7 +3,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require("bcrypt-nodejs");
-var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 module.exports = function (app, models) {
 
@@ -52,11 +52,11 @@ module.exports = function (app, models) {
     //want PASSPORT to handle authentication with login
     //after authenticated, it will call login function
 
-    app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
-    app.get("/auth/facebook/callback",
-        passport.authenticate('facebook', {
-            successRedirect: '/project/#/profile',
-            failureRedirect: '/project/#/login'
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.get('/auth/google/callback',
+        passport.authenticate('google', {
+            successRedirect: '/#/profile',
+            failureRedirect: '/#/login'
         }));
     app.post("/api/login", passport.authenticate('jamn'), login);
     app.get("/api/user", getUsers);
@@ -75,48 +75,51 @@ module.exports = function (app, models) {
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
-    var facebookConfig = {
-        clientID: process.env.FACEBOOK_CLIENT_ID,
-        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL: process.env.FACEBOOK_CALLBACK_URL
-
+    var googleConfig = {
+        clientID     : process.env.GOOGLE_CLIENT_ID,
+        clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL  : process.env.GOOGLE_CALLBACK_URL
     };
 
-    console.log(facebookConfig.callbackURL);
+    console.log(googleConfig.callbackURL);
 
 
-    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
 
-    function facebookStrategy(token, refreshToken, profile, done) {
-        var id = profile.id;
+    function googleStrategy(token, refreshToken, profile, done) {
         userModel
-            .findFacebookUser(id)
+            .findUserByGoogleId(profile.id)
             .then(
-                function (user) {
-                    if (user) {
+                function(user) {
+                    if(user) {
                         return done(null, user);
                     } else {
-                        var user = {
-                            username: profile.displayName.replace(/ /g, ''),
-                            facebook: {
-                                id: profile.id,
-                                displayName: profile.displayName,
+                        var email = profile.emails[0].value;
+                        var emailParts = email.split("@");
+                        var newGoogleUser = {
+                            username:  emailParts[0],
+                            firstName: profile.name.givenName,
+                            lastName:  profile.name.familyName,
+                            email:     email,
+                            google: {
+                                id:    profile.id,
                                 token: token
                             }
                         };
-                        return userModel
-                            .createUser(user);
+                        return userModel.createUser(newGoogleUser);
                     }
+                },
+                function(err) {
+                    if (err) { return done(err); }
                 }
             )
             .then(
-                function (user) {
+                function(user){
                     return done(null, user);
                 },
-
-                function (error) {
-                    return done(null);
+                function(err){
+                    if (err) { return done(err); }
                 }
             );
     }

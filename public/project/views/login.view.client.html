@@ -1,7 +1,8 @@
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/login.css" rel="stylesheet">
+<script src="../app.js"></script>
+<script src="../config.js"></script>
 <html lang="en" ng-app="jamn">
-
 
 
 <div class="login-page">
@@ -16,14 +17,23 @@
                    name="username"/>
 
             <p class="message" style="text-align:left; color:black;"> Password </p>
-            <input required ng-model  = "password"
+            <input required ng-model="password"
                    type="password"
                    placeholder="password"
                    name="password"/>
 
             <a href="profile.view.client.html">
+            <!--<a ng-click= "model.login(username, password)">-->
                 <button>login</button>
             </a>
+
+            <a href="/auth/google"
+               class="btn btn-primary btn-block"
+               style="margin-top:10px; padding:10px;">
+                <span class="fa fa-google-plus"></span>
+                <b>GOOGLE</b>
+            </a>
+
             <p class="message"
                style="color:black;"><b>Not registered? <a href="register.view.client.html">Create an account</a></b></p>
         </form>
