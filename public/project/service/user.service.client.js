@@ -1,11 +1,3 @@
-//UPDATED
-
-//factory allows you to create services
-//service is where you find, update, remove any data
-
-
-//MOVE everything to SERVICE side -----
-
 (function () {
     angular
         .module("jamn")
@@ -13,9 +5,7 @@
 
     // $http allows you to interact with SERVER
     function UserService($http) {
-        
-       
-        
+
 
         var api = {
             login: login,
@@ -30,7 +20,7 @@
             deleteUser: deleteUser
         };
         return api;
-        
+
         //LOGIN -------------------------------------
         function login(username, password) {
             var url = "/api/login";
@@ -39,13 +29,13 @@
                 password: password
             };
             return $http.post(url, user);
-            
+
         }
-        
+
         function checkLoggedIn() {
             return $http.get("/api/loggedin");
         }
-        
+
         function register(username, password) {
             var url = "api/register";
             var user = {
@@ -53,11 +43,11 @@
                 password: password
             };
             return $http.post(url, user);
-            
+
         }
-        
+
         function logout() {
-           return $http.post("/api/logout");
+            return $http.post("/api/logout");
         }
 
         // CREATE USER ----------------------------------------
@@ -81,36 +71,34 @@
             return $http.put(url, newUser);
         }
 
-       
 
         //DELETE USER -----------------------------------
-            
+
 //         //will iterate over the id,find the id and delete it
-            function deleteUser(id) {
-                var url = "/api/user" + id;
-                return $http.delete(url);
-            }
-
-        
-
-            //find user by username and password function -------------------------
-            function findUserByUsernameAndPassword(username, password) {
-                var url = "/api/user?username=" + username + "&password=" + password;
-                return $http.get(url);
-            }
-
-            function findUserByUsername(username) {
-                var url = "/api/user?username=" + username;
-                return $http.get(url);
-            }
-        
-
-            function findUserById(id) {
-                var url = "/api/user/" + id;
-                return $http.get(url);
-
-            }
-
-            
+        function deleteUser(id) {
+            var url = "/api/user" + id;
+            return $http.delete(url);
         }
+
+
+        //find user by username and password function -------------------------
+        function findUserByUsernameAndPassword(username, password) {
+            var url = "/api/user?username=" + username + "&password=" + password;
+            return $http.get(url);
+        }
+
+        function findUserByUsername(username) {
+            var url = "/api/user?username=" + username;
+            return $http.get(url);
+        }
+
+
+        function findUserById(id) {
+            var url = "/api/user/" + id;
+            return $http.get(url);
+
+        }
+
+
+    }
 })();

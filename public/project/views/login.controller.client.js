@@ -8,6 +8,7 @@
     //location allows you to change hash and navigation
     //rootscope is global variable that is available for entire angular app
     function LoginController($location, $rootScope, UserService) {
+        $rootScope.loggedIn = false;
 
         //view model design pattern
         // create variable
@@ -17,43 +18,25 @@
         vm.login = login;
 
         function login(username, password) {
-            if (username === undefined && password === undefined) {
-                vm.error = "Please enter both username and password";
-            } else {
-                UserService
-                    .login(username, password)
-                    .then(
-                        function (response) {   //the user is in this response object
-                            console.log(response);
-                            var user = response.data;
-                            $rootScope.currentUser = user;
-
-                            if (user) {
-                                var id = user._id;
-                                $location.url("/profile/" + id);
-                            }
-                        },
-                        //if login error
-                        function (error) {
-                            vm.error = "User not found";
-                        })
-
-            }
-        }
-
-        function logout() {
+            var user = {
+                username: username,
+                password: password
+            };
             UserService
-                .logout()
-                .then(
-                    function (response) {
-                        $rootScope.currentUser = null;
-                        $location.url("/login");
-                    });
+                .login(user)
+                .then(function(response) {
+                    var user = response.data;
+                    if (user) {
+                        var id = user._id;
+                        $rootScope.currentUser = user;
+                        $rootScope.loggedIn = true;
+                        $location.url("/profile/" + id);
+                    }
+                    else {
+                        vm.error = "User not found";
+                    }
+                })
         }
-
-
-        //  var user = UserService.findUserByUsernameAndPassword(username, password);
-
     }
-
 })();
+
