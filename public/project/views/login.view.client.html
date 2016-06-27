@@ -1,15 +1,10 @@
-<!--updated -->
-
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/login.css" rel="stylesheet">
 
-<!--<div class ="container">-->
 
-
-    <!--IF user name and pw doesn't match, should have error -->
-    <!-- Should NOT come up with u try to login when field are blank -->
-
-
+<div ng-if="model.error" class="alert alert-danger">
+    {{model.error}}
+</div>
 
 <div class="login-page">
     <div class="form">
@@ -17,13 +12,22 @@
             <h1>Login</h1>
 
             <p class="message" style="text-align:left; color:black;"> Username </p>
-            <input type="text" placeholder="alice123"/>
+            <input required ng-model="username"
+                   type="text"
+                   placeholder="alice123"
+                   name="username"/>
+
             <p class="message" style="text-align:left; color:black;"> Password </p>
-            <input type="password" placeholder="password"/>
-            <a href="profile.view.client.html">
-             <button>login</button>
+            <input required ng-model="password"
+                   type="password"
+                   placeholder="password"
+                   name="password"/>
+
+            <a ng-click= "model.login(username, password)">
+                <button>login</button>
             </a>
-            <p class="message">Not registered? <a href="register.view.client.html">Create an account</a></p>
+            <p class="message"
+               style="color:white;"> Not registered? <a href="register.view.client.html">Create an account</a></p>
         </form>
     </div>
 </div>

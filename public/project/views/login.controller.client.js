@@ -1,6 +1,6 @@
 //UPDATED
 
-(function(){
+(function () {
     angular
         .module("jamn")
         .controller("LoginController", LoginController);
@@ -17,7 +17,7 @@
         vm.login = login;
 
         function login(username, password) {
-            if(username === undefined && password === undefined) {
+            if (username === undefined && password === undefined) {
                 vm.error = "Please enter both username and password";
             } else {
                 UserService
@@ -45,17 +45,15 @@
             UserService
                 .logout()
                 .then(
-                    function(response) {
-                    $rootScope.currentUser = null;
-                    $location.url("/login");
-                });
+                    function (response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    });
         }
-        
 
-                    
-                
-          //  var user = UserService.findUserByUsernameAndPassword(username, password);
-           
+
+        //  var user = UserService.findUserByUsernameAndPassword(username, password);
+
     }
 
 })();
