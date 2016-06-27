@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var passport = require('passport');
 var assignment = require('./assignment/app.js');
-var project = require('./project/app.js');
+//var project = require('./project/app.js');
 
 
 
@@ -40,7 +40,7 @@ app.use(passport.session());
 
 // require ("./test/app.js")(app);
 
-project(app);   
+//project(app);
 assignment(app);
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;

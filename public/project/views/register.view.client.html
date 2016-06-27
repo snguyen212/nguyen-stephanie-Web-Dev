@@ -2,32 +2,43 @@
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/login.css" rel="stylesheet">
 
-<style>
-    .scroll {
-        overflow:scroll
-    }
-</style>
+
+
+
 <div class="scroll">
 <div class="login-page">
-    <div class="form">
-        <div class="register">
+    <div class="form register">
         <h1>Register</h1>
+        <p class="message" style="text-align:left; color:black;"> Username </p>
+            <input type="text" placeholder="username"/>
+
+        <p class="message" style="text-align:left; color:black;"> First Name </p>
             <input type="text" placeholder="firstname"/>
+
+        <p class="message" style="text-align:left; color:black;"> Last Name </p>
             <input type="text" placeholder="lastname"/>
+
+        <p class="message" style="text-align:left; color:black;"> Email </p>
+        <input type="text" placeholder="email"/>
+
+        <p class="message" style="text-align:left; color:black;"> Password </p>
             <input type="password" placeholder="password"/>
-            <input type="text" placeholder="email address"/>
+
             <h4>I am a...</h4>
-            <select style="width:265px;
+            <select style="width:100%;
                     margin-bottom:25px"
                 name="membertype">
-            <option value="volvo">Drummer</option>
-            <option value="saab">Guitarist</option>
-            <option value="mercedes">Pianist</option>
-            <option value="audi">Singer</option>
+            <option value="drummer">Drummer</option>
+            <option value="guitarist">Guitarist</option>
+            <option value="pianist">Pianist</option>
+            <option value="singer">Singer</option>
             </select>
         <br>
-            <button>Create Account</button>
-            <p class="message">Already registered? <a href="login.view.client.html">Sign In</a></p>
+           <a href="profile.view.client.html">
+              <button>Create Account</button>
+           </a>
+            <p class="message"
+            style="color:white;"> <b> Already registered? </b> <a href="login.view.client.html">Sign In</a></p>
 
         </div>
     </div>
