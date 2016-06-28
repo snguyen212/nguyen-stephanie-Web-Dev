@@ -1,11 +1,11 @@
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<link href="../css/login.css" rel="stylesheet">
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/login.css" rel="stylesheet">
 
 
 <div class="scroll">
     <div class="login-page">
         <div class="form register">
-            <h1>Register</h1>
+            <h1>Artist Register</h1>
             <p class="message" style="text-align:left; color:black;"> Username </p>
             <input required ng-model="username"
                    type="text"
@@ -14,17 +14,17 @@
             <p class="message" style="text-align:left; color:black;"> First Name </p>
             <input required ng-model="firstname"
                    type="text"
-                   placeholder="firstname"/>
+                   placeholder="alice"/>
 
             <p class="message" style="text-align:left; color:black;"> Last Name </p>
             <input ng-model="lastname"
                    type="text"
-                   placeholder="lastname"/>
+                   placeholder="wonderland"/>
 
             <p class="message" style="text-align:left; color:black;"> Email </p>
             <input ng-model="email"
                    type="text"
-                   placeholder="email"/>
+                   placeholder="alice@wonderland.com"/>
 
             <p class="message" style="text-align:left; color:black;"> Password </p>
             <input ng-model="password"
@@ -39,18 +39,16 @@
                         id="drummer" >Drummer</option>
                 <option value="guitarist"
                         id="guitarist">Guitarist</option>
-                <option value="pianist"
-                        id="pianist">Pianist</option>
                 <option value="singer"
                         id="singer">Singer</option>
             </select>
             <br>
-            <a href="profile.view.client.html">
+            <a href="../profile/profile.artist.view.client.html">
                 <!--<a ng-click = "model.register(username, password)">-->
                 <button>Create Account</button>
             </a>
             <p class="message"
-               style="color:white;"><b> Already registered? </b> <a href="login.view.client.html">Sign In</a></p>
+               style="color:black;"><b> Already registered? <a href="login.view.client.html">Sign In</a></b></p>
 
         </div>
     </div>

@@ -1,0 +1,80 @@
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/login.css" rel="stylesheet">
+
+
+<div class="scroll">
+    <div class="login-page">
+        <div class="form register">
+            <h1>Band Register</h1>
+            <p class="message" style="text-align:left; color:black;"> Username </p>
+            <input required ng-model="username"
+                   type="text"
+                   placeholder="alice123"/>
+
+            <p class="message" style="text-align:left; color:black;"> First Name </p>
+            <input required ng-model="firstname"
+                   type="text"
+                   placeholder="alice"/>
+
+            <p class="message" style="text-align:left; color:black;"> Last Name </p>
+            <input required ng-model="lastname"
+                   type="text"
+                   placeholder="wonderland"/>
+
+            <p class="message" style="text-align:left; color:black;"> Email </p>
+            <input required ng-model="email"
+                   type="text"
+                   placeholder="alice@wonderland.com"/>
+
+            <p class="message" style="text-align:left; color:black;"> Password </p>
+            <input required ng-model="password"
+                   type="password" placeholder="password"/>
+
+
+
+            <p class="message" style="text-align:left; color:black;"> Band Name </p>
+            <input required ng-model="bandname"
+                   type="text" placeholder="band name"/>
+
+            <p class="message" style="text-align:left; color:black;"> Band Size </p>
+            <select required ng-model="bandsize"
+                    style="width:100%;
+                    margin-bottom:25px"
+                    name="size">
+                <option value="1"
+                        id="1" >1</option>
+                <option value="2"
+                        id="2">2</option>
+                <option value="3"
+                        id="3">3</option>
+                <option value="4"
+                        id="4">4</option>
+                <option value="5+"
+                        id="5+">5+</option>
+            </select>
+
+            <h4>I am a...</h4>
+            <select required ng-model="type"
+                    style="width:100%;
+                    margin-bottom:25px"
+                    name="membertype">
+                <option value="drummer"
+                        id="drummer" >Drummer</option>
+                <option value="guitarist"
+                        id="guitarist">Guitarist</option>
+                <option value="singer"
+                        id="singer">Singer</option>
+            </select>
+
+
+            <br>
+            <a href="../profile/profile.band.view.client.html">
+                <!--<a ng-click = "model.register(username, password)">-->
+                <button>Create Account</button>
+            </a>
+            <p class="message"
+               style="color:black;"><b> Already registered? <a href="login.view.client.html">Sign In</a></b></p>
+
+        </div>
+    </div>
+</div>

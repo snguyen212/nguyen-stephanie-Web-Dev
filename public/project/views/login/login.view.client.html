@@ -1,0 +1,52 @@
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/login.css" rel="stylesheet">
+<script src="../../app.js"></script>
+<script src="../../config.js"></script>
+<html lang="en" ng-app="jamn">
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="login-page">
+            <div class="form">
+                    <h1>Login</h1>
+
+                    <p class="message" style="text-align:left; color:black;"> Username </p>
+                    <input required ng-model="username"
+                           type="text"
+                           placeholder="alice123"
+                           name="username"/>
+
+                    <p class="message" style="text-align:left; color:black;"> Password </p>
+                    <input required ng-model="password"
+                           type="password"
+                           placeholder="password"
+                           name="password"/>
+
+                    <a href="../profile/profile.artist.view.client.html">
+                        <!--<a ng-click= "model.login(username, password)">-->
+                        <button>login</button>
+                    </a>
+
+                    <a href="/auth/google"
+                       class="btn btn-primary btn-block"
+                       style="margin-top:10px; padding:10px;">
+                        <span class="fa fa-google-plus"></span>
+                        <b>GOOGLE</b>
+                    </a>
+
+                    <p class="message"
+                       style="color:black;"><b>Not registered? <a href="registerpg1.view.client.html">Create an
+                        account</a></b></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,115 @@
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/login.css" rel="stylesheet">
+
+
+<!--<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">-->
+<!--<div class="container-fluid">-->
+<!--<div class="container topnav">-->
+<!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
+<!--<div class="navbar-header">-->
+<!--<a class="navbar-brand topnav" href="#">JAM'N</a>-->
+<!--</div>-->
+<!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
+<!--<p class="navbar-text pull-right">-->
+<!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+<!--<ul class="nav navbar-nav navbar-right">-->
+<!--<li>-->
+<!--<a href="#about">About</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a href="views/search.view.client.html">Search JAM'N Members</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</nav>-->
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand">
+            Profile
+        </a>
+        <p class="navbar-text pull-right">
+            <a ng-click="model.updateUser(model.user)"
+               class="navbar-link">
+                  <span class="glyphicon glyphicon-ok">
+                  </span>
+            </a>
+        </p>
+    </div>
+
+</nav>
+
+
+<div class="scroll">
+    <div class="login-page">
+        <div class="form register">
+            <h1>Band Profile</h1>
+
+            <p class="message" style="text-align:left; color:black;"> Username </p>
+            <input ng-model="model.user.username"
+                   type="text"
+                   placeholder="alice123"/>
+
+            <p class="message" style="text-align:left; color:black;"> First Name </p>
+            <input ng-model="model.user.firstname"
+                   type="text"
+                   placeholder="alice"/>
+
+            <p class="message" style="text-align:left; color:black;"> Last Name </p>
+            <input ng-model="model.user.lastname"
+                   type="text"
+                   placeholder="wonderland"/>
+
+            <p class="message" style="text-align:left; color:black;"> Email </p>
+            <input ng-model="model.user.email"
+                   type="text"
+                   placeholder="alice@wonderland.com"/>
+
+            <h4>I am a...</h4>
+            <select style="width:100%;
+                    margin-bottom:25px"
+                    name="membertype"
+                    ng-model="model.user.type">
+                <option value="drummer">Drummer</option>
+                <option value="guitarist">Guitarist</option>
+                <option value="singer">Singer</option>
+            </select>
+
+            <p class="message" style="text-align:left; color:black;"> Band Name </p>
+            <input ng-model="model.user.bandname"
+                   type="text"
+                   placeholder="band name"/>
+
+            <p class="message" style="text-align:left; color:black;"> Band Size </p>
+            <select required ng-model="bandsize"
+                    style="width:100%;
+                    margin-bottom:25px"
+                    name="size">
+                <option value="1"
+                        id="1" >1</option>
+                <option value="2"
+                        id="2">2</option>
+                <option value="3"
+                        id="3">3</option>
+                <option value="4"
+                        id="4">4</option>
+                <option value="5+"
+                        id="5+">5+</option>
+            </select>
+
+
+
+            <br>
+            <a href="../search/search.view.client.html">
+                <button>Search JAM'N Friends</button>
+            </a>
+            <a href="../login/login.view.client.html">
+                <button style="background-color:#1b6d85; margin-top:20px;">Logout</button>
+            </a>
+
+
+        </div>
+    </div>
+</div>

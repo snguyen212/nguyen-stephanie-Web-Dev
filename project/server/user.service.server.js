@@ -26,7 +26,9 @@ module.exports = function (app, models) {
             firstName: "Bob",
             lastName: "Marley",
             email: 'bob@marley.com',
-            type: "pianist"
+            type: 'drummer',
+            bandname: 'Rockin Dudes',
+            bandsize: '3'
         },
         {
             _id: "345",
