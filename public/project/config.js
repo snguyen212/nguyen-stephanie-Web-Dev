@@ -1,6 +1,6 @@
 //I don't know why my routes aren't working so i had to resort to using static pages...
 
-(function() {
+(function () {
     angular
         .module("jamn")
         .config(Config);
@@ -9,14 +9,13 @@
         $routeProvider
 
 
-
             .when("/home", {
                 templateURL: "views/frontpage.html"
             })
 
 
             .when("/login", {
-                templateUrl: "views/login.view.client.html",  //if you see #/login, go to her
+                templateUrl: "views/login/login.view.client.html",  //if you see #/login, go to her
                 controller: "LoginController",
                 controllerAs: "model" //our controller is the model
 
@@ -24,7 +23,7 @@
             })
 
             .when("/register", {
-                templateUrl: "views/register.view.client.html",
+                templateUrl: "views/login/register.view.client.html",
                 controller: "RegisterController",
                 controllerAs: "model"
 
@@ -35,7 +34,7 @@
                 controller: "ProfileController",
                 controllerAs: "model"
                 //resolve allows you to set conditions that allow u to go to this page
-              //  resolve: { loggedin: checkLoggedIn }
+                //  resolve: { loggedin: checkLoggedIn }
 
             })
 
@@ -48,9 +47,7 @@
 
             })
 
-            .when("/logout", {
-
-            })
+            .when("/logout", {})
 
             .when("/search", {
                 templateUrl: "views/search.view.client.html",
@@ -96,16 +93,11 @@
                 //  resolve: { loggedin: checkLoggedIn }
 
             })
-            
-            .when("/")
-
-
 
             .otherwise({
-                redirectTo: "/home"
-
+                templateUrl: "views/frontpage.html"
             });
-        
+
         //CHECK IF LOGGED IN -------------------------
         function checkLoggedIn(UserService, $q, $location, $rootScope) {
             var deferred = $q.defer();
@@ -113,11 +105,11 @@
             UserService
                 .checkLoggedIn()
                 .then(
-                    function(response) {
+                    function (response) {
                         var user = response.data;
                         //console.log(user);
                         //0 means no one is logged in
-                        if(user === '0') {
+                        if (user === '0') {
                             deferred.reject(); //not allowed to continue
                             $rootScope.currentUser = null;
                             $location.url("/login");
@@ -127,7 +119,7 @@
                         }
                     },
                     //if user is null, then goes to this error
-                    function(error) {
+                    function (error) {
                         deffered.reject();
                         $rootScope.currentUser = null;
 
@@ -137,6 +129,5 @@
         }
     }
 
-    
-    
+
 })();

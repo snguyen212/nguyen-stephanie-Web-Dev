@@ -1,13 +1,8 @@
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
-<link href="../../css/login.css" rel="stylesheet">
-<script src="../../app.js"></script>
-<script src="../../config.js"></script>
-<html lang="en" ng-app="jamn">
-
 <div class="container-fluid">
-    <div class="row">
-        <div class="login-page">
-            <div class="form">
+    <form name="login" ng-app>
+        <div class="row">
+            <div class="login-page">
+                <div class="form">
                     <h1>Login</h1>
 
                     <p class="message" style="text-align:left; color:black;"> Username </p>
@@ -27,20 +22,21 @@
                         <button>login</button>
                     </a>
 
-                    <a href="/auth/google"
-                       class="btn btn-primary btn-block"
-                       style="margin-top:10px; padding:10px;">
-                        <span class="fa fa-google-plus"></span>
-                        <b>GOOGLE</b>
+                    <a href="/auth/google">
+                        <button style="margin-top:10px; background-color:#0099cc">
+                            <span class="fa fa-google-plus"></span>
+                            <b>GOOGLE</b>
+                        </button>
                     </a>
 
                     <p class="message"
                        style="color:black;"><b>Not registered? <a href="registerpg1.view.client.html">Create an
                         account</a></b></p>
-                </form>
+
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 
 

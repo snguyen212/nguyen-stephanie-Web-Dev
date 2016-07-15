@@ -14,6 +14,5 @@
 //have to make our top level module depend on the other module
 
 (function(){
-    angular.module('jamn', ['ngRoute']);
+    angular.module('jamn', ['ngRoute', 'textAngular']);
 })();
-
