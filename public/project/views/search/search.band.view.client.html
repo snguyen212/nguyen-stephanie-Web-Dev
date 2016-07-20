@@ -1,10 +1,8 @@
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
-<link href="../../css/login.css" rel="stylesheet">
 
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="../profile/profile.artist.view.client.html">
+        <a class="navbar-brand" href="#/bandprofile">
            <!--href="#/profile/{{model.user._id}}">-->
             <span class="glyphicon glyphicon-chevron-left"></span>
             Profile
@@ -13,24 +11,13 @@
 </nav>
 
 
-<style>
-    .search-members {
-        margin: 100px auto 300px auto;
-        background: #FFFFFF;
-        /*margin: 10 auto 100px;*/
-        padding: 50px;
-        text-align: center;
-        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-    }
-
-</style>
 
 
-<div class="search-members">
+<div class="login-page">
     <form name="search">
-        <h2 style="padding-bottom:10px;"><b>Search JAM'N Members</b></h2>
+        <h1 style="padding-bottom:10px; text-align:center;"><b>Search JAM'N Members</b></h1>
 
-        <h4 style="padding-bottom:20px"> Who are you looking to jam with? </h4>
+        <h4 style="padding-bottom:20px; text-align:center"> Who are you looking to jam with? </h4>
         <select style="width:100%;"
                 name="membertype"
                 id="membertype">
@@ -40,7 +27,7 @@
             <option value="band">Band</option>
         </select>
         <br>
-        <a href="results.view.client.html">
+        <a href="#/band/result">
             <button style="margin-top:30px; padding-top:10px;"
                     type="button"
                     class="btn btn-primary btn-lg btn-block"> Search

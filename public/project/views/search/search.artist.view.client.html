@@ -1,0 +1,42 @@
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#/artistprofile">
+           <!--href="#/profile/{{model.user._id}}">-->
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            Profile
+        </a>
+    </div>
+</nav>
+
+
+
+
+<div class="login-page">
+    <form name="search">
+        <h1 style="padding-bottom:10px; text-align:center;"><b>Search JAM'N Members</b></h1>
+
+        <h4 style="padding-bottom:20px; text-align:center"> Who are you looking to jam with? </h4>
+        <select style="width:100%;"
+                name="membertype"
+                id="membertype">
+            <option value="drummer">Drummer</option>
+            <option value="guitarist">Guitarist</option>
+            <option value="singer">Singer</option>
+            <option value="band">Band</option>
+        </select>
+        <br>
+        <a href="#/artist/result">
+            <button style="margin-top:30px; padding-top:10px;"
+                    type="button"
+                    class="btn btn-primary btn-lg btn-block"> Search
+            </button>
+        </a>
+    </form>
+
+
+</div>
+
+
+

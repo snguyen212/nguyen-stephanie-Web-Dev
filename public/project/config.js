@@ -23,15 +23,73 @@
             })
 
             .when("/register", {
-                templateUrl: "views/login/register.view.client.html",
+                templateUrl: "views/login/registerpg1.view.client.html",
                 controller: "RegisterController",
                 controllerAs: "model"
 
             })
 
-            .when("/profile", {
-                templateUrl: "views/profile.view.client.html",
+            .when("/regartist", {
+                templateUrl: "views/login/register.artist.view.client.html",
+                controller: "RegisterController",
+                controllerAs: "model"
+
+
+            }).when("/regband", {
+                templateUrl: "views/login/register.band.view.client.html",
+                controller: "RegisterController",
+                controllerAs: "model"
+
+            })
+
+            .when("/bandprofile", {
+                templateUrl: "views/profile/profile.band.view.client.html",
                 controller: "ProfileController",
+                controllerAs: "model"
+                //resolve allows you to set conditions that allow u to go to this page
+                //  resolve: { loggedin: checkLoggedIn }
+
+            })
+
+            .when("/artistprofile", {
+                templateUrl: "views/profile/profile.artist.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model"
+                //resolve allows you to set conditions that allow u to go to this page
+                //  resolve: { loggedin: checkLoggedIn }
+
+            })
+
+            .when("/artist/search", {
+                templateUrl: "views/search/search.artist.view.client.html",
+                controller: "SearchController",
+                controllerAs: "model"
+                //resolve allows you to set conditions that allow u to go to this page
+                //  resolve: { loggedin: checkLoggedIn }
+
+            })
+
+            .when("/band/search", {
+                templateUrl: "views/search/search.band.view.client.html",
+                controller: "SearchController",
+                controllerAs: "model"
+                //resolve allows you to set conditions that allow u to go to this page
+                //  resolve: { loggedin: checkLoggedIn }
+
+            }) 
+            
+            .when("/band/result", {
+                templateUrl: "views/search/results.band.view.client.html",
+                controller: "SearchController",
+                controllerAs: "model"
+                //resolve allows you to set conditions that allow u to go to this page
+                //  resolve: { loggedin: checkLoggedIn }
+
+            })
+
+            .when("/artist/result", {
+                templateUrl: "views/search/results.artist.view.client.html",
+                controller: "SearchController",
                 controllerAs: "model"
                 //resolve allows you to set conditions that allow u to go to this page
                 //  resolve: { loggedin: checkLoggedIn }
@@ -45,18 +103,11 @@
                 //resolve allows you to set conditions that allow u to go to this page
                 //  resolve: { loggedin: checkLoggedIn }
 
-            })
+            }) 
+            
 
             .when("/logout", {})
 
-            .when("/search", {
-                templateUrl: "views/search.view.client.html",
-                controller: "SearchController",
-                controllerAs: "model"
-                //resolve allows you to set conditions that allow u to go to this page
-                //  resolve: { loggedin: checkLoggedIn }
-
-            })
 
             .when("/search/:type", {
                 templateUrl: "views/results.view.client.html",
