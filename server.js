@@ -39,7 +39,7 @@ app.use(passport.session());
 
 // require ("./test/app.js")(app);
 
-//project(app);
+project(app);
 //assignment(app);
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;

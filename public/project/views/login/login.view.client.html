@@ -3,6 +3,11 @@
         <div class="row">
             <div class="login-page">
                 <div class="form">
+
+                    <div ng-if="model.error" class="alert alert-danger">
+                        {{model.error}}
+                    </div>
+
                     <h1>Login</h1>
 
                     <p class="message" style="text-align:left; color:black;"> Username </p>

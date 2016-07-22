@@ -14,14 +14,13 @@
         // create variable
         //ptr to instance of current object i'm in
         var vm = this;
-
         vm.login = login;
 
         function login(username, password) {
-            var user = {
-                username: username,
-                password: password
-            };
+            // var user = {
+            //     username: username,
+            //     password: password
+            // };
             UserService
                 .login(user)
                 .then(function(response) {

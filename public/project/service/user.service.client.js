@@ -21,14 +21,27 @@
         };
         return api;
 
+
+
         //LOGIN -------------------------------------
         function login(username, password) {
-            var url = "/api/login";
+            var url = "/project/api/login";
             var user = {
                 username: username,
                 password: password
             };
             return $http.post(url, user);
+
+        }
+
+        // CREATE USER ----------------------------------------
+        function createUser(username, password) {
+            var url = "/project/api/user";
+            var newUser = {
+                username: username,
+                password: password
+            };
+            return $http.post(url, newUser);
 
         }
 
@@ -50,16 +63,7 @@
             return $http.post("/api/logout");
         }
 
-        // CREATE USER ----------------------------------------
-        function createUser(username, password) {
-            var url = "/api/user";
-            var newUser = {
-                username: username,
-                password: password
-            };
-            return $http.post(url, newUser);
 
-        }
 
         // UPDATE USER --------------------------------------
 
