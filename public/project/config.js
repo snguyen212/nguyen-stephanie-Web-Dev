@@ -96,8 +96,8 @@
 
             })
 
-            .when("/profile:id", {
-                templateUrl: "views/profile.view.client.html",
+            .when("/profile/:id", {
+                templateUrl: "views/profile/profile.artist.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model"
                 //resolve allows you to set conditions that allow u to go to this page

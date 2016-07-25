@@ -25,7 +25,7 @@
 
         //LOGIN -------------------------------------
         function login(username, password) {
-            var url = "/project/api/login";
+            var url = "/api/login";
             var user = {
                 username: username,
                 password: password
@@ -36,7 +36,7 @@
 
         // CREATE USER ----------------------------------------
         function createUser(username, password) {
-            var url = "/project/api/user";
+            var url = "/api/user";
             var newUser = {
                 username: username,
                 password: password

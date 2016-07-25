@@ -6,7 +6,7 @@ module.exports = function(app, models) {
     //models contains the map of ALL Models
     //use models to interact with any models you want (can create users, delete widgets, etc.)
     
-    //var models = require("models.js")();
+    var models = require("./models/models.js")();
     // var UserModel = models.userModel;
 
     var userService = require("./server/user.service.server.js")(app, models);

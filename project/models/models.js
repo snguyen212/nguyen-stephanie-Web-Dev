@@ -7,11 +7,13 @@ module.exports = function() {
     mongoose.connect('mongodb://localhost/cs4550summer1');
     //store ALL models in this ap
 
+    var userModel = require("./user/user.model.server.js");
+    
     var models = {
         userModel: userModel,
-        websiteModel: websiteModel,
-        pageModel: pageModel,
-        widgetModel: widgetModel
+       // websiteModel: websiteModel,
+       // pageModel: pageModel,
+        //widgetModel: widgetModel
     };
     
     return models;
