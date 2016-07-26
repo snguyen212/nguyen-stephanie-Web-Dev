@@ -22,7 +22,7 @@
             //     password: password
             // };
             UserService
-                .login(user)
+                .login(username, password)
                 .then(function(response) {
                     var user = response.data;
                     if (user) {

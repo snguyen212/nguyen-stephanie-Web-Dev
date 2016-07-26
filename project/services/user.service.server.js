@@ -60,17 +60,17 @@ module.exports = function (app, models) {
             successRedirect: '/#/profile',
             failureRedirect: '/#/login'
         }));
-    app.post("/api/login", passport.authenticate('jamn'), login);
-    app.get("/api/user", getUsers);
-    app.get("/api/loggedin", loggedin);
-    app.get("/api/user?username=username&password=password", findUserByCredentials);
-    app.get("/api/user?username=username", findUserByUsername);
-    app.get("/api/user/:userId", findUserById);
-    app.post("/api/user", createUser);
-    app.post("api/register", register);
-    app.post('/api/logout', logout);
-    app.put("/api/user/:userId", updateUser);
-    app.delete("/api/user/:userId", authenticate, deleteUser);
+    app.post("/project/api/login", passport.authenticate('jamn'), login);
+    app.get("/project/api/user", getUsers);
+    app.get("/project/api/loggedin", loggedin);
+    app.get("/project/api/user?username=username&password=password", findUserByCredentials);
+    app.get("/project/api/user?username=username", findUserByUsername);
+    app.get("/project/api/user/:userId", findUserById);
+    app.post("/project/api/user", createUser);
+    app.post("/project/api/register", register);
+    app.post('/project/api/logout', logout);
+    app.put("/project/api/user/:userId", updateUser);
+    app.delete("/project/api/user/:userId", authenticate, deleteUser);
 
 
     passport.use('jamn', new LocalStrategy(localStrategy));
@@ -126,6 +126,19 @@ module.exports = function (app, models) {
             );
     }
 
+    function findUserByUsername(username, req, res) {
+        userModel
+            .findUserByUsername(username)
+            .then(
+                function (user) {
+                    req.user = user;
+                    res.json(user);
+                },
+                function (error) {
+                    res.status(403).send("Unable to login");
+                }
+            );
+    }
 
     //PASSPORT -------------------------------------
     function localStrategy(username, password, done) {
@@ -362,17 +375,5 @@ module.exports = function (app, models) {
     }
 
 
-    function findUserByUsername(username, req, res) {
-        userModel
-            .findUserByUsername(username)
-            .then(
-                function (user) {
-                    req.user = user;
-                    res.json(user);
-                },
-                function (error) {
-                    res.status(403).send("Unable to login");
-                }
-            );
-    }
+
 };

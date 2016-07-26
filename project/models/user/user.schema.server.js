@@ -26,7 +26,7 @@ module.exports = function() {
         // google: {
         //     id:  String
         // },
-        websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Website'}],
+       // websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Website'}],
         //if you don't provide a date, it'll put in current timestamp
         dateCreated: {type: Date, default: Date.now},
         
@@ -36,7 +36,7 @@ module.exports = function() {
         //specifies collection name
         //assignment is the namespace (specifies we want user only in this assignment)
         //this is to prevent name collision in db if my project also has Users
-    }, {collection: "assignment.user"});
+    }, {collection: "project.user"});
     
     return UserSchema
 };
