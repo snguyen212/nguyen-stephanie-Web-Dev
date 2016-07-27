@@ -35,11 +35,16 @@
         }
 
         // CREATE USER ----------------------------------------
-        function createUser(username, password) {
+        function createUser(username, password, firstname, lastname, email, type) {
             var url = "/api/user";
             var newUser = {
                 username: username,
-                password: password
+                password: password,
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                type: type
+                
             };
             return $http.post(url, newUser);
 
@@ -49,11 +54,15 @@
             return $http.get("/api/loggedin");
         }
 
-        function register(username, password) {
+        function register(username, password, firstname, lastname, email, type) {
             var url = "api/register";
             var user = {
                 username: username,
-                password: password
+                password: password,
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                type: type
             };
             return $http.post(url, user);
 

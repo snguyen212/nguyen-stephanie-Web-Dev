@@ -101,8 +101,8 @@ module.exports = function (app, models) {
                         var emailParts = email.split("@");
                         var newGoogleUser = {
                             username:  emailParts[0],
-                            firstName: profile.name.givenName,
-                            lastName:  profile.name.familyName,
+                            firstname: profile.name.givenName,
+                            lastname:  profile.name.familyName,
                             email:     email,
                             google: {
                                 id:    profile.id,
@@ -307,7 +307,7 @@ module.exports = function (app, models) {
             .updateUser(id, newUser)
             .then(
                 function (user) {
-                    res.send(200);
+                    res.sendStatus(200);
                 },
                 function (error) {
                     res.status(404).send("Unable to update user with ID: " + id);

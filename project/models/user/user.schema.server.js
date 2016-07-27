@@ -14,8 +14,8 @@ module.exports = function() {
     var UserSchema = mongoose.Schema({
         username: {type: String, required: true},
         password: String,
-        firstName: String,
-        lastName: String,
+        firstname: String,
+        lastNnme: String,
         email: String,
         //can store whole facebook object here
         google: {

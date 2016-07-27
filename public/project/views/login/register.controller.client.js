@@ -13,7 +13,7 @@
         vm.register = register;
 
 
-        function register(username, pw) {
+        function register(username, pw, pw2, lastname, firstname, email, type) {
             //username is entered
             if (username) {
                 UserService
@@ -23,7 +23,11 @@
                             if (user.data == null) {
                                 return {
                                     username: username,
-                                    password: pw
+                                    password: pw,
+                                    lastame: lastname,
+                                    firstname: firstname,
+                                    email: email,
+                                    type: type
                                 };
 
                             } else {
@@ -33,7 +37,7 @@
                     .then(
                         function (user) {
                             UserService
-                                .createUser(username, pw)
+                                .createUser(username, pw, lastname, firstname, email, type)
                                 .then(
                                     function (response) {
                                         var user = response.data;
