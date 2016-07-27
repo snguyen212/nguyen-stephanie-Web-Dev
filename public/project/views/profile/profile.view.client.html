@@ -1,0 +1,63 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand">
+            Profile
+        </a>
+        <p class="navbar-text pull-right">
+            <a ng-click="model.updateUser(model.user)"
+               class="navbar-link">
+                  <span class="glyphicon glyphicon-ok">
+                  </span>
+            </a>
+        </p>
+    </div>
+
+</nav>
+
+
+<div class="scroll">
+    <div class="login-page">
+        <div class="form register">
+            <h1> Profile</h1>
+
+            <p class="message" style="text-align:left; color:black;"> Username </p>
+            <input ng-model="model.user.username"
+                   type="text"
+                   placeholder="alice123"/>
+
+            <p class="message" style="text-align:left; color:black;"> First Name </p>
+            <input ng-model="model.user.firstname"
+                   type="text"
+                   placeholder="alice"/>
+
+            <p class="message" style="text-align:left; color:black;"> Last Name </p>
+            <input ng-model="model.user.lastname"
+                   type="text"
+                   placeholder="wonderland"/>
+
+            <p class="message" style="text-align:left; color:black;"> Email </p>
+            <input ng-model="model.user.email"
+                   type="text"
+                   placeholder="alice@wonderland.com"/>
+
+            <h4>I am a...</h4>
+            <select style="width:100%;
+                    margin-bottom:25px"
+                    name="membertype">
+                <option value="drummer">Drummer</option>
+                <option value="guitarist">Guitarist</option>
+                <option value="singer">Singer</option>
+            </select>
+            <br>
+            <a href="#/artist/search">
+                <button>Search JAM'N Friends</button>
+            </a>
+            <a href="#/login">
+                <button style="background-color:#1b6d85; margin-top:20px;">Logout</button>
+            </a>
+
+
+        </div>
+    </div>
+</div>

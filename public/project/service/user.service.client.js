@@ -5,6 +5,8 @@
 
     // $http allows you to interact with SERVER
     function UserService($http) {
+
+
         var api = {
             login: login,
             createUser: createUser,
@@ -23,7 +25,7 @@
 
         //LOGIN -------------------------------------
         function login(username, password) {
-            var url = "/project/api/login";
+            var url = "/api/login";
             var user = {
                 username: username,
                 password: password
@@ -34,7 +36,7 @@
 
         // CREATE USER ----------------------------------------
         function createUser(username, password) {
-            var url = "/project/api/user";
+            var url = "/api/user";
             var newUser = {
                 username: username,
                 password: password
@@ -44,11 +46,11 @@
         }
 
         function checkLoggedIn() {
-            return $http.get("/project/api/loggedin");
+            return $http.get("/api/loggedin");
         }
 
         function register(username, password) {
-            var url = "/project/api/register";
+            var url = "api/register";
             var user = {
                 username: username,
                 password: password
@@ -58,7 +60,7 @@
         }
 
         function logout() {
-            return $http.post("/project/api/logout");
+            return $http.post("/api/logout");
         }
 
 
@@ -67,7 +69,7 @@
 
         function updateUser(id, newUser) {
             // /api/user/:userId is the URL we want from the assignment
-            var url = "/project/api/user/" + id;
+            var url = "/api/user/" + id;
             //generate PUT
             //newUser contains info (name, user, pw) of new user
             return $http.put(url, newUser);
@@ -78,25 +80,25 @@
 
 //         //will iterate over the id,find the id and delete it
         function deleteUser(id) {
-            var url = "/project/api/user" + id;
+            var url = "/api/user" + id;
             return $http.delete(url);
         }
 
 
         //find user by username and password function -------------------------
         function findUserByUsernameAndPassword(username, password) {
-            var url = "/project/api/user?username=" + username + "&password=" + password;
+            var url = "/api/user?username=" + username + "&password=" + password;
             return $http.get(url);
         }
 
         function findUserByUsername(username) {
-            var url = "/project/api/user?username=" + username;
+            var url = "/api/user?username=" + username;
             return $http.get(url);
         }
 
 
         function findUserById(id) {
-            var url = "/project/api/user/" + id;
+            var url = "/api/user/" + id;
             return $http.get(url);
 
         }
