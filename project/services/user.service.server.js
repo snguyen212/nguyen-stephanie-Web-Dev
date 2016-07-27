@@ -155,8 +155,8 @@ module.exports = function (app, models) {
 
     //AUTHENTICATE -----------------------------------------
     function authenticate(req, res) {
-        console.log(req, user);
-        console.log(req, isAuthenticated());
+       // console.log(req, user);
+        //console.log(req, isAuthenticated());
         if (req.isAuthenticated()) {
             //if authenticated, it's ok so look at next requests
             next();
@@ -283,6 +283,8 @@ module.exports = function (app, models) {
             res.send('0');
         }
     }
+
+    //DELETE USER ---------------
 
     function deleteUser(req, res) {
         var id = req.params.userId;

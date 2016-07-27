@@ -15,7 +15,7 @@ module.exports = function() {
         username: {type: String, required: true},
         password: String,
         firstname: String,
-        lastNnme: String,
+        lastname: String,
         email: String,
         //can store whole facebook object here
         google: {

@@ -8,6 +8,7 @@
     function ProfileController($location, $routeParams, $rootScope, UserService) {
         var vm = this;
 
+
         // EVENT HANDLERS -----------------------------
         vm.updateUser = updateUser;
         vm.unregister = unregister;
@@ -29,7 +30,7 @@
         init();
 
         //use UserService to delete user ------------------
-        function unregister(id) {
+        function unregister() {
             UserService
                 .deleteUser(id)  //id is in $routeParams
                 .then(

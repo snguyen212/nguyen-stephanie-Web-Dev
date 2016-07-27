@@ -89,7 +89,7 @@
 
 //         //will iterate over the id,find the id and delete it
         function deleteUser(id) {
-            var url = "/api/user" + id;
+            var url = "/api/user/" + id;
             return $http.delete(url);
         }
 

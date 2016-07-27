@@ -70,7 +70,7 @@
                    placeholder="alice@wonderland.com"/>
 
             <h4>I am a...</h4>
-            <select ng-model="type"
+            <select ng-model="model.user.type"
                     style="width:100%;
                     margin-bottom:25px"
                     name="membertype">
@@ -82,7 +82,11 @@
             <a href="#/artist/search">
                 <button>Search JAM'N Friends</button>
             </a>
-            <a href="#/login">
+            <a ng-click="model.unregister()">
+                <button style="background-color:#e03131; margin-top:20px;">Unregister</button>
+            </a>
+
+            <a ng-click="model.logout()">
                 <button style="background-color:#1b6d85; margin-top:20px;">Logout</button>
             </a>
 
