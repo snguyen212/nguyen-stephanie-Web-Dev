@@ -43,7 +43,7 @@
 <div class="scroll">
     <div class="login-page">
         <div class="form register">
-            <h1>{{model.user.username}}'s Profile</h1>
+            <h1>{{model.user.username}}'s Artist Profile</h1>
 
             <div ng-show="model.success" class="alert alert-success">
                 {{model.success}}
@@ -69,15 +69,19 @@
                    type="text"
                    placeholder="alice@wonderland.com"/>
 
-            <h4>I am a...</h4>
-            <select ng-model="model.user.type"
-                    style="width:100%;
-                    margin-bottom:25px"
-                    name="membertype">
-                <option value="drummer">Drummer</option>
-                <option value="guitarist">Guitarist</option>
-                <option value="singer">Singer</option>
-            </select>
+            <h4 style="text-align:left">I am a...</h4>
+            <!--<select ng-model="model.user.type"-->
+                    <!--style="width:100%;-->
+                    <!--margin-bottom:25px"-->
+                    <!--name="membertype">-->
+                <!--<option value="drummer">Drummer</option>-->
+                <!--<option value="guitarist">Guitarist</option>-->
+                <!--<option value="singer">Singer</option>-->
+            <!--</select>-->
+            <input ng-model="model.user.type"
+                   type="text"
+                   disabled/>
+
             <br>
             <a href="#/artist/search">
                 <button>Search JAM'N Friends</button>

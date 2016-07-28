@@ -1,55 +1,78 @@
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
-<link href="../../css/login.css" rel="stylesheet">
+<div class="login-page">
+    <div class="form register">
+        <h1>Artist Register</h1>
+
+        <div ng-show="model.error" class="alert alert-danger">
+            {{model.error}}
+        </div>
+
+        <p class="message" style="text-align:left; color:black;"> Username </p>
+        <input required ng-model="username"
+               type="text"
+               placeholder="username"/>
+
+        <p class="message" style="text-align:left; color:black;"> First Name </p>
+        <input required ng-model="firstname"
+               type="text"
+               placeholder="alice"/>
+
+        <p class="message" style="text-align:left; color:black;"> Last Name </p>
+        <input required ng-model="lastname"
+               type="text"
+               placeholder="wonderland"/>
+
+        <p class="message" style="text-align:left; color:black;"> Email </p>
+        <input required ng-model="email"
+               type="text"
+               placeholder="alice@wonderland.com"/>
+
+        <p class="message" style="text-align:left; color:black;"> Password </p>
+        <input required ng-model="password"
+               type="password" placeholder="password"/>
+
+        <h4 style="text-align:left">I am a...</h4>
+        <!--<select required ng-model="type"-->
+        <!--style="width:100%;-->
+        <!--margin-bottom:25px"-->
+        <!--name="membertype">-->
+        <!--<option value="drummer"-->
+        <!--id="drummer" >Drummer</option>-->
+        <!--<option value="guitarist"-->
+        <!--id="guitarist">Guitarist</option>-->
+        <!--<option value="singer"-->
+        <!--id="singer">Singer</option>-->
+        <!--</select>-->
 
 
-<div class="scroll">
-    <div class="login-page">
-        <div class="form register">
-            <h1>Artist Register</h1>
-            <p class="message" style="text-align:left; color:black;"> Username </p>
-            <input required ng-model="username"
-                   type="text"
-                   placeholder="username"/>
+        <div class="radio" style="text-align:left;">
+            <label>
+                <input type="radio"
+                       ng-model="type"
+                       value="Drummer"> <b> Drummer </b>
+            </label>
+            <label>
+                <input type="radio"
+                       ng-model="type"
+                       value="Guitarist"> <b>Guitarist</b>
+            </label>
+            <label>
+                <input type="radio"
+                       ng-model="type"
+                       value="Singer"> <b>Singer</b>
 
-            <p class="message" style="text-align:left; color:black;"> First Name </p>
-            <input required ng-model="firstname"
-                   type="text"
-                   placeholder="alice"/>
-
-            <p class="message" style="text-align:left; color:black;"> Last Name </p>
-            <input required ng-model="lastname"
-                   type="text"
-                   placeholder="wonderland"/>
-
-            <p class="message" style="text-align:left; color:black;"> Email </p>
-            <input required ng-model="email"
-                   type="text"
-                   placeholder="alice@wonderland.com"/>
-
-            <p class="message" style="text-align:left; color:black;"> Password </p>
-            <input required ng-model="password"
-                   type="password" placeholder="password"/>
-
-            <h4>I am a...</h4>
-            <select required ng-model="type"
-                    style="width:100%;
-                    margin-bottom:25px"
-                    name="membertype">
-                <option value="drummer"
-                        id="drummer" >Drummer</option>
-                <option value="guitarist"
-                        id="guitarist">Guitarist</option>
-                <option value="singer"
-                        id="singer">Singer</option>
-            </select>
-            <br>
-            <a ng-click = "model.register(username, password, password2, firstname, lastname, email, type)">
-                <!--<a ng-click = "model.register(username, password)">-->
-                <button>Create Account</button>
-            </a>
-            <p class="message"
-               style="color:black;"><b> Already registered? <a href="#/login">Sign In</a></b></p>
+            </label>
 
         </div>
+
+
+        <br>
+        <a ng-click="model.register(username, password, firstname, lastname, email, type)">
+            <!--<a ng-click = "model.register(username, password)">-->
+            <button>Create Account</button>
+        </a>
+        <p class="message"
+           style="color:black;"><b> Already registered? <a href="#/login">Sign In</a></b></p>
+
     </div>
 </div>
+

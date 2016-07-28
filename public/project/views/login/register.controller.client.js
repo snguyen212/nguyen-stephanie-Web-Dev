@@ -13,10 +13,10 @@
         vm.register = register;
 
 
-        function register(username, pw, pw2, firstname, lastname, email, type) {
+        function register(username, pw, firstname, lastname, email, type) {
             //username is entered
             if (username) {
-                if ((pw1 && pw2) && (pw1 === pw2)) {
+                //if ((pw1 && pw2) && (pw1 === pw2)) {
                     UserService
                         .findUserByUsername(username)
                         .then(
@@ -53,9 +53,9 @@
                                         })
                             })
 
-                } else {
-                    vm.error = "Please make sure passwords match"
-                }
+                // } else {
+                //     vm.error = "Please make sure passwords match"
+                // }
             } else {
                 vm.error = "Please enter a username";
             }

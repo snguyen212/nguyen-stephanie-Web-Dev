@@ -71,8 +71,8 @@ module.exports = function() {
 
                 //modify and update ONLY fields:
                 //(because you don't want them to change pw and username)
-                firstname: newUser.firstName,
-                lastname: newUser.lastName,
+                firstame: newUser.firstName,
+                lastName: newUser.lastName,
                 email: newUser.email
             }
             }
