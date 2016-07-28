@@ -30,43 +30,26 @@
         <input required ng-model="password"
                type="password" placeholder="password"/>
 
-        <h4 style="text-align:left">I am a...</h4>
-        <!--<select required ng-model="type"-->
-        <!--style="width:100%;-->
-        <!--margin-bottom:25px"-->
-        <!--name="membertype">-->
-        <!--<option value="drummer"-->
-        <!--id="drummer" >Drummer</option>-->
-        <!--<option value="guitarist"-->
-        <!--id="guitarist">Guitarist</option>-->
-        <!--<option value="singer"-->
-        <!--id="singer">Singer</option>-->
-        <!--</select>-->
+        <h4 style="text-align:left">I am a: </h4>
 
-
-        <div class="radio" style="text-align:left;">
-            <label>
-                <input type="radio"
-                       ng-model="type"
-                       value="Drummer"> <b> Drummer </b>
-            </label>
-            <label>
-                <input type="radio"
-                       ng-model="type"
-                       value="Guitarist"> <b>Guitarist</b>
-            </label>
-            <label>
-                <input type="radio"
-                       ng-model="type"
-                       value="Singer"> <b>Singer</b>
-
-            </label>
-
-        </div>
+        <select required ng-model="type"
+                style="width:100%;
+                    margin-bottom:25px"
+                name="membertype">
+            <option value="Drummer"
+                    id="drummer"> Drummer
+            </option>
+            <option value="Guitarist"
+                    id="guitarist"> Guitarist
+            </option>
+            <option value="Singer"
+                    id="singer"> Singer
+            </option>
+        </select>
 
 
         <br>
-        <a ng-click="model.register(username, password, firstname, lastname, email, type)">
+        <a ng-click="model.register(username, password, firstname, lastname, email, bandname, bandsize, type)">
             <!--<a ng-click = "model.register(username, password)">-->
             <button>Create Account</button>
         </a>

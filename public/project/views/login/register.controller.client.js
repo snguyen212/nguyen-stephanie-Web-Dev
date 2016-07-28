@@ -13,7 +13,7 @@
         vm.register = register;
 
 
-        function register(username, pw, firstname, lastname, email, type) {
+        function register(username, pw, firstname, lastname, email, bandsize, bandname, type) {
             //username is entered
             if (username) {
                 //if ((pw1 && pw2) && (pw1 === pw2)) {
@@ -28,6 +28,8 @@
                                         firstname: firstname,
                                         lastame: lastname,
                                         email: email,
+                                        bandsize: bandsize,
+                                        bandname: bandname,
                                         type: type
                                     };
 
@@ -38,12 +40,17 @@
                         .then(
                             function (user) {
                                 UserService
-                                    .createUser(username, pw, firstname, lastname, email, type)
+                                    .createUser(username, pw, firstname, lastname, email, bandsize, bandname, type)
                                     .then(
                                         function (response) {
                                             var user = response.data;
                                             $rootScope.currentUser = user;
-                                            $location.url("/profile/" + user._id);
+                                            if (bandname) {
+                                                $location.url("/bandprofile/" + user._id);
+                                            }
+                                            else {
+                                                $location.url("/artistprofile/" + user._id);
+                                            }
 
                                         },
                                         //error if username already exists

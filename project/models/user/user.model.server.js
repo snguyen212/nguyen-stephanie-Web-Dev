@@ -73,7 +73,10 @@ module.exports = function() {
                 //(because you don't want them to change pw and username)
                 firstame: newUser.firstName,
                 lastName: newUser.lastName,
-                email: newUser.email
+                email: newUser.email,
+                type: newUser.type,
+                bandname: newUser.bandname,
+                bandsize: newUser.bandsize
             }
             }
         );

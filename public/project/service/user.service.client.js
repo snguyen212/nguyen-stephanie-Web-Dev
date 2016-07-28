@@ -35,7 +35,7 @@
         }
 
         // CREATE USER ----------------------------------------
-        function createUser(username, password, firstname, lastname, email, type) {
+        function createUser(username, password, firstname, lastname, email, bandsize, bandname, type) {
             var url = "/api/user";
             var newUser = {
                 username: username,
@@ -43,6 +43,8 @@
                 firstname: firstname,
                 lastname: lastname,
                 email: email,
+                bandsize: bandsize,
+                bandname: bandname,
                 type: type
                 
             };
@@ -54,7 +56,7 @@
             return $http.get("/api/loggedin");
         }
 
-        function register(username, password, firstname, lastname, email, type) {
+        function register(username, password, firstname, lastname, email, bandsize, bandname, type) {
             var url = "api/register";
             var user = {
                 username: username,
@@ -62,6 +64,8 @@
                 firstname: firstname,
                 lastname: lastname,
                 email: email,
+                bandsize: bandsize,
+                bandname: bandname,
                 type: type
             };
             return $http.post(url, user);

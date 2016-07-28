@@ -1,5 +1,3 @@
-
-
 <!--<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">-->
 <!--<div class="container-fluid">-->
 <!--<div class="container topnav">-->
@@ -40,74 +38,59 @@
 </nav>
 
 
-<div class="scroll">
-    <div class="login-page">
-        <div class="form register">
-            <h1>Band Profile</h1>
+<div class="login-page">
+    <div class="form register">
+        <h1>{{model.user.username}}'s Band Profile</h1>
 
-            <p class="message" style="text-align:left; color:black;"> Username </p>
-            <input ng-model="model.user.username"
-                   type="text"
-                   placeholder="alice123"/>
-
-            <p class="message" style="text-align:left; color:black;"> First Name </p>
-            <input ng-model="model.user.firstname"
-                   type="text"
-                   placeholder="alice"/>
-
-            <p class="message" style="text-align:left; color:black;"> Last Name </p>
-            <input ng-model="model.user.lastname"
-                   type="text"
-                   placeholder="wonderland"/>
-
-            <p class="message" style="text-align:left; color:black;"> Email </p>
-            <input ng-model="model.user.email"
-                   type="text"
-                   placeholder="alice@wonderland.com"/>
-
-            <h4>I am a...</h4>
-            <select style="width:100%;
-                    margin-bottom:25px"
-                    name="membertype"
-                    ng-model="model.user.type">
-                <option value="drummer">Drummer</option>
-                <option value="guitarist">Guitarist</option>
-                <option value="singer">Singer</option>
-            </select>
-
-            <p class="message" style="text-align:left; color:black;"> Band Name </p>
-            <input ng-model="model.user.bandname"
-                   type="text"
-                   placeholder="band name"/>
-
-            <p class="message" style="text-align:left; color:black;"> Band Size </p>
-            <select required ng-model="bandsize"
-                    style="width:100%;
-                    margin-bottom:25px"
-                    name="size">
-                <option value="1"
-                        id="1" >1</option>
-                <option value="2"
-                        id="2">2</option>
-                <option value="3"
-                        id="3">3</option>
-                <option value="4"
-                        id="4">4</option>
-                <option value="5+"
-                        id="5+">5+</option>
-            </select>
-
-
-
-            <br>
-            <a href="#/band/search">
-                <button>Search JAM'N Friends</button>
-            </a>
-            <a href="#/login">
-                <button style="background-color:#1b6d85; margin-top:20px;">Logout</button>
-            </a>
-
-
+        <div ng-show="model.success" class="alert alert-success">
+            {{model.success}}
         </div>
+
+        <div ng-show="model.error" class="alert alert-danger">
+            {{model.error}}
+        </div>
+
+
+        <p class="message" style="text-align:left; color:black;"> First Name </p>
+        <input ng-model="model.user.firstname"
+               type="text"
+               placeholder="alice"/>
+
+        <p class="message" style="text-align:left; color:black;"> Last Name </p>
+        <input ng-model="model.user.lastname"
+               type="text"
+               placeholder="wonderland"/>
+
+        <p class="message" style="text-align:left; color:black;"> Email </p>
+        <input ng-model="model.user.email"
+               type="text"
+               placeholder="alice@wonderland.com"/>
+
+        <h4>I am a:</h4>
+        <input ng-model="model.user.type"
+               type="text"
+               placeholder="Guitarist"/>
+
+        <p class="message" style="text-align:left; color:black;"> Band Name </p>
+        <input ng-model="model.user.bandname"
+               type="text"
+               placeholder="band name"/>
+
+        <p class="message" style="text-align:left; color:black;"> Band Size </p>
+        <input ng-model="model.user.bandsize"
+               type="text"
+               placeholder="4"/>
+
+
+        <br>
+        <a href="#/band/search">
+            <button>Search JAM'N Friends</button>
+        </a>
+        <a ng-click="model.logout()">
+            <button style="background-color:#1b6d85; margin-top:20px;">Logout</button>
+        </a>
+
+
     </div>
 </div>
+

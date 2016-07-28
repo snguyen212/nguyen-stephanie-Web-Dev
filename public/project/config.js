@@ -42,7 +42,7 @@
 
             })
 
-            .when("/bandprofile", {
+            .when("/bandprofile/:id", {
                 templateUrl: "views/profile/profile.band.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model"
@@ -51,7 +51,7 @@
 
             })
 
-            .when("/artistprofile", {
+            .when("/artistprofile/:id", {
                 templateUrl: "views/profile/profile.artist.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model"
