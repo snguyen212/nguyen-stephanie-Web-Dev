@@ -28,7 +28,7 @@
                     if (user) {
                         var id = user._id;
                         $rootScope.currentUser = user;
-                        $rootScope.loggedIn = true;
+                       // $rootScope.loggedIn = true;
                         $location.url("/profile/" + id);
                     }
                     else {

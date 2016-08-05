@@ -66,9 +66,10 @@
                type="text"
                placeholder="alice@wonderland.com"/>
 
-        <h4>I am a:</h4>
+        <h4 style="text-align:left">I am a:</h4>
         <input ng-model="model.user.type"
                type="text"
+               disabled
                placeholder="Guitarist"/>
 
         <p class="message" style="text-align:left; color:black;"> Band Name </p>
@@ -83,7 +84,7 @@
 
 
         <br>
-        <a href="#/band/search">
+        <a href="#/band/{{model.user._id}}/search">
             <button>Search JAM'N Friends</button>
         </a>
         <a ng-click="model.logout()">

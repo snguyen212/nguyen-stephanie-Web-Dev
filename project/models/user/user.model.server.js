@@ -14,17 +14,23 @@ module.exports = function() {
         findUserByCredentials: findUserByCredentials,
         findUserByUsername: findUserByUsername,
         findUserById: findUserById,
+        findAllUsers: findAllUsers,
         updateUser: updateUser,
         deleteUser: deleteUser,
         findFacebookUser: findFacebookUser
+        
     };
     return api;
 
     // FIND FACEBOOK USER -------------------------------------
     
+   
+   
     function findFacebookUser(id) {
         return User.findOne({'facebook.id': id});   //if facebook id matches id i'm giving you, then return it
     }
+    
+    
     
     
     //---------- CREATE USER -----------------------------------
@@ -42,6 +48,12 @@ module.exports = function() {
 
         //OR can do...
         //User.find({_id: userId});
+    }
+
+    //------------FIND ALL USERS
+
+    function findAllUsers() {
+        return User.find();
     }
 
 

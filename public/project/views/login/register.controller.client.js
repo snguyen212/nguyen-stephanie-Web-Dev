@@ -16,7 +16,8 @@
         function register(username, pw, firstname, lastname, email, bandsize, bandname, type) {
             //username is entered
             if (username) {
-                //if ((pw1 && pw2) && (pw1 === pw2)) {
+                // if ((pw1 && pw2) && (pw1 === pw2)) {
+                if (pw) {
                     UserService
                         .findUserByUsername(username)
                         .then(
@@ -26,7 +27,7 @@
                                         username: username,
                                         password: pw,
                                         firstname: firstname,
-                                        lastame: lastname,
+                                        lastname: lastname,
                                         email: email,
                                         bandsize: bandsize,
                                         bandname: bandname,
@@ -46,10 +47,10 @@
                                             var user = response.data;
                                             $rootScope.currentUser = user;
                                             if (bandname) {
-                                                $location.url("/bandprofile/" + user._id);
+                                                $location.url("/band/" + user._id);
                                             }
                                             else {
-                                                $location.url("/artistprofile/" + user._id);
+                                                $location.url("/artist/" + user._id);
                                             }
 
                                         },
@@ -59,6 +60,9 @@
                                             vm.error = error.data;
                                         })
                             })
+                } else {
+                    vm.error = "Please enter a password"
+                }
 
                 // } else {
                 //     vm.error = "Please make sure passwords match"

@@ -16,6 +16,7 @@
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
             findUserByUsername: findUserByUsername,
             findUserById: findUserById,
+            findAllUsers: findAllUsers,
             updateUser: updateUser,
             deleteUser: deleteUser
         };
@@ -86,6 +87,14 @@
             //generate PUT
             //newUser contains info (name, user, pw) of new user
             return $http.put(url, newUser);
+        }
+
+        
+        
+        function findAllUsers() {
+            var url = "/api/allusers";
+            return $http.get(url);
+
         }
 
 

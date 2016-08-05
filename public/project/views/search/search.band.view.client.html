@@ -1,9 +1,7 @@
-
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#/bandprofile">
-           <!--href="#/profile/{{model.user._id}}">-->
+        <a class="navbar-brand" href="#/band/{{model.user._id}}">
+            <!--href="#/profile/{{model.user._id}}">-->
             <span class="glyphicon glyphicon-chevron-left"></span>
             Profile
         </a>
@@ -11,23 +9,67 @@
 </nav>
 
 
+<!--<div class="login-page">-->
+    <!--<form name="search">-->
+        <!--<h1 style="padding-bottom:10px; text-align:center;"><b>Search JAM'N Members</b></h1>-->
+
+        <!--<h4 style="padding-bottom:20px; text-align:center"> Search for an extra member to jam with your band!-->
+            <!--<br> Who are you looking to jam with? </h4>-->
+        <!--<select style="width:100%;"-->
+                <!--ng-model="searchtype"-->
+                <!--name="searchtype"-->
+                <!--id="searchtype">-->
+            <!--<option value="Drummer"-->
+                    <!--id="Drummer"> Drummer-->
+            <!--</option>-->
+            <!--<option value="Guitarist"-->
+                    <!--id="Guitarist">Guitarist-->
+            <!--</option>-->
+            <!--<option value="Singer"-->
+                    <!--id="Singer">Singer-->
+            <!--</option>-->
+            <!--<option value="All">View All</option>-->
+        <!--</select>-->
+        <!--<br>-->
+
+       <!-- TODO: copy Website-list everything-->
+
+            <!--<select ng-model="searchtype">-->
+                <!--<option value="Drummer">Drummer</option>-->
+                <!--<option value="Guitarist">Guitarist</option>-->
+                <!--<option value="Singer">Singer</option>-->
+            <!--</select>-->
+
+        <!--<tr ng-repeat="user in model.users | filter:searchtype">-->
+            <!--<td>{{user.name}}</td>-->
+            <!--<td>{{emp.type}}</td>-->
+
+
+        <!--</tr>-->
 
 
 <div class="login-page">
-    <form name="search">
-        <h1 style="padding-bottom:10px; text-align:center;"><b>Search JAM'N Members</b></h1>
 
-        <h4 style="padding-bottom:20px; text-align:center"> Who are you looking to jam with? </h4>
-        <select style="width:100%;"
-                name="membertype"
-                id="membertype">
-            <option value="drummer">Drummer</option>
-            <option value="guitarist">Guitarist</option>
-            <option value="singer">Singer</option>
-            <option value="band">Band</option>
-        </select>
-        <br>
-        <a href="#/band/result">
+    <ul class="list-group">
+        <li ng-repeat="user in model.users"
+        style="text-align:center">
+
+            <a href="#/band/{{id}}/search/{{user._id}}">
+                {{user.name}}
+
+                {{model.user.id}}
+                {{user.username}}
+            </a>
+        </li>
+        </ul>
+
+
+</div>
+
+
+
+
+        <a href="#/band/{{model.user._id}}/search/{{searchtype}}">
             <button style="margin-top:30px; padding-top:10px;"
                     type="button"
                     class="btn btn-primary btn-lg btn-block"> Search

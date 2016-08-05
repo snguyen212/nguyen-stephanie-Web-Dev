@@ -63,14 +63,17 @@ module.exports = function (app, models) {
     app.post("/api/login", passport.authenticate('jamn'), login);
     app.get("/api/user", getUsers);
     app.get("/api/loggedin", loggedin);
+    
     app.get("/api/user?username=username&password=password", findUserByCredentials);
     app.get("/api/user?username=username", findUserByUsername);
     app.get("/api/user/:userId", findUserById);
+    app.get("/api/allusers", findAllUsers);
     app.post("/api/user", createUser);
     app.post("api/register", register);
     app.post('/api/logout', logout);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", authenticate, deleteUser);
+    
 
 
     passport.use('jamn', new LocalStrategy(localStrategy));
@@ -345,6 +348,23 @@ module.exports = function (app, models) {
         } else {
             res.send(users);
         }
+    }
+
+    //FIND ALL USERS ----------------------------------------
+
+
+    function findAllUsers(req, res) {
+        userModel
+            .findAllUsers()
+            .then(
+                function(users) {
+                    res.json(users);
+                },
+                function(error) {
+                    res.status(404).send("No users found");
+                }
+            );
+
     }
 
     //FIND USERS BY CREDENTIALS -----------------------------

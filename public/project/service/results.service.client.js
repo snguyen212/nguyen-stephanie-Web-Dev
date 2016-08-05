@@ -12,19 +12,25 @@
 
         var api = {
 
-            findAllResultsForType: findAllResultsForType
+            searchUsersByType: searchUsersByType,
+            findAllUsers: findAllUsers
 
         };
         return api;
 
         
-        // FIND WEBSITE FOR USER ----------------------
-        // iterate over array above and fine the user's websites
 
-        function findAllResultsForType(type) {
-            var url = "/api/search" + type;
+        function searchUsersByType(type) {
+            var url = "/api/search/" + type;
             return $http.get(url);
         }
+        
+        function findAllUsers() {
+            var url = "/api/allusers";
+            return $http.get(url);
+            
+        }
+        
       
     }
 })();

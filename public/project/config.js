@@ -42,7 +42,7 @@
 
             })
 
-            .when("/bandprofile/:id", {
+            .when("/band/:id", {
                 templateUrl: "views/profile/profile.band.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model"
@@ -51,7 +51,7 @@
 
             })
 
-            .when("/artistprofile/:id", {
+            .when("/artist/:id", {
                 templateUrl: "views/profile/profile.artist.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model"
@@ -62,14 +62,14 @@
 
             .when("/artist/search", {
                 templateUrl: "views/search/search.artist.view.client.html",
-                controller: "SearchController",
+                controller: "ResultsController",
                 controllerAs: "model"
                 //resolve allows you to set conditions that allow u to go to this page
                 //  resolve: { loggedin: checkLoggedIn }
 
             })
 
-            .when("/band/search", {
+            .when("/band/:id/search", {
                 templateUrl: "views/search/search.band.view.client.html",
                 controller: "SearchController",
                 controllerAs: "model"
@@ -78,7 +78,7 @@
 
             }) 
             
-            .when("/band/result", {
+            .when("/band/:id/search/:type", {
                 templateUrl: "views/search/results.band.view.client.html",
                 controller: "SearchController",
                 controllerAs: "model"
@@ -89,7 +89,7 @@
 
             .when("/artist/result", {
                 templateUrl: "views/search/results.artist.view.client.html",
-                controller: "SearchController",
+                controller: "ResultsController",
                 controllerAs: "model"
                 //resolve allows you to set conditions that allow u to go to this page
                 //  resolve: { loggedin: checkLoggedIn }
