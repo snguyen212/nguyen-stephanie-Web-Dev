@@ -60,9 +60,9 @@
 
             })
 
-            .when("/artist/search", {
+            .when("/artist/:id/search", {
                 templateUrl: "views/search/search.artist.view.client.html",
-                controller: "ResultsController",
+                controller: "SearchController",
                 controllerAs: "model"
                 //resolve allows you to set conditions that allow u to go to this page
                 //  resolve: { loggedin: checkLoggedIn }
@@ -78,9 +78,18 @@
 
             }) 
             
-            .when("/band/:id/search/:type", {
-                templateUrl: "views/search/results.band.view.client.html",
-                controller: "SearchController",
+            // .when("/band/:id/search/:type", {
+            //     templateUrl: "views/search/results.band.view.client.html",
+            //     controller: "SearchController",
+            //     controllerAs: "model"
+            //     //resolve allows you to set conditions that allow u to go to this page
+            //     //  resolve: { loggedin: checkLoggedIn }
+            //
+            // })
+
+            .when("/band/:id/search/:uid", {
+                templateUrl: "views/search/details.band.view.client.html",
+                controller: "DetailsController",
                 controllerAs: "model"
                 //resolve allows you to set conditions that allow u to go to this page
                 //  resolve: { loggedin: checkLoggedIn }

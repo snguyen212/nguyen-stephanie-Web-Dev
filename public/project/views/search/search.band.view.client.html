@@ -54,10 +54,7 @@
         <li ng-repeat="user in model.users"
         style="text-align:center">
 
-            <a href="#/band/{{id}}/search/{{user._id}}">
-                {{user.name}}
-
-                {{model.user.id}}
+            <a href="#/band/{{model.user._id}}/search/{{user._id}}">
                 {{user.username}}
             </a>
         </li>

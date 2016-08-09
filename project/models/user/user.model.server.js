@@ -96,7 +96,7 @@ module.exports = function() {
 
     //---------- DELETE USER -----------------------------------
 
-    function deleteUser(userId) {
-        return User.remove({_id: userId}); //only want to remove user that matches this ID
+    function deleteUser(id) {
+        return User.remove({_id: id}); //only want to remove user that matches this ID
     }
 };

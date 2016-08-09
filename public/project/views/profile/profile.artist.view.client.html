@@ -77,11 +77,12 @@
             <!--<option value="singer">Singer</option>-->
             <!--</select>-->
             <input ng-model="model.user.type"
+                   disabled
                    type="text"
                    placeholder="Guitarist"/>
 
             <br>
-            <a href="#/artist/search">
+            <a href="#/artist/{{model.user._id}}/search">
                 <button>Search JAM'N Friends</button>
             </a>
             <a ng-click="model.unregister()">

@@ -5,17 +5,24 @@
         .module("jamn")
         .controller("DetailsController", DetailsController);
 
-    function DetailsController($location, $routeParams, WebsiteService) {
+    function DetailsController($location, $routeParams, UserService) {
         var vm = this;
-        vm.userId = $routeParams.userId;
-        vm.type = $routeParams.type;
+        vm.id = $routeParams.id;
+
+
+
 
         function init() {
-            DetailsController
+            vm.id = $routeParams["id"];
+            vm.userId = $routeParams["uid"];
+            
+            UserService
                 .findUserById(vm.userId)
                 .then(
-                    function(response) {
-                    vm.results = response.data;
+                    function(user) {
+                    vm.user = user.data;
+                   // vm.username=user.username;
+
 
                 },
                     function(error) {

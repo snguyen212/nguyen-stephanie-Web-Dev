@@ -19,6 +19,7 @@
             findAllUsers: findAllUsers,
             updateUser: updateUser,
             deleteUser: deleteUser
+            
         };
         return api;
 

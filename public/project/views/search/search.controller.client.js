@@ -5,10 +5,13 @@
         .module("jamn")
         .controller("SearchController", SearchController);
 
-    function SearchController($location, $rootScope, $routeParams, UserService, ResultsService) {
+    function SearchController($location, $scope, $rootScope, $routeParams, UserService, ResultsService) {
         var vm = this;
         vm.sessionUser = $rootScope.sessionUser;
-        vm.userId = $routeParams["id"];
+
+        $scope.types = ['Drummer', 'Guitarist', 'Singer'];
+        $scope.searchtype = $scope.types[0];
+        
         
 
        // $scope.items = ['Drummer','Guitarist','Singer'];
@@ -53,6 +56,7 @@
                 });
         }
         init();
+        
 
 
     }

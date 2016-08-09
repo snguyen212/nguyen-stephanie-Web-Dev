@@ -293,7 +293,7 @@ module.exports = function (app, models) {
         var id = req.params.userId;
 
         userModel
-            .deleteUser(id)
+            .deleteUser(user._id)
             .then(
                 function (status) {
                     res.send(200);

@@ -1,42 +1,66 @@
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
-<link href="../../css/login.css" rel="stylesheet">
-
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="search.view.client.html">
-            <span class="glyphicon glyphicon-chevron-left">
-            </span>
-
+        <a class="navbar-brand" href="#/band/{{model.id}}/search">
+            <!--href="#/profile/{{model.user._id}}">-->
+            <span class="glyphicon glyphicon-chevron-left"></span>
             Search
-
         </a>
     </div>
-
 </nav>
 
-<style>
-
-
-</style>
-
+<!-- USE NG-IFF -->
 <div class="container-fluid"
-     style="text-align:center;margin-top:80px;padding-bottom:10px;background-color:white;">
-    <div class="row">
+     style="text-align:center;margin-top:80px;padding-bottom:10px;">
 
-        <h1> Bob </h1>
-        <h4>Drummer</h4>
-        <hr>
-        <h4><b>Username </b> bob </h4>
-        <h4><b>First Name:</b> Bob </h4>
-        <h4><b>Last Name:</b> Marley </h4>
-        <h4><b>Band Name:</b> Rockin Dudes </h4>
-        <h4><b>Band Size:</b> 3 </h4>
 
-        <hr>
-        <h4>Send an email to start JAM'N!</h4>
-        <a href="mailto:bob@marley.com?Subject=Let's Jam" target="_top">
-            bob@marley.com
-        </a>
+
+        <h1>{{model.user.username}}'s Profile</h1>
+
+    <div ng-switch="model.user.type">
+
+        <div ng-switch-when="Singer">
+            <img src="http://us.cdn2.123rf.com/168nwm/nexusplexus/nexusplexus1304/nexusplexus130401786/19195116-single-retro-microphone-against-colourful-background-with-lights.jpg">
+        </div>
+
+        <div ng-switch-when="Drummer">
+            <img src="http://oi66.tinypic.com/2v9xn45.jpg">
+        </div>
+
+        <div ng-switch-when="Guitarist">
+            <img src="http://oi65.tinypic.com/2ahyufm.jpg">
+        </div>
+
+
     </div>
+
+
+        <h4>{{model.user.type}}</h4>
+        <hr>
+
+        <h4 style="display:inline;padding-right: 6px; padding-bottom: 10px;">First Name: </h4>
+        <span style="font-size:15px;"> {{model.user.firstname}}</span>
+        <br>
+
+        <h4 style="display:inline;padding-right: 6px;">Last Name:</h4>
+        <span style="font-size:15px;"> {{model.user.lastname}} </span>
+        <br>
+
+        <span ng-if="model.user.bandsize > 1">
+        <h4 style="display:inline;padding-right: 6px;">Band Name:</h4>
+             <span style="font-size:15px;"> {{model.user.bandname}} </span>
+            <br>
+
+            <h4 style="display:inline;padding-right: 6px;">Band Size:</h4>
+            <span style="font-size:15px;"> {{model.user.bandsize}} </span>
+        </span>
+
+        <hr>
+        <!--npm node mailer-->
+        Send an email to <h5 style="display:inline;"> {{model.user.firstname}} {{model.user.lastname}} </h5> to request a JAM'N session with them!
+       <br>
+        <h4> <a href="mailto:{{model.user.email}}?Subject=Let's Jam" target="_top">
+            {{model.user.email}}
+        </a>
+            </h4>
+
 </div>

@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#/artistprofile">
+        <a class="navbar-brand" href="#/artist/{{model.user._id}}">
            <!--href="#/profile/{{model.user._id}}">-->
             <span class="glyphicon glyphicon-chevron-left"></span>
             Profile
@@ -18,16 +18,24 @@
         <h1 style="padding-bottom:10px; text-align:center;"><b>Search JAM'N Members</b></h1>
 
         <h4 style="padding-bottom:20px; text-align:center"> Who are you looking to jam with? </h4>
+        <!--<select style="width:100%;"-->
+                <!--name="membertype"-->
+                <!--id="membertype">-->
+            <!--<option value="drummer">Drummer</option>-->
+            <!--<option value="guitarist">Guitarist</option>-->
+            <!--<option value="singer">Singer</option>-->
+            <!--<option value="band">Band</option>-->
+        <!--</select>-->
+
         <select style="width:100%;"
-                name="membertype"
-                id="membertype">
-            <option value="drummer">Drummer</option>
-            <option value="guitarist">Guitarist</option>
-            <option value="singer">Singer</option>
-            <option value="band">Band</option>
+                ng-model="selecttype"
+                ng-options="type for type in types">
+
+
         </select>
+
         <br>
-        <a href="#/artist/result">
+        <a href="#/band/{{model.user._id}}/search/{{searchtype}}">
             <button style="margin-top:30px; padding-top:10px;"
                     type="button"
                     class="btn btn-primary btn-lg btn-block"> Search
