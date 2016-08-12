@@ -2,29 +2,30 @@
 
 module.exports = function (app, models) {
 
-    var resultsModel = models.resultsModel;
+    var userModel = models.userModel;
 
-    app.get("/api/search/:type", searchUsersByType);
+    app.get("/api/search/:type", findAllResultsForType);
     app.get("/api/allusers", findAllUsers);
         
    // /api/user?username=username"
 
     //FIND ALL RESULTS FOR TYPE --------------------
-    function searchUsersByType(req, res) {
+    function findAllResultsForType(req, res) {
         var id = req.params.id;
         var type = req.params.type;
 
-        resultsModel
-            .searchUsersByType(type)
+        userModel
+            .findAllResultsForType(type)
             .then(
-                function (user) {
-                    res.json(user);
+                function (users) {
+                    res.json(users);
                 },
                 function (error) {
                     res.status(404).send("error");
                 }
             );
     }
+    
     
     function findAllUsers(req, res) {
         resultsModel

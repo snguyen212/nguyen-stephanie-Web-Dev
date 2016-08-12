@@ -12,7 +12,7 @@
 
         var api = {
 
-            searchUsersByType: searchUsersByType,
+            findAllUsersForType: findAllUsersForType,
             findAllUsers: findAllUsers
 
         };
@@ -20,7 +20,7 @@
 
         
 
-        function searchUsersByType(type) {
+        function findAllUsersForType(type) {
             var url = "/api/search/" + type;
             return $http.get(url);
         }

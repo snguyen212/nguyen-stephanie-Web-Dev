@@ -15,6 +15,7 @@
             register: register, //registers creates user AND logs you in
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
             findUserByUsername: findUserByUsername,
+            findAllUsersForType: findAllUsersForType,
             findUserById: findUserById,
             findAllUsers: findAllUsers,
             updateUser: updateUser,
@@ -124,6 +125,11 @@
             var url = "/api/user/" + id;
             return $http.get(url);
 
+        }
+        
+        function findAllUsersForType(type) {
+            var url = "/api/search/" + type;
+            return $http.get(url);
         }
 
 

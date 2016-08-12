@@ -68,6 +68,7 @@ module.exports = function (app, models) {
     app.get("/api/user?username=username", findUserByUsername);
     app.get("/api/user/:userId", findUserById);
     app.get("/api/allusers", findAllUsers);
+    app.get("/api/search/:type", findAllUsersForType);
     app.post("/api/user", createUser);
     app.post("api/register", register);
     app.post('/api/logout', logout);
@@ -331,6 +332,23 @@ module.exports = function (app, models) {
                 },
                 function (error) {
                     res.status(400).send(error);
+                }
+            );
+    }
+
+    //FIND ALL Users FOR TYPE --------------------
+    function findAllUsersForType(req, res) {
+        var id = req.params.id;
+        var type = req.params.type;
+
+        userModel
+            .findAllUsersForType(type)
+            .then(
+                function (users) {
+                    res.json(users);
+                },
+                function (error) {
+                    res.status(404).send("error");
                 }
             );
     }

@@ -69,6 +69,15 @@
 
             })
 
+            .when("/artist/:id/search/:type", {
+                templateUrl: "views/search/results.artist.view.client.html",
+                controller: "ResultsController",
+                controllerAs: "model"
+                //resolve allows you to set conditions that allow u to go to this page
+                //  resolve: { loggedin: checkLoggedIn }
+
+            })
+
             .when("/band/:id/search", {
                 templateUrl: "views/search/search.band.view.client.html",
                 controller: "SearchController",

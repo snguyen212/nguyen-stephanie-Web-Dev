@@ -5,7 +5,7 @@
         .module("jamn")
         .controller("SearchController", SearchController);
 
-    function SearchController($location, $scope, $rootScope, $routeParams, UserService, ResultsService) {
+    function SearchController($location, $scope, $rootScope, $routeParams, UserService) {
         var vm = this;
         vm.sessionUser = $rootScope.sessionUser;
 

@@ -13,6 +13,7 @@ module.exports = function() {
         createUser: createUser,
         findUserByCredentials: findUserByCredentials,
         findUserByUsername: findUserByUsername,
+        findAllUsersForType: findAllUsersForType,
         findUserById: findUserById,
         findAllUsers: findAllUsers,
         updateUser: updateUser,
@@ -29,7 +30,12 @@ module.exports = function() {
     function findFacebookUser(id) {
         return User.findOne({'facebook.id': id});   //if facebook id matches id i'm giving you, then return it
     }
-    
+
+
+    //-------- FIND RESULTS BY TYPE
+    function findAllUsersForType(type) {
+        return User.find({type: type});
+    }
     
     
     

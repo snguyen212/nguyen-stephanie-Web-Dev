@@ -5,17 +5,19 @@
         .module("jamn")
         .controller("ResultsController", ResultsController);
 
-    function ResultsController($location, $routeParams, ResultsService) {
+    function ResultsController($location, $rootScope, $routeParams, UserService) {
         var vm = this;
+        vm.sessionUser = $rootScope.sessionUser;
         vm.id = $routeParams.id;
         vm.type = $routeParams.type;
 
         function init() {
-            ResultsService
-                .findAllResultsForType(vm.type)
+            vm.id = $routeParams["id"];
+            UserService
+                .findAllUsersForType(vm.type)
                 .then(
-                    function(response) {
-                    vm.results = response.data;
+                    function(users) {
+                    vm.users = users.data;
 
                 },
                     function(error) {
