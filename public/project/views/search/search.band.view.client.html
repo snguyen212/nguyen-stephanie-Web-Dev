@@ -1,3 +1,67 @@
+<!--<nav class="navbar navbar-default navbar-fixed-top">-->
+    <!--<div class="container-fluid">-->
+        <!--<a class="navbar-brand" href="#/band/{{model.user._id}}">-->
+            <!--&lt;!&ndash;href="#/profile/{{model.user._id}}">&ndash;&gt;-->
+            <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
+            <!--Profile-->
+        <!--</a>-->
+    <!--</div>-->
+<!--</nav>-->
+
+
+<!--&lt;!&ndash;<div class="login-page">&ndash;&gt;-->
+    <!--&lt;!&ndash;<form name="search">&ndash;&gt;-->
+        <!--&lt;!&ndash;<h1 style="padding-bottom:10px; text-align:center;"><b>Search JAM'N Members</b></h1>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<h4 style="padding-bottom:20px; text-align:center"> Search for an extra member to jam with your band!&ndash;&gt;-->
+            <!--&lt;!&ndash;<br> Who are you looking to jam with? </h4>&ndash;&gt;-->
+        <!--&lt;!&ndash;<select style="width:100%;"&ndash;&gt;-->
+                <!--&lt;!&ndash;ng-model="searchtype"&ndash;&gt;-->
+                <!--&lt;!&ndash;name="searchtype"&ndash;&gt;-->
+                <!--&lt;!&ndash;id="searchtype">&ndash;&gt;-->
+            <!--&lt;!&ndash;<option value="Drummer"&ndash;&gt;-->
+                    <!--&lt;!&ndash;id="Drummer"> Drummer&ndash;&gt;-->
+            <!--&lt;!&ndash;</option>&ndash;&gt;-->
+            <!--&lt;!&ndash;<option value="Guitarist"&ndash;&gt;-->
+                    <!--&lt;!&ndash;id="Guitarist">Guitarist&ndash;&gt;-->
+            <!--&lt;!&ndash;</option>&ndash;&gt;-->
+            <!--&lt;!&ndash;<option value="Singer"&ndash;&gt;-->
+                    <!--&lt;!&ndash;id="Singer">Singer&ndash;&gt;-->
+            <!--&lt;!&ndash;</option>&ndash;&gt;-->
+            <!--&lt;!&ndash;<option value="All">View All</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+
+       <!--&lt;!&ndash; TODO: copy Website-list everything&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<select ng-model="searchtype">&ndash;&gt;-->
+                <!--&lt;!&ndash;<option value="Drummer">Drummer</option>&ndash;&gt;-->
+                <!--&lt;!&ndash;<option value="Guitarist">Guitarist</option>&ndash;&gt;-->
+                <!--&lt;!&ndash;<option value="Singer">Singer</option>&ndash;&gt;-->
+            <!--&lt;!&ndash;</select>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<tr ng-repeat="user in model.users | filter:searchtype">&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{user.name}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{emp.type}}</td>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+
+
+<!--<div class="login-page">-->
+
+    <!--<ul class="list-group">-->
+        <!--<li ng-repeat="user in model.users"-->
+        <!--style="text-align:center">-->
+
+            <!--<a href="#/band/{{model.user._id}}/search/{{user._id}}">-->
+                <!--{{user.username}}-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--</ul>-->
+
+
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="#/band/{{model.user._id}}">
@@ -9,56 +73,37 @@
 </nav>
 
 
-<!--<div class="login-page">-->
-    <!--<form name="search">-->
-        <!--<h1 style="padding-bottom:10px; text-align:center;"><b>Search JAM'N Members</b></h1>-->
-
-        <!--<h4 style="padding-bottom:20px; text-align:center"> Search for an extra member to jam with your band!-->
-            <!--<br> Who are you looking to jam with? </h4>-->
-        <!--<select style="width:100%;"-->
-                <!--ng-model="searchtype"-->
-                <!--name="searchtype"-->
-                <!--id="searchtype">-->
-            <!--<option value="Drummer"-->
-                    <!--id="Drummer"> Drummer-->
-            <!--</option>-->
-            <!--<option value="Guitarist"-->
-                    <!--id="Guitarist">Guitarist-->
-            <!--</option>-->
-            <!--<option value="Singer"-->
-                    <!--id="Singer">Singer-->
-            <!--</option>-->
-            <!--<option value="All">View All</option>-->
-        <!--</select>-->
-        <!--<br>-->
-
-       <!-- TODO: copy Website-list everything-->
-
-            <!--<select ng-model="searchtype">-->
-                <!--<option value="Drummer">Drummer</option>-->
-                <!--<option value="Guitarist">Guitarist</option>-->
-                <!--<option value="Singer">Singer</option>-->
-            <!--</select>-->
-
-        <!--<tr ng-repeat="user in model.users | filter:searchtype">-->
-            <!--<td>{{user.name}}</td>-->
-            <!--<td>{{emp.type}}</td>-->
-
-
-        <!--</tr>-->
 
 
 <div class="login-page">
+    <form name="search">
+        <h1 style="padding-bottom:10px; text-align:center;"><b>Search JAM'N Members</b></h1>
 
-    <ul class="list-group">
-        <li ng-repeat="user in model.users"
-        style="text-align:center">
+        <h4 style="padding-bottom:20px; text-align:center"> Who are you looking to jam with? </h4>
+        <!--<select style="width:100%;"-->
+        <!--name="membertype"-->
+        <!--id="membertype">-->
+        <!--<option value="drummer">Drummer</option>-->
+        <!--<option value="guitarist">Guitarist</option>-->
+        <!--<option value="singer">Singer</option>-->
+        <!--<option value="band">Band</option>-->
+        <!--</select>-->
 
-            <a href="#/band/{{model.user._id}}/search/{{user._id}}">
-                {{user.username}}
-            </a>
-        </li>
-        </ul>
+        <select style="width:100%;"
+                ng-model="searchtype"
+                ng-options="type for type in types">
+
+
+        </select>
+
+        <br>
+        <a href="#/band/{{model.user._id}}/search/{{searchtype}}">
+            <button style="margin-top:30px; padding-top:10px;"
+                    type="button"
+                    class="btn btn-primary btn-lg btn-block"> Search
+            </button>
+        </a>
+    </form>
 
 
 </div>
@@ -66,11 +111,18 @@
 
 
 
-        <a href="#/band/{{model.user._id}}/search/{{searchtype}}">
-            <button style="margin-top:30px; padding-top:10px;"
-                    type="button"
-                    class="btn btn-primary btn-lg btn-block"> Search
-            </button>
-        </a>
+
+
+<!--</div>-->
+
+
+
+
+        <!--<a href="#/band/{{model.user._id}}/search/{{searchtype}}">-->
+            <!--<button style="margin-top:30px; padding-top:10px;"-->
+                    <!--type="button"-->
+                    <!--class="btn btn-primary btn-lg btn-block"> Search-->
+            <!--</button>-->
+        <!--</a>-->
 
 

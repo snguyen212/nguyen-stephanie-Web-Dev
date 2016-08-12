@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href=#/artist/{{model.id}}/search">
+        <a class="navbar-brand" href= "#/artist/{{model.id}}/search">
             <span class="glyphicon glyphicon-chevron-left">
             </span>
 
@@ -50,7 +50,7 @@ style="text-align:center;">
     <ul class="list-group">
         <li ng-repeat="user in model.users" class="list-group-item">
 
-            <a href="#/artist/{{model.id}}/search/{{user._id}}">
+            <a href="#/artist/{{model.id}}/search/{{model.type}}/{{user._id}}">
                 {{user.username}}
             </a>
 

@@ -1,10 +1,8 @@
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
-<link href="../../css/login.css" rel="stylesheet">
 
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="search.view.client.html">
+        <a class="navbar-brand" href= "#/band/{{model.id}}/search">
             <span class="glyphicon glyphicon-chevron-left">
             </span>
 
@@ -17,20 +15,6 @@
 
 <style>
 
-    .results {
-        top: 50%;
-        left: 50%;
-        display: block;
-        position: absolute;
-        background-color: white;
-        width: 750px;
-        height: 317px;
-        padding-left: 20px;
-        margin-top: -108.5px;
-        margin-left: -375px;
-        text-align: center;
-    }
-
     .results h3 {
         text-align: center;
         color: blue;
@@ -39,26 +23,39 @@
 </style>
 
 <div class="container-fluid"
-     style="text-align:center;margin-top:80px;padding-bottom:10px;background-color:white;">
-    <div class="row">
+     style="text-align:center;">
 
-        <h1> Results </h1>
-        <p>Click on a JAM'N member to view their profile</p>
+    <!--<h1> Results </h1>-->
+    <!--<p>Click on a JAM'N member to view their profile</p>-->
 
-        <hr>
+    <!--<hr>-->
 
-        <a href="details.artist.view.client.html">
-            <h3>
-                Alice
-            </h3>
-        </a>
+    <!--<a href="details.artist.view.client.html">-->
+    <!--<h3>-->
+    <!--Alice-->
+    <!--</h3>-->
+    <!--</a>-->
 
-        <a href="details.band.view.client.html">
-            <h3>
-                Bob
-            </h3>
-        </a>
-    </div>
+    <!--<a href="details.band.view.client.html">-->
+    <!--<h3>-->
+    <!--Bob-->
+    <!--</h3>-->
+    <!--</a>-->
+    <!--</div>-->
+
+    <h2>Search Results for {{model.type}}</h2>
+    <span> Select a user to view their profile</span>
 
 
+    <ul class="list-group">
+        <li ng-repeat="user in model.users" class="list-group-item">
+
+            <a href="#/band/{{model.id}}/search/{{model.type}}/{{user._id}}">
+                {{user.username}}
+            </a>
+
+        </li>
+    </ul>
 </div>
+
+

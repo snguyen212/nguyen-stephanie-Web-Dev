@@ -8,6 +8,7 @@
     function DetailsController($location, $routeParams, UserService) {
         var vm = this;
         vm.id = $routeParams.id;
+        vm.type = $routeParams.type;
 
 
 
