@@ -17,7 +17,7 @@
             //username is entered
             if (username) {
                 // if ((pw1 && pw2) && (pw1 === pw2)) {
-                if (pw) {
+                if(pw) {
                     UserService
                         .findUserByUsername(username)
                         .then(

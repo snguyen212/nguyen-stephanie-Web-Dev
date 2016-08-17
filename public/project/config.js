@@ -15,7 +15,7 @@
 
 
             .when("/login", {
-                templateUrl: "views/login/login.view.client.html",  //if you see #/login, go to her
+                templateUrl: "views/user/login.view.client.html",  //if you see #/login, go to her
                 controller: "LoginController",
                 controllerAs: "model" //our controller is the model
 
@@ -23,20 +23,20 @@
             })
 
             .when("/register", {
-                templateUrl: "views/login/registerpg1.view.client.html",
+                templateUrl: "views/user/registerpg1.view.client.html",
                 controller: "RegisterController",
                 controllerAs: "model"
 
             })
 
             .when("/regartist", {
-                templateUrl: "views/login/register.artist.view.client.html",
+                templateUrl: "views/user/register.artist.view.client.html",
                 controller: "RegisterController",
                 controllerAs: "model"
 
 
             }).when("/regband", {
-                templateUrl: "views/login/register.band.view.client.html",
+                templateUrl: "views/user/register.band.view.client.html",
                 controller: "RegisterController",
                 controllerAs: "model"
 
@@ -70,7 +70,7 @@
             })
 
             .when("/artist/:id/search/:type", {
-                templateUrl: "views/search/results.artist.view.client.html",
+                templateUrl: "views/results/results.artist.view.client.html",
                 controller: "ResultsController",
                 controllerAs: "model"
                 //resolve allows you to set conditions that allow u to go to this page
@@ -79,7 +79,7 @@
             })
             
             .when("/artist/:id/search/:type/:uid", {
-                templateUrl: "views/search/details.artist.view.client.html",
+                templateUrl: "views/details/details.artist.view.client.html",
                 controller: "DetailsController",
                 controllerAs: "model"
                 //resolve allows you to set conditions that allow u to go to this page
@@ -106,7 +106,7 @@
             // })
 
             .when("/band/:id/search/:type", {
-                templateUrl: "views/search/results.band.view.client.html",
+                templateUrl: "views/results/results.band.view.client.html",
                 controller: "ResultsController",
                 controllerAs: "model"
                 //resolve allows you to set conditions that allow u to go to this page
@@ -115,7 +115,7 @@
             })
 
             .when("/band/:id/search/:type/:uid", {
-                templateUrl: "views/search/details.band.view.client.html",
+                templateUrl: "views/details/details.band.view.client.html",
                 controller: "DetailsController",
                 controllerAs: "model"
                 //resolve allows you to set conditions that allow u to go to this page
@@ -124,7 +124,7 @@
             })
 
             .when("/artist/result", {
-                templateUrl: "views/search/results.artist.view.client.html",
+                templateUrl: "views/results/results.artist.view.client.html",
                 controller: "ResultsController",
                 controllerAs: "model"
                 //resolve allows you to set conditions that allow u to go to this page

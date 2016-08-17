@@ -18,17 +18,17 @@ module.exports = function() {
         findAllUsers: findAllUsers,
         updateUser: updateUser,
         deleteUser: deleteUser,
-        findFacebookUser: findFacebookUser
+        findGoogleUser: findGoogleUser
         
     };
     return api;
 
-    // FIND FACEBOOK USER -------------------------------------
+    // FIND Google USER -------------------------------------
     
    
    
-    function findFacebookUser(id) {
-        return User.findOne({'facebook.id': id});   //if facebook id matches id i'm giving you, then return it
+    function findGoogleUser(id) {
+        return User.findOne({'google.id': id});   //if google id matches id i'm giving you, then return it
     }
 
 

@@ -73,13 +73,7 @@ module.exports = function (app, models) {
     app.post("api/register", register);
     app.post('/api/logout', logout);
     app.put("/api/user/:userId", updateUser);
-    app.delete("/api/user/:userId", authenticate, deleteUser);
-    
-
-
-    passport.use('jamn', new LocalStrategy(localStrategy));
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
+    app.delete("/api/user/:userId", deleteUser);
 
     var googleConfig = {
         clientID     : process.env.GOOGLE_CLIENT_ID,
@@ -87,37 +81,51 @@ module.exports = function (app, models) {
         callbackURL  : process.env.GOOGLE_CALLBACK_URL
     };
 
+
+    passport.use('jamn', new LocalStrategy(localStrategy));
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+
+
     console.log(googleConfig.callbackURL);
 
 
-    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
 
 
     function googleStrategy(token, refreshToken, profile, done) {
         userModel
-            .findUserByGoogleId(profile.id)
+            .findGoogleUser(profile.id)
             .then(
                 function(user) {
                     if(user) {
                         return done(null, user);
                     } else {
                         var email = profile.emails[0].value;
-                        var emailParts = email.split("@");
+                        var emailSplit = email.split("@");
                         var newGoogleUser = {
-                            username:  emailParts[0],
-                            firstname: profile.name.givenName,
-                            lastname:  profile.name.familyName,
-                            email:     email,
+                            username: emailSplit[0],
+                            firstName: profile.name.givenName,
+                            lastName: profile.name.familyName,
+                            email: email,
                             google: {
-                                id:    profile.id,
-                                token: token
+                                id: profile.id,
+                                token: token,
+                                displayName: emailSplit[0]
                             }
                         };
-                        return userModel.createUser(newGoogleUser);
+                        return userModel
+                            .createUser(newGoogleUser);
                     }
                 },
                 function(err) {
-                    if (err) { return done(err); }
+                    if (error) {
+                        return done(error);
+                    } else {
+                        return done(null, false);
+                    }
                 }
             )
             .then(
@@ -125,10 +133,15 @@ module.exports = function (app, models) {
                     return done(null, user);
                 },
                 function(err){
-                    if (err) { return done(err); }
+                    if (error) {
+                        return done(error);
+                    } else {
+                        return done(null, false);
+                    }
                 }
             );
     }
+
 
 
     //PASSPORT -------------------------------------
@@ -137,14 +150,14 @@ module.exports = function (app, models) {
         userModel
             .findUserByUsername(username)
             .then(
-                function (user) {
-                    console.log(user);
+                function(user) {
+                    console.log("in local and user is = " + user);
                     //if username entered and passwords match
-                    if (user && bcrypt.compareSynch(user.password, password)) {
-                        console.log("if");
+                    if(user && bcrypt.compareSynch(user.password, password)) {
+                        console.log("user found");
                         return done(null, user);
                     } else {
-                        console.log("else");
+                        console.log("user not found");
                         return done(null, false);
                     }
                 },
@@ -200,7 +213,7 @@ module.exports = function (app, models) {
 
     //LOGIN-------------------
     function login(req, res) {
-        console.log("inside login");
+        console.log("inside login and req is =" + req);
         var user = req.user;
         console.log(user);
         res.json(user);
@@ -294,7 +307,7 @@ module.exports = function (app, models) {
         var id = req.params.userId;
 
         userModel
-            .deleteUser(user._id)
+            .deleteUser(id)
             .then(
                 function (status) {
                     res.send(200);

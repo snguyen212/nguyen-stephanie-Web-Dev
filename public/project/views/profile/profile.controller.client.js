@@ -13,7 +13,7 @@
         vm.updateUser = updateUser;
         vm.unregister = unregister;
         vm.logout = logout;
-
+        vm.id = $rootScope.currentUser._id;
 
         var id = $routeParams["id"];
         var index = -1;
@@ -51,12 +51,12 @@
             UserService
                 .updateUser(vm.user._id, vm.user)
                 .then(
-                    function (response) {
+                    function(response) {
 
                         vm.success = "User successfully updated";
 
                     },
-                    function (error) {
+                    function(error) {
                         vm.error = "User not found";
                     });
         }
